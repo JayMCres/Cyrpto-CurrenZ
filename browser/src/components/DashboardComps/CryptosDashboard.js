@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Segment, Grid } from "semantic-ui-react";
 import io from "socket.io-client";
-import { fetchExchanges } from "../../actions/exchanges";
+// import { fetchExchanges } from "./../actions/exchanges";
+
 // import {
 //   fetchExchangesPending,
 //   fetchExchangesSuccess,
@@ -13,6 +14,7 @@ import CryptosList from "./CryptoContainer/CryptosList";
 import LoadingPage from "./CryptoContainer/LoadingPage";
 import Search from "./CryptoContainer/Search";
 import Exchanges from "./ExchangeComps/ExchangeCont";
+import CryptoSideCont from "./CryptoSideCont/CryptoSideCont";
 
 class CryptosDashboard extends Component {
   state = {
@@ -88,24 +90,28 @@ class CryptosDashboard extends Component {
       <Segment inverted>
         <Exchanges />
         <Grid columns={2} divided>
-          <Grid.Column width={12}>
-            <Segment attached="top">
-              <Search
-                handleChange={this.handleChange}
-                inputValue={this.state.inputValue}
-              />
-            </Segment>
-            <Segment attached="bottom">
-              {this.state.coinList.length === 0 ? (
-                <Segment style={{ maxHeight: 500 }}>
-                  <LoadingPage />
+          <Grid.Column width={10}>
+            {this.state.coinList.length === 0 ? (
+              // <Segment style={{ maxHeight: 500 }}>
+              <LoadingPage />
+            ) : (
+              // </Segment>
+              <Segment inverted>
+                <Segment attached="top">
+                  <Search
+                    handleChange={this.handleChange}
+                    inputValue={this.state.inputValue}
+                  />
                 </Segment>
-              ) : (
-                <CryptosList coinList={this.filterCryptos()} />
-              )}
-            </Segment>
+                <Segment attached="bottom">
+                  <CryptosList coinList={this.filterCryptos()} />
+                </Segment>
+              </Segment>
+            )}
           </Grid.Column>
-          <Grid.Column width={4}>Test</Grid.Column>
+          <Grid.Column width={6}>
+            <CryptoSideCont />
+          </Grid.Column>
         </Grid>
       </Segment>
     );

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Card, Image, Button, Statistic, Message } from "semantic-ui-react";
-// import { connect } from "react-redux";
-// import { setCurrentCrypto, fetchCryptoDetails } from "../../../actions/cryptos";
 
 class CryptoListItem extends Component {
   state = {
@@ -36,7 +34,11 @@ class CryptoListItem extends Component {
 
   handleCryptoRenderClick = () => {
     this.props.setCurrentCrypto();
+    this.props.fetchCryptoPrices();
     this.props.fetchCryptoDetails();
+    this.props.fetchMonthly();
+    this.props.fetchHistoricals();
+    // this.props.fetchCrypto();
   };
   render() {
     // console.log("Crypto Item Props", this.props);

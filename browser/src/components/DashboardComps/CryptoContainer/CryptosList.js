@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import CryptoListItem from "./CryptoListItem";
 import { Card } from "semantic-ui-react";
-import { setCurrentCrypto, fetchCryptoDetails } from "../../../actions/cryptos";
+import {
+  fetchCryptoPrices,
+  fetchHistoricals,
+  setCurrentCrypto,
+  fetchCryptoDetails,
+  fetchMonthly
+} from "../../../actions/cryptos";
 
 class CryptosList extends Component {
   render() {
@@ -16,8 +22,15 @@ class CryptosList extends Component {
               key={crypto.id}
               {...crypto}
               setCurrentCrypto={() => this.props.setCurrentCrypto(crypto)}
+              fetchCryptoPrices={() =>
+                this.props.fetchCryptoPrices(crypto.ticker)
+              }
               fetchCryptoDetails={() =>
                 this.props.fetchCryptoDetails(crypto.ticker)
+              }
+              fetchMonthly={() => this.props.fetchMonthly(crypto.ticker)}
+              fetchHistoricals={() =>
+                this.props.fetchHistoricals(crypto.ticker)
               }
             />
           );
@@ -30,7 +43,10 @@ class CryptosList extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     setCurrentCrypto: crypto => dispatch(setCurrentCrypto(crypto)),
-    fetchCryptoDetails: ticker => dispatch(fetchCryptoDetails(ticker))
+    fetchCryptoPrices: ticker => dispatch(fetchCryptoPrices(ticker)),
+    fetchCryptoDetails: ticker => dispatch(fetchCryptoDetails(ticker)),
+    fetchMonthly: ticker => dispatch(fetchMonthly(ticker)),
+    fetchHistoricals: ticker => dispatch(fetchHistoricals(ticker))
   };
 };
 export default connect(null, mapDispatchToProps)(CryptosList);
