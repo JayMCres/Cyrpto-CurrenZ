@@ -1,11 +1,15 @@
 import { combineReducers } from "redux";
-import cryptosReducer from "./cryptosReducer";
-import exchangeReducer from "./exchangeReducer";
-import userReducer from "./userReducer";
+import cryptos from "./cryptosReducer";
+import users from "./userReducer";
+
+import { firebaseReducer } from "react-redux-firebase";
+import { firestoreReducer } from "redux-firestore";
+
 const rootReducer = combineReducers({
-  cryptosReducer,
-  exchangeReducer,
-  userReducer
+  firebase: firebaseReducer,
+  firestore: firestoreReducer,
+  cryptos,
+  users
 });
 
 export default rootReducer;
