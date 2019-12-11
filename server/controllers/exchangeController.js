@@ -10,17 +10,17 @@ exports.getExchanges = async (req, res) => {
   let json = await response.json();
   // console.log("JSON", json);
 
-  let data = await json.Data.Exchanges;
+  let data = await [json.Data.Exchanges];
 
-  // const exchangeData = await data.map((exchange, index) => {
-  //   return {
-  //     One: exchange[0],
-  //     Two: exchange[1],
-  //     Three: exchange[2],
-  //     Four: exchange[3]
-  //   };
-  // });
+  const exchangeData = await data.map((exchange, index) => {
+    return {
+      One: exchange[0],
+      Two: exchange[1],
+      Three: exchange[2],
+      Four: exchange[3]
+    };
+  });
   // console.log("exchangeData", exchangeData);
 
-  res.send([data]);
+  res.send(exchangeData);
 };
