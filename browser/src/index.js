@@ -8,6 +8,7 @@ import "semantic-ui-css/semantic.css";
 import App from "./App";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import Spinner from "./Spinner";
 
 import { Provider, connect } from "react-redux";
 import { createStore } from "redux";
@@ -34,7 +35,9 @@ class Root extends Component {
     });
   }
   render() {
-    return (
+    return this.props.loading ? (
+      <Spinner />
+    ) : (
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/login" component={Login} />
@@ -43,7 +46,9 @@ class Root extends Component {
     );
   }
 }
-const RootWithAuth = withRouter(connect(null, { setUser })(Root));
+const mapStateFromProps = state => ({ loading: state.users.loading });
+
+const RootWithAuth = withRouter(connect(mapStateFromProps, { setUser })(Root));
 
 ReactDOM.render(
   <Provider store={store}>
