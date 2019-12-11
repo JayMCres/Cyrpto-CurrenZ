@@ -1,8 +1,15 @@
-import { FETCH_CRYPTOS, FETCH_EXCHANGES } from "../actions/cryptos";
+import {
+  FETCH_CRYPTOS,
+  FETCH_EXCHANGES,
+  SET_CURRENT_CRYPTO,
+  SET_CRYPTO_DETAILS
+} from "../actions/cryptos";
 
 const initialState = {
   cryptos: [],
-  exchanges: []
+  exchanges: [],
+  crypto: {},
+  ticker: ""
 };
 
 export default function cryptosReducer(state = initialState, action) {
@@ -12,6 +19,12 @@ export default function cryptosReducer(state = initialState, action) {
     }
     case FETCH_EXCHANGES: {
       return { ...state, exchanges: action.payload };
+    }
+    case SET_CURRENT_CRYPTO: {
+      return { ...state, crypto: action.payload };
+    }
+    case SET_CRYPTO_DETAILS: {
+      return { ...state, details: action.payload };
     }
     default:
       return state;

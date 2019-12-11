@@ -1,21 +1,10 @@
 import React, { Component } from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import CryptoListItem from "./CryptoListItem";
 import { Card } from "semantic-ui-react";
+import { setCurrentCrypto, fetchCryptoDetails } from "../../../actions/cryptos";
 
-export default class CryptosList extends Component {
-  state = {
-    clickedCryptoCard: null
-  };
-
-  handleRenderCardBack = cryptoId => {
-    const foundCrypto = this.props.coinList.find(crypto => {
-      return crypto.id === cryptoId;
-    });
-    return this.setState({
-      clickedCryptoCard: foundCrypto
-    });
-  };
+class CryptosList extends Component {
   render() {
     // console.log("CryptoList props", this.props);
 
@@ -26,8 +15,10 @@ export default class CryptosList extends Component {
             <CryptoListItem
               key={crypto.id}
               {...crypto}
-              handleRenderCardBack={this.handleRenderCardBack}
-              clickedCryptoCard={this.state.clickedCryptoCard}
+              setCurrentCrypto={() => this.props.setCurrentCrypto(crypto)}
+              fetchCryptoDetails={() =>
+                this.props.fetchCryptoDetails(crypto.ticker)
+              }
             />
           );
         })}
@@ -35,3 +26,11 @@ export default class CryptosList extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentCrypto: crypto => dispatch(setCurrentCrypto(crypto)),
+    fetchCryptoDetails: ticker => dispatch(fetchCryptoDetails(ticker))
+  };
+};
+export default connect(null, mapDispatchToProps)(CryptosList);

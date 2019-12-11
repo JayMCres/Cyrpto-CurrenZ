@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Card, Image, Button, Statistic, Message } from "semantic-ui-react";
+// import { connect } from "react-redux";
+// import { setCurrentCrypto, fetchCryptoDetails } from "../../../actions/cryptos";
 
-export default class CryptoListItem extends Component {
+class CryptoListItem extends Component {
   state = {
     currentPrice: [],
     pastPrice: []
@@ -31,6 +33,11 @@ export default class CryptoListItem extends Component {
       return "black";
     }
   };
+
+  handleCryptoRenderClick = () => {
+    this.props.setCurrentCrypto();
+    this.props.fetchCryptoDetails();
+  };
   render() {
     // console.log("Crypto Item Props", this.props);
     return (
@@ -57,9 +64,9 @@ export default class CryptoListItem extends Component {
             <Button
               basic
               color="green"
-              onClick={() => this.props.handleRenderCardBack(this.props.id)}
+              onClick={() => this.handleCryptoRenderClick()}
             >
-              Approve
+              Crypto Detials
             </Button>
             <Button basic color="red">
               Decline
@@ -70,3 +77,6 @@ export default class CryptoListItem extends Component {
     );
   }
 }
+
+export default CryptoListItem;
+// export default connect(null, mapDispatchToProps)(CryptoListItem);
