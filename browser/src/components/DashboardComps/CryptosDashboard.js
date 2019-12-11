@@ -48,9 +48,9 @@ class CryptosDashboard extends Component {
     this.setState({ state: "disconnected" });
   };
 
-  componentDidMount() {
-    this.props.dispatch(fetchExchanges());
-  }
+  // componentDidMount() {
+  //   this.props.dispatch(fetchExchanges());
+  // }
 
   handleChange = event => {
     // console.log("Changing")
@@ -86,16 +86,16 @@ class CryptosDashboard extends Component {
 
     return (
       <Segment inverted>
-        <Exchanges exchanges={items} />
+        <Exchanges />
         <Grid columns={2} divided>
           <Grid.Column width={12}>
-            <Segment inverted attached="top">
+            <Segment attached="top">
               <Search
                 handleChange={this.handleChange}
                 inputValue={this.state.inputValue}
               />
             </Segment>
-            <Segment inverted attached="bottom">
+            <Segment attached="bottom">
               {this.state.coinList.length === 0 ? (
                 <Segment style={{ maxHeight: 500 }}>
                   <LoadingPage />
@@ -111,8 +111,5 @@ class CryptosDashboard extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  exchanges: state.exchanges
-});
 
-export default connect(mapStateToProps)(CryptosDashboard);
+export default connect(null)(CryptosDashboard);

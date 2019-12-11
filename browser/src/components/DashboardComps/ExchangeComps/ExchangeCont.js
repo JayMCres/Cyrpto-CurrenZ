@@ -1,34 +1,37 @@
 import React, { Component } from "react";
 import { Segment, Header, Message } from "semantic-ui-react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 
-// import { fetchExchanges } from "../../../actions/cryptos";
+import { fetchExchanges } from "../../../actions/cryptos";
 
 import Exchange from "./Exchange";
 
-export default class ExchangeCont extends Component {
+class ExchangeCont extends Component {
+  componentDidMount() {
+    this.props.dispatch(fetchExchanges());
+  }
   render() {
-    console.log("Exchanges Props", this.props);
+    // console.log("Exchanges Props", this.props);
 
     return (
       <Segment>
-        <Header as="h3" textAlign="center" dividing>
-          CryptoCurrency Indexes
-        </Header>
-
+        <Message>
+          <Header as="h3" textAlign="center" dividing>
+            CryptoCurrency Indexes
+          </Header>
+        </Message>
         <Segment>
-          <Exchange />
-          {/* {this.props.exchanges.map((item, index) => {
+          {this.props.exchanges.map((item, index) => {
             return <Exchange key={index} {...item} />;
-          })} */}
+          })}
         </Segment>
       </Segment>
     );
   }
 }
 
-// const mapStateToProps = state => ({
-//   exchanges: state.exchanges
-// });
+const mapStateToProps = state => ({
+  exchanges: state.cryptos.exchanges
+});
 
-// export default connect(mapStateToProps)(ExchangeCont);
+export default connect(mapStateToProps)(ExchangeCont);
