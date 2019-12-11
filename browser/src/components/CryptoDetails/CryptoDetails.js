@@ -9,7 +9,7 @@ import {
   Message,
   Label
 } from "semantic-ui-react";
-import NewsList from "./NewsList";
+import TableCont from "./pricetable/TableCont";
 import MonthlyPriceChart from "./MonthlyPriceChart";
 class CryptoDetails extends Component {
   render() {
@@ -67,8 +67,15 @@ class CryptoDetails extends Component {
         <Segment attached secondary>
           <Message color="violet">{this.props.details.description}</Message>
         </Segment>
-        <Segment attached="bottom">
+        <Segment attached="middle">
           <MonthlyPriceChart />
+        </Segment>
+        <Segment attached="bottom">
+          {this.props.historicals === undefined ? (
+            <Message>LOADING</Message>
+          ) : (
+            <TableCont historicals={this.props.historicals[0]} />
+          )}
         </Segment>
       </div>
     );

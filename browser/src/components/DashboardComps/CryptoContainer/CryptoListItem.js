@@ -65,13 +65,10 @@ class CryptoListItem extends Component {
           <div className="ui two buttons">
             <Button
               basic
-              color="green"
+              color="violet"
               onClick={() => this.handleCryptoRenderClick()}
             >
               Crypto Detials
-            </Button>
-            <Button basic color="red">
-              Decline
             </Button>
           </div>
         </Card.Content>

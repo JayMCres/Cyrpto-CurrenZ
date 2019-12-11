@@ -122,6 +122,7 @@ class CryptosDashboard extends Component {
         ) : (
           <Segment inverted>
             <CryptoDetailsCont
+              showIndepthPage={this.showIndepthPage}
               currentChannel={currentChannel}
               currentUser={this.props.currentUser}
               isPrivateChannel={isPrivateChannel}
