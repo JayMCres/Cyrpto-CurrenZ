@@ -76,16 +76,7 @@ class CryptosDashboard extends Component {
     });
 
   render() {
-    const { error, pending, items } = this.props;
-
-    if (error) {
-      return <div>Error! {error.message}</div>;
-    }
-
-    if (pending) {
-      return <div>Loading...</div>;
-    }
-
+    const { currentChannel, isPrivateChannel } = this.props;
     return (
       <Segment inverted>
         <Exchanges />
@@ -110,12 +101,20 @@ class CryptosDashboard extends Component {
             )}
           </Grid.Column>
           <Grid.Column width={6}>
-            <CryptoSideCont />
+            <CryptoSideCont
+              currentChannel={currentChannel}
+              currentUser={this.props.currentUser}
+              isPrivateChannel={isPrivateChannel}
+            />
           </Grid.Column>
         </Grid>
       </Segment>
     );
   }
 }
+const mapStateToProps = state => ({
+  currentChannel: state.channels.currentChannel,
+  isPrivateChannel: state.channels.isPrivateChannel
+});
 
-export default connect(null)(CryptosDashboard);
+export default connect(mapStateToProps)(CryptosDashboard);
