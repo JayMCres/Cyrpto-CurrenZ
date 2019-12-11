@@ -4,6 +4,7 @@ import WeeklyPriceChart from "./WeeklyPriceChart";
 import { connect } from "react-redux";
 import { Message, Segment } from "semantic-ui-react";
 import UserProfile from "./UserProfile";
+import CryptoLoading from "./CryptoLoading";
 class CryptoSideCont extends Component {
   state = {
     showSideChart: false
@@ -27,11 +28,11 @@ class CryptoSideCont extends Component {
     });
     return (
       <div>
-        <Message color="orange">
+        <Message color="violet">
           <UserProfile currentUser={currentUser} />
         </Message>
         {this.props.crypto === null ? (
-          <Message color="blue">Click Crypto</Message>
+          <CryptoLoading />
         ) : (
           <Segment inverted>
             <Segment inverted attached="top">

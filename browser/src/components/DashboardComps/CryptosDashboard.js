@@ -110,7 +110,7 @@ class CryptosDashboard extends Component {
                 currentUser={this.props.currentUser}
                 showIndepthPage={this.showIndepthPage}
               />
-              <Segment inverted>
+              <Segment style={{ "border-style": "inset" }}>
                 <Channels
                   currentChannel={currentChannel}
                   currentUser={this.props.currentUser}

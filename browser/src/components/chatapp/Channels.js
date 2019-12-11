@@ -152,10 +152,8 @@ class Channels extends Component {
     return (
       // prettier-ignore
       <div>
-         {/* <Message color="orange">
-          <UserProfile currentUser={currentUser} />
-        </Message> */}
-      <Segment>
+        
+      <Segment  style={{ "border-style": "grove", "border-color": "MediumSlateBlue" }}>
         <Header as="h2">
           <span>
             <Icon name="mail" />
