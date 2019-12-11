@@ -3,6 +3,12 @@ import { Segment, Button, Image, Message, List } from "semantic-ui-react";
 import firebase from "../../../config/firebase";
 
 export default class UserProfile extends Component {
+  handleSignout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => console.log("signed out!"));
+  };
   render() {
     return (
       <List>
@@ -15,7 +21,9 @@ export default class UserProfile extends Component {
             <List.Description>{this.props.currentUser.email}</List.Description>
           </List.Content>
           <List.Content floated="right">
-            <Button size="mini">Sign Out</Button>
+            <Button size="mini" onClick={this.handleSignout}>
+              Sign Out
+            </Button>
           </List.Content>
         </List.Item>
       </List>

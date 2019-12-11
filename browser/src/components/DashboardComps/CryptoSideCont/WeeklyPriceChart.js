@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Icon } from "semantic-ui-react";
+
 import ReactFC from "react-fusioncharts";
 
 // Step 3 - Include the fusioncharts library
@@ -70,16 +70,7 @@ export default class WeeklyPriceChart extends Component {
 
     return (
       <div>
-        {/* <Segment attached secondary>
-          <span>
-            <Icon name="dollar sign" /> {this.props.crypto.price}|
-            <Icon name="chart area" /> {this.props.crypto.MKTCAP}
-          </span>
-        </Segment>
-        <Segment centered attached="bottom"> */}
         <ReactFC {...chartConfigs} />
-        {/* <Message color="violet">{this.props.details.description}</Message> */}
-        {/* </Segment> */}
       </div>
     );
   }
