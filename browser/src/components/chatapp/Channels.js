@@ -13,8 +13,7 @@ import {
   Message,
   List
 } from "semantic-ui-react";
-// import Messages from "./Messages";
-// import UserProfile from "../DashboardComps/CryptoSideCont/UserProfile";
+import Messages from "./Messages";
 
 class Channels extends Component {
   state = {
@@ -167,12 +166,8 @@ class Channels extends Component {
         </Header>
         <List divided relaxed>{this.displayChannels(channels)}</List> 
         </Segment>
-        {/* {this.state.showConvo === false ? <div> </div> : <Messages key={currentChannel && currentChannel.id} currentChannel={currentChannel} currentUser={currentUser}  hideChannelConvo={this.hideChannelConvo}/>} */}
-        {/* // <List divided relaxed>{this.displayChannels(channels)}</List> : 
-        // <div>
-        //  <List divided relaxed>{this.displayChannels(channels)}</List>
-        // <Messages renderChannelConvo={this.renderChannelConvo}/>
-        // </div>} */}
+        {this.state.showConvo === false ? <div> </div> : <Messages key={currentChannel && currentChannel.id} currentChannel={currentChannel} currentUser={currentUser}  hideChannelConvo={this.hideChannelConvo}/>}
+        
      
 
       <Modal basic  open={modal} onClose={this.closeModal}>

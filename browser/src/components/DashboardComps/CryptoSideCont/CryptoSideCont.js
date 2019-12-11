@@ -5,6 +5,13 @@ import { connect } from "react-redux";
 import { Message, Segment } from "semantic-ui-react";
 import UserProfile from "./UserProfile";
 class CryptoSideCont extends Component {
+  state = {
+    showSideChart: false
+  };
+
+  renderSideChart = () => {
+    return this.setState({ showSideChart: !this.state.showSideChart });
+  };
   render() {
     const { currentUser } = this.props;
     const sidePrices = this.props.prices.map((price, index) => {
@@ -26,22 +33,27 @@ class CryptoSideCont extends Component {
         {this.props.crypto === null ? (
           <Message color="blue">Click Crypto</Message>
         ) : (
-          <div>
+          <Segment inverted>
             <Segment inverted attached="top">
-              <CryptoSideDetails {...this.props.crypto} />
+              <CryptoSideDetails
+                {...this.props.crypto}
+                renderSideChart={this.renderSideChart}
+              />
             </Segment>
-            <Segment inverted centered attached="bottom">
-              {sidePrices.map((price, index) => {
-                return (
-                  <WeeklyPriceChart
-                    key={index}
-                    {...price}
-                    crypto={this.props.crypto}
-                  />
-                );
-              })}
-            </Segment>
-          </div>
+            {!this.state.showSideChart ? (
+              <Segment inverted centered attached="bottom">
+                {sidePrices.map((price, index) => {
+                  return (
+                    <WeeklyPriceChart
+                      key={index}
+                      {...price}
+                      crypto={this.props.crypto}
+                    />
+                  );
+                })}
+              </Segment>
+            ) : null}
+          </Segment>
         )}
       </div>
     );

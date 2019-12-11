@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
-import { Image, List, Message, Table, Menu } from "semantic-ui-react";
+import {
+  Image,
+  List,
+  Message,
+  Table,
+  Menu,
+  Button,
+  Icon
+} from "semantic-ui-react";
 
 class CryptoSideDetails extends Component {
   render() {
@@ -24,6 +32,13 @@ class CryptoSideDetails extends Component {
                   </a>
                 </List.Description>
               </List.Content>
+              <Button
+                onClick={() => this.props.renderSideChart()}
+                floated="right"
+                icon
+              >
+                <Icon name="chart area" />
+              </Button>
             </List.Item>
           </List>
         </Message>
@@ -44,7 +59,6 @@ class CryptoSideDetails extends Component {
             {this.props.CHANGEPCTDAY}
           </Menu.Item>
           <Menu.Item as="a" textAlign="center">
-            {" "}
             {this.props.CHANGEPCT24HOUR}
           </Menu.Item>
         </Menu>
