@@ -121,7 +121,11 @@ class CryptosDashboard extends Component {
           </Grid>
         ) : (
           <Segment inverted>
-            <CryptoDetailsCont />
+            <CryptoDetailsCont
+              currentChannel={currentChannel}
+              currentUser={this.props.currentUser}
+              isPrivateChannel={isPrivateChannel}
+            />
           </Segment>
         )}
       </Segment>

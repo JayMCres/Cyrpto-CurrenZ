@@ -10,6 +10,7 @@ import {
   Label
 } from "semantic-ui-react";
 import NewsList from "./NewsList";
+import MonthlyPriceChart from "./MonthlyPriceChart";
 class CryptoDetails extends Component {
   render() {
     return (
@@ -67,20 +68,7 @@ class CryptoDetails extends Component {
           <Message color="violet">{this.props.details.description}</Message>
         </Segment>
         <Segment attached="bottom">
-          <Grid>
-            <Grid.Column width={10}>
-              {/* <MonthlyPriceChart />
-              <TableCont historicals={this.props.historicals[0]} /> */}
-              {/* <TableHeader historicals={this.props.historicals[0]} /> */}
-            </Grid.Column>
-            <Grid.Column width={6}>
-              <NewsList
-                filteredNews={this.props.news.filter(article => {
-                  return article.mentions === this.props.crypto.ticker;
-                })}
-              />
-            </Grid.Column>
-          </Grid>
+          <MonthlyPriceChart />
         </Segment>
       </div>
     );
@@ -90,8 +78,8 @@ class CryptoDetails extends Component {
 const mapStateToProps = state => ({
   crypto: state.cryptos.crypto,
   details: state.cryptos.details,
-  historicals: state.cryptos.historicals,
-  news: state.cryptos.news
+  historicals: state.cryptos.historicals
+  // news: state.cryptos.news
 });
 
 export default connect(mapStateToProps)(CryptoDetails);
