@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Segment, Header } from "semantic-ui-react";
 
 import { connect } from "react-redux";
-import NewsList from "./NewsList";
+import NewsList from "./newsfeed/NewsList";
 import SidePriceChart from "./SidePriceChart";
 import UserProfile from "../DashboardComps/CryptoSideCont/UserProfile";
 class SideBarCont extends Component {

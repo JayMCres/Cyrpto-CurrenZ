@@ -11,6 +11,7 @@ import {
 } from "semantic-ui-react";
 import md5 from "md5";
 import { Link } from "react-router-dom";
+import app from "./App.css";
 
 export default class Register extends Component {
   state = {
@@ -121,8 +122,13 @@ export default class Register extends Component {
       loading
     } = this.state;
     return (
-      <Grid textAlign="center" verticalAlign="middle" className="app">
-        <Grid.Column style={{ maxwidth: 450 }}>
+      <Grid
+        textAlign="center"
+        verticalAlign="middle"
+        className="app"
+        // style={{ width: 250 }}
+      >
+        <Grid.Column style={{ width: 450 }}>
           <Header as="h2" icon color="orange" textAlign="center">
             <Icon name="puzzle piece" color="orange" />
             Register For Crypto-Curren-Z

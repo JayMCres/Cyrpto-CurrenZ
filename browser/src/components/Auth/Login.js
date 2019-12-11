@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import firebase from "../../config/firebase";
+import app from "./App.css";
 
 import {
   Grid,
@@ -59,58 +60,56 @@ export default class Login extends Component {
     const { email, password, loading } = this.state;
 
     return (
-      <Segment style={{ maxwidth: 350 }}>
-        <Grid textAlign="center" verticalAlign="middle" className="app">
-          <Grid.Column>
-            <Header as="h2" icon color="violet" textAlign="center">
-              <Icon name="code branch" color="violet" />
-              Login to Crypto-Curren-Z
-            </Header>
-            <Form onSubmit={this.handleSubmit} size="large">
-              <Segment stacked>
-                <Form.Input
-                  fluid
-                  name="email"
-                  icon="mail"
-                  iconPosition="left"
-                  placeholder="E-mail"
-                  onChange={this.handleChange}
-                  value={email}
-                  type="email"
-                />
-                <Form.Input
-                  fluid
-                  name="password"
-                  icon="lock"
-                  iconPosition="left"
-                  placeholder="Password"
-                  onChange={this.handleChange}
-                  value={password}
-                  type="password"
-                />
-                <Button
-                  disabled={loading}
-                  className={loading ? "loading" : ""}
-                  color="violet"
-                  fluid
-                  size="large"
-                >
-                  Submit
-                </Button>
-              </Segment>
-            </Form>
-            {this.state.errors.length > 0 && (
-              <Message error>
-                <h3>Error</h3>
-                {this.displayErrors(this.state.errors)}
-              </Message>
-            )}
-            <Message>
-              Sign up for account?<Link to="/register">Sign-Up</Link>
+      <Grid className="app" textAlign="center" verticalAlign="middle">
+        <Grid.Column style={{ width: 450 }}>
+          <Header as="h2" icon color="violet" textAlign="center">
+            <Icon name="code branch" color="violet" />
+            Login to Crypto-Curren-Z
+          </Header>
+          <Form onSubmit={this.handleSubmit} size="large">
+            <Segment stacked>
+              <Form.Input
+                fluid
+                name="email"
+                icon="mail"
+                iconPosition="left"
+                placeholder="E-mail"
+                onChange={this.handleChange}
+                value={email}
+                type="email"
+              />
+              <Form.Input
+                fluid
+                name="password"
+                icon="lock"
+                iconPosition="left"
+                placeholder="Password"
+                onChange={this.handleChange}
+                value={password}
+                type="password"
+              />
+              <Button
+                disabled={loading}
+                className={loading ? "loading" : ""}
+                color="violet"
+                fluid
+                size="large"
+              >
+                Submit
+              </Button>
+            </Segment>
+          </Form>
+          {this.state.errors.length > 0 && (
+            <Message error>
+              <h3>Error</h3>
+              {this.displayErrors(this.state.errors)}
             </Message>
-          </Grid.Column>
-        </Grid>
-      </Segment>
+          )}
+          <Message>
+            Sign up for account?<Link to="/register">Sign-Up</Link>
+          </Message>
+        </Grid.Column>
+      </Grid>
     );
   }
 }
