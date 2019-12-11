@@ -1,6 +1,6 @@
 import Cryptos from "../api/CryptosFetch";
 import Exchange from "../api/ExchangeFetch";
-import Crypto from "../api/CryptoFetch";
+import News from "../api/NewsFetch";
 
 export const FETCH_CRYPTOS = "FETCH_CRYPTOS";
 export const FETCH_EXCHANGES = "FETCH_EXCHANGES";
@@ -11,6 +11,13 @@ export const SET_CRYPTO_PRICES = "SET_CRYPTO_PRICES";
 export const FETCH_CRYPTO_DETAILS = "FETCH_CRYPTO_DETAILS";
 export const SET_CRYPTO_DETAILS = "SET_CRYPTO_DETAILS";
 export const SET_HISTORICALS = "SET_HISTORICALS,";
+export const FETCH_NEWS = "FETCH_NEWS";
+
+export const fetchNews = () => async dispatch => {
+  const response = await News.get();
+  // console.log("response", response);
+  dispatch({ type: FETCH_NEWS, payload: response.data });
+};
 
 export const fetchCryptos = () => async dispatch => {
   const response = await Cryptos.get();
