@@ -3,8 +3,10 @@ import CryptoSideDetails from "./CryptoSideDetails";
 import WeeklyPriceChart from "./WeeklyPriceChart";
 import { connect } from "react-redux";
 import { Message, Segment } from "semantic-ui-react";
+import UserProfile from "./UserProfile";
 class CryptoSideCont extends Component {
   render() {
+    const { currentUser } = this.props;
     const sidePrices = this.props.prices.map((price, index) => {
       return {
         dayOne: price[0],
@@ -18,6 +20,9 @@ class CryptoSideCont extends Component {
     });
     return (
       <div>
+        <Message color="orange">
+          <UserProfile currentUser={currentUser} />
+        </Message>
         {this.props.crypto === null ? (
           <Message color="blue">Click Crypto</Message>
         ) : (

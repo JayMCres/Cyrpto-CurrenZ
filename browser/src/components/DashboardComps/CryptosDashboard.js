@@ -15,6 +15,7 @@ import LoadingPage from "./CryptoContainer/LoadingPage";
 import Search from "./CryptoContainer/Search";
 import Exchanges from "./ExchangeComps/ExchangeCont";
 import CryptoSideCont from "./CryptoSideCont/CryptoSideCont";
+import Channels from "../chatapp/Channels";
 
 class CryptosDashboard extends Component {
   state = {
@@ -101,7 +102,8 @@ class CryptosDashboard extends Component {
             )}
           </Grid.Column>
           <Grid.Column width={6}>
-            <CryptoSideCont
+            <CryptoSideCont currentUser={this.props.currentUser} />
+            <Channels
               currentChannel={currentChannel}
               currentUser={this.props.currentUser}
               isPrivateChannel={isPrivateChannel}
