@@ -4,6 +4,7 @@ const exchangeController = require("./exchangeController");
 const historicalPriceController = require("./historicalPriceController");
 const monthlyPriceController = require("./monthlyPriceController");
 const weeklyPriceController = require("./weeklyPriceController");
+const newsController = require("./newsController");
 
 module.exports = {
   cryptosController,
@@ -11,5 +12,6 @@ module.exports = {
   exchangeController,
   historicalPriceController,
   monthlyPriceController,
-  weeklyPriceController
+  weeklyPriceController,
+  newsController
 };
