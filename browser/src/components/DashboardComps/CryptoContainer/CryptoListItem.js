@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Image, Button, Statistic } from "semantic-ui-react";
+import { Card, Image, Button, Statistic, Message } from "semantic-ui-react";
 
 export default class CryptoListItem extends Component {
   state = {
@@ -32,7 +32,7 @@ export default class CryptoListItem extends Component {
     }
   };
   render() {
-    console.log("Crypto Item Props", this.props);
+    // console.log("Crypto Item Props", this.props);
     return (
       <Card>
         <Card.Content>
@@ -54,7 +54,11 @@ export default class CryptoListItem extends Component {
         </Card.Content>
         <Card.Content extra>
           <div className="ui two buttons">
-            <Button basic color="green">
+            <Button
+              basic
+              color="green"
+              onClick={() => this.props.handleRenderCardBack(this.props.id)}
+            >
               Approve
             </Button>
             <Button basic color="red">

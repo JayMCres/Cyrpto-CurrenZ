@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { Segment, Grid } from "semantic-ui-react";
 import io from "socket.io-client";
-import { fetchCryptos } from "../../actions/Cryptos";
+import { fetchExchanges } from "../../actions/exchanges";
+// import {
+//   fetchExchangesPending,
+//   fetchExchangesSuccess,
+//   fetchExchangesError
+// } from "../../actions/exchanges";
 
-import CryptosList from "./CryptosList";
+import CryptosList from "./CryptoContainer/CryptosList";
+import LoadingPage from "./CryptoContainer/LoadingPage";
+import Search from "./CryptoContainer/Search";
+import Exchanges from "./ExchangeComps/ExchangeCont";
 
 class CryptosDashboard extends Component {
   state = {
@@ -41,12 +49,70 @@ class CryptosDashboard extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(fetchCryptos());
+    this.props.dispatch(fetchExchanges());
   }
+
+  handleChange = event => {
+    // console.log("Changing")
+    // console.log (event.target.name)
+    this.setState({
+      inputValue: event.target.value
+    });
+  };
+
+  filterCryptos = () =>
+    this.state.coinList.filter(item => {
+      return (
+        item.company
+          .toLowerCase()
+          .includes(this.state.inputValue.toLowerCase()) ||
+        item.ticker
+          .toLowerCase()
+          .includes(this.state.inputValue.toLowerCase()) ||
+        item.market.toLowerCase().includes(this.state.inputValue.toLowerCase())
+      );
+    });
 
   render() {
-    return <CryptosList coinList={this.state.coinList} />;
+    const { error, pending, items } = this.props;
+
+    if (error) {
+      return <div>Error! {error.message}</div>;
+    }
+
+    if (pending) {
+      return <div>Loading...</div>;
+    }
+
+    return (
+      <Segment inverted>
+        <Exchanges exchanges={items} />
+        <Grid columns={2} divided>
+          <Grid.Column width={12}>
+            <Segment inverted attached="top">
+              <Search
+                handleChange={this.handleChange}
+                inputValue={this.state.inputValue}
+              />
+            </Segment>
+            <Segment inverted attached="bottom">
+              {this.state.coinList.length === 0 ? (
+                <Segment style={{ maxHeight: 500 }}>
+                  <LoadingPage />
+                </Segment>
+              ) : (
+                <CryptosList coinList={this.filterCryptos()} />
+              )}
+            </Segment>
+          </Grid.Column>
+          <Grid.Column width={4}>Test</Grid.Column>
+        </Grid>
+      </Segment>
+    );
   }
 }
+const mapStateToProps = state => ({
+  exchanges: state.exchanges
+});
 
-export default connect(null)(CryptosDashboard);
+export default connect(mapStateToProps)(CryptosDashboard);

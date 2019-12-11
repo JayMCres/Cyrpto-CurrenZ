@@ -1,9 +1,15 @@
 import React, { Component } from "react";
-
+import { Segment, Grid } from "semantic-ui-react";
 import HomePage from "./components/HomepageComps/HomePage";
 
-export default class MainContianer extends Component {
+// import CryptosDashboard from "./components/DashboardComps/CryptoContainer/CryptosDashboard";
+export default class MainContainer extends Component {
   render() {
-    return <HomePage />;
+    console.log("Main State", this.state);
+    return (
+      // <Segment inverted>
+      <HomePage />
+      // </Segment>
+    );
   }
 }

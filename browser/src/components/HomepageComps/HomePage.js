@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import { Segment, Grid } from "semantic-ui-react";
-import CryptosDashboard from "../DashboardComps/CryptosDashboard";
+// import { connect } from "react-redux";
 
-export default class HomePage extends Component {
+import CryptosDashboard from "../DashboardComps/CryptosDashboard";
+// import Exchanges from "../DashboardComps/ExchangeComps/ExchangeCont";
+
+class HomePage extends Component {
   render() {
+    console.log("homepage State", this.state);
+
     return (
       <Segment inverted>
-        <Grid columns={2} divided>
-          <Grid.Column width={14}>
-            <CryptosDashboard />
-          </Grid.Column>
-          <Grid.Column width={2}>Test</Grid.Column>
-        </Grid>
+        <CryptosDashboard />
       </Segment>
     );
   }
 }
+
+// export default connect(null)(HomePage);
+export default HomePage;
