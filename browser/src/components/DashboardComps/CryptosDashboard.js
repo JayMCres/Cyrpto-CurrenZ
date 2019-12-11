@@ -95,7 +95,11 @@ class CryptosDashboard extends Component {
                     inputValue={this.state.inputValue}
                   />
                 </Segment>
-                <Segment attached="bottom">
+                <Segment
+                  inverted
+                  attached="bottom"
+                  style={{ overflow: "auto", maxHeight: 950 }}
+                >
                   <CryptosList coinList={this.filterCryptos()} />
                 </Segment>
               </Segment>
