@@ -2,13 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Segment, Grid } from "semantic-ui-react";
 import io from "socket.io-client";
-// import { fetchExchanges } from "./../actions/exchanges";
-
-// import {
-//   fetchExchangesPending,
-//   fetchExchangesSuccess,
-//   fetchExchangesError
-// } from "../../actions/exchanges";
+import { fetchNews } from "../../actions/cryptos";
 
 import CryptosList from "./CryptoContainer/CryptosList";
 import LoadingPage from "./CryptoContainer/LoadingPage";
@@ -31,6 +25,10 @@ class CryptosDashboard extends Component {
       status: "disconnected"
     };
   };
+
+  componentDidMount() {
+    this.props.dispatch(fetchNews());
+  }
   componentWillMount() {
     this.socket = io("http://localhost:5000");
     this.socket.on("connect", this.connect);

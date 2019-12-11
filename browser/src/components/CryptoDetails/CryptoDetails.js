@@ -9,7 +9,7 @@ import {
   Message,
   Label
 } from "semantic-ui-react";
-
+import NewsList from "./NewsList";
 class CryptoDetails extends Component {
   render() {
     return (
@@ -74,11 +74,11 @@ class CryptoDetails extends Component {
               {/* <TableHeader historicals={this.props.historicals[0]} /> */}
             </Grid.Column>
             <Grid.Column width={6}>
-              {/* <IndepthSide
+              <NewsList
                 filteredNews={this.props.news.filter(article => {
                   return article.mentions === this.props.crypto.ticker;
                 })}
-              /> */}
+              />
             </Grid.Column>
           </Grid>
         </Segment>
@@ -90,7 +90,8 @@ class CryptoDetails extends Component {
 const mapStateToProps = state => ({
   crypto: state.cryptos.crypto,
   details: state.cryptos.details,
-  historicals: state.cryptos.historicals
+  historicals: state.cryptos.historicals,
+  news: state.cryptos.news
 });
 
 export default connect(mapStateToProps)(CryptoDetails);

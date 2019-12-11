@@ -7,7 +7,7 @@ import CryptosDashboard from "../DashboardComps/CryptosDashboard";
 
 class HomePage extends Component {
   render() {
-    console.log("homepage State", this.state);
+    // console.log("homepage State", this.state);
 
     return (
       <Segment inverted>
