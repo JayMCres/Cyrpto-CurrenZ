@@ -37,7 +37,7 @@ io.sockets.on("connection", socket => {
     socket.id,
     connections.length
   );
-  setInterval(() => getApiAndEmit(socket), 30000);
+  setInterval(() => getApiAndEmit(socket), 20000);
 });
 
 const getApiAndEmit = async socket => {
