@@ -2,17 +2,18 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import firebase from "./config/firebase";
+import * as serviceWorker from "./serviceWorker";
+import "semantic-ui-css/semantic.css";
 
 import App from "./App";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
 import { createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-
-import * as serviceWorker from "./serviceWorker";
-import "semantic-ui-css/semantic.css";
+import { setUser, clearUser } from "./actions/auth";
+import rootReducer from "./reducers/rootReducer";
 
 import {
   BrowserRouter as Router,
@@ -21,7 +22,7 @@ import {
   withRouter
 } from "react-router-dom";
 
-const store = createStore(() => {}, composeWithDevTools());
+const store = createStore(rootReducer, composeWithDevTools());
 
 class Root extends Component {
   componentDidMount() {
@@ -29,9 +30,6 @@ class Root extends Component {
       if (user) {
         this.props.setUser(user);
         this.props.history.push("/");
-      } else {
-        this.props.history.push("/login");
-        this.props.clearUser();
       }
     });
   }
@@ -45,7 +43,7 @@ class Root extends Component {
     );
   }
 }
-const RootWithAuth = withRouter(Root);
+const RootWithAuth = withRouter(connect(null, { setUser })(Root));
 
 ReactDOM.render(
   <Provider store={store}>
