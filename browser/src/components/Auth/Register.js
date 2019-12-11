@@ -105,12 +105,19 @@ export default class Register extends Component {
       avatar: createdUser.user.photoURL
     });
   };
+
+  handleErrors = (errors, inputName) => {
+    return errors.some(error => error.message.toLowerCase().includes(inputName))
+      ? "Error"
+      : "";
+  };
   render() {
     const {
       username,
       email,
       password,
       passwordConfirmation,
+      errors,
       loading
     } = this.state;
     return (
@@ -130,6 +137,7 @@ export default class Register extends Component {
                 placeholder="Username"
                 onChange={this.handleChange}
                 value={username}
+                className={this.handleErrors(errors, "username")}
                 type="text"
               />
               <Form.Input
@@ -140,6 +148,7 @@ export default class Register extends Component {
                 placeholder="E-mail"
                 onChange={this.handleChange}
                 value={email}
+                className={this.handleErrors(errors, "email")}
                 type="email"
               />
               <Form.Input
@@ -150,6 +159,7 @@ export default class Register extends Component {
                 placeholder="Password"
                 onChange={this.handleChange}
                 value={password}
+                className={this.handleErrors(errors, "password")}
                 type="password"
               />
               <Form.Input
@@ -160,6 +170,7 @@ export default class Register extends Component {
                 placeholder="Password Confirmation"
                 onChange={this.handleChange}
                 value={passwordConfirmation}
+                className={this.handleErrors(errors, "password")}
                 type="password"
               />
               <Button
