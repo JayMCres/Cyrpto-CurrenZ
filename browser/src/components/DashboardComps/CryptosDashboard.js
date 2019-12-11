@@ -16,6 +16,7 @@ import Search from "./CryptoContainer/Search";
 import Exchanges from "./ExchangeComps/ExchangeCont";
 import CryptoSideCont from "./CryptoSideCont/CryptoSideCont";
 import Channels from "../chatapp/Channels";
+import CryptoDetailsCont from "../CryptoDetails/CryptoDetailsCont";
 
 class CryptosDashboard extends Component {
   state = {
@@ -40,7 +41,11 @@ class CryptosDashboard extends Component {
       this.setState({ coinList: data, priorCoinList: this.state.coinList })
     );
   }
-
+  showIndepthPage = () => {
+    return this.setState({
+      indepthPage: !this.state.indepthPage
+    });
+  };
   connect = () => {
     // alert("Connected:" + this.socket.id);
     this.setState({ state: "connected" });
@@ -50,10 +55,6 @@ class CryptosDashboard extends Component {
     // alert("disconnected:" + this.socket.id);
     this.setState({ state: "disconnected" });
   };
-
-  // componentDidMount() {
-  //   this.props.dispatch(fetchExchanges());
-  // }
 
   handleChange = event => {
     // console.log("Changing")
@@ -81,41 +82,50 @@ class CryptosDashboard extends Component {
     return (
       <Segment inverted>
         <Exchanges />
-        <Grid columns={2} divided>
-          <Grid.Column width={10}>
-            {this.state.coinList.length === 0 ? (
-              // <Segment style={{ maxHeight: 500 }}>
-              <LoadingPage />
-            ) : (
-              // </Segment>
-              <Segment inverted>
-                <Segment attached="top">
-                  <Search
-                    handleChange={this.handleChange}
-                    inputValue={this.state.inputValue}
-                  />
+        {!this.state.indepthPage ? (
+          <Grid columns={2} divided>
+            <Grid.Column width={10}>
+              {this.state.coinList.length === 0 ? (
+                // <Segment style={{ maxHeight: 500 }}>
+                <LoadingPage />
+              ) : (
+                // </Segment>
+                <Segment inverted>
+                  <Segment attached="top">
+                    <Search
+                      handleChange={this.handleChange}
+                      inputValue={this.state.inputValue}
+                    />
+                  </Segment>
+                  <Segment
+                    inverted
+                    attached="bottom"
+                    style={{ overflow: "auto", maxHeight: 950 }}
+                  >
+                    <CryptosList coinList={this.filterCryptos()} />
+                  </Segment>
                 </Segment>
-                <Segment
-                  inverted
-                  attached="bottom"
-                  style={{ overflow: "auto", maxHeight: 950 }}
-                >
-                  <CryptosList coinList={this.filterCryptos()} />
-                </Segment>
-              </Segment>
-            )}
-          </Grid.Column>
-          <Grid.Column width={6}>
-            <CryptoSideCont currentUser={this.props.currentUser} />
-            <Segment inverted>
-              <Channels
-                currentChannel={currentChannel}
+              )}
+            </Grid.Column>
+            <Grid.Column width={6}>
+              <CryptoSideCont
                 currentUser={this.props.currentUser}
-                isPrivateChannel={isPrivateChannel}
+                showIndepthPage={this.showIndepthPage}
               />
-            </Segment>
-          </Grid.Column>
-        </Grid>
+              <Segment inverted>
+                <Channels
+                  currentChannel={currentChannel}
+                  currentUser={this.props.currentUser}
+                  isPrivateChannel={isPrivateChannel}
+                />
+              </Segment>
+            </Grid.Column>
+          </Grid>
+        ) : (
+          <Segment inverted>
+            <CryptoDetailsCont />
+          </Segment>
+        )}
       </Segment>
     );
   }

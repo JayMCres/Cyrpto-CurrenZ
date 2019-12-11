@@ -38,6 +38,7 @@ class CryptoSideCont extends Component {
               <CryptoSideDetails
                 {...this.props.crypto}
                 renderSideChart={this.renderSideChart}
+                showIndepthPage={this.props.showIndepthPage}
               />
             </Segment>
             {!this.state.showSideChart ? (

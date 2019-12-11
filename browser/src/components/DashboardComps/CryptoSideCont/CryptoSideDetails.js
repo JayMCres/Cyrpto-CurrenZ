@@ -21,6 +21,7 @@ class CryptoSideDetails extends Component {
               <Image
                 avatar
                 src={`http://cryptocompare.com/${this.props.image}`}
+                onClick={() => this.props.showIndepthPage()}
               />
               <List.Content>
                 <List.Header as="a">{this.props.ticker}</List.Header>
