@@ -21,7 +21,7 @@ const Message = props => {
         <Image avatar src={props.message.user.avatar} />
         <List.Content>
           <List.Header
-            as="h6"
+            as="h4"
             style={{ color: isOwnMessage(props.message, props.user) }}
           >
             {props.message.content}
@@ -33,22 +33,6 @@ const Message = props => {
           </List.Description>
         </List.Content>
       </List.Item>
-
-      {/* <Comment> */}
-      {/* <Comment.Avatar src={props.message.user.avatar} /> */}
-      {/* <Comment.Content className={isOwnMessage(props.message, props.user)}>
-          <Comment.Author as="a">{props.message.user.name}</Comment.Author>
-          <Comment.Metadata>
-            {timeFromNow(props.message.timestamp)}
-          </Comment.Metadata>
-          <Comment.Text>{props.message.content}</Comment.Text> */}
-      {/* {isImage(message) ? (
-            <Image src={message.image} className="message__image" />
-          ) : (
-            <Comment.Text>{message.content}</Comment.Text>
-          )} */}
-      {/* </Comment.Content>
-      </Comment> */}
     </List>
   );
 };

@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { Segment, Header } from "semantic-ui-react";
 
 import { connect } from "react-redux";
-import NewsList from "./newsfeed/NewsList";
+// import NewsList from "./newsfeed/NewsList";
 import SidePriceChart from "./SidePriceChart";
 import UserProfile from "../DashboardComps/CryptoSideCont/UserProfile";
+import SideBarMenu from "./SideBarMenu";
+
 class SideBarCont extends Component {
   render() {
     // console.log("Side", this.props);
@@ -30,7 +32,10 @@ class SideBarCont extends Component {
           })}
         </Segment>
         <Segment>
-          <NewsList
+          <SideBarMenu
+            currentChannel={this.props.currentChannel}
+            currentUser={this.props.currentUser}
+            isPrivateChannel={this.props.isPrivateChannel}
             filteredNews={this.props.news.filter(article => {
               return article.mentions === this.props.crypto.ticker;
             })}

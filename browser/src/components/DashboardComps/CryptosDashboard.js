@@ -98,7 +98,7 @@ class CryptosDashboard extends Component {
                   <Segment
                     inverted
                     attached="bottom"
-                    style={{ overflow: "auto", maxHeight: 950 }}
+                    style={{ overflow: "auto", maxHeight: 1150 }}
                   >
                     <CryptosList coinList={this.filterCryptos()} />
                   </Segment>

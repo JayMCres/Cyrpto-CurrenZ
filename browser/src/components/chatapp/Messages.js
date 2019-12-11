@@ -55,6 +55,7 @@ export default class Messages extends Component {
         />
       ));
   };
+
   render() {
     const { channel, messagesRef, messages } = this.state;
     const { currentUser } = this.props;
