@@ -31,6 +31,9 @@ class Root extends Component {
       if (user) {
         this.props.setUser(user);
         this.props.history.push("/");
+      } else {
+        this.props.history.push("/login");
+        this.props.clearUser();
       }
     });
   }
@@ -48,7 +51,9 @@ class Root extends Component {
 }
 const mapStateFromProps = state => ({ loading: state.users.loading });
 
-const RootWithAuth = withRouter(connect(mapStateFromProps, { setUser })(Root));
+const RootWithAuth = withRouter(
+  connect(mapStateFromProps, { setUser, clearUser })(Root)
+);
 
 ReactDOM.render(
   <Provider store={store}>
