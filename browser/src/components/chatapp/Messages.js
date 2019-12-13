@@ -10,6 +10,7 @@ export default class Messages extends Component {
     channel: this.props.currentChannel,
     messages: [],
     messagesLoading: true
+    // messagesRef: firebase.database().ref("messages")
   };
 
   componentDidMount() {
@@ -31,7 +32,7 @@ export default class Messages extends Component {
 
   addMessageListener = channelId => {
     let loadedMessages = [];
-    this.state.messagesRef.child(channelId).on("child_added", snap => {
+    this.props.messagesRef.child(channelId).on("child_added", snap => {
       loadedMessages.push(snap.val());
       // console.log("current Messages", loadedMessages);
       this.setState({
@@ -56,8 +57,8 @@ export default class Messages extends Component {
   };
 
   render() {
-    const { channel, messagesRef, messages } = this.state;
-    const { currentUser } = this.props;
+    const { channel, messages } = this.state;
+    const { currentUser, messagesRef } = this.props;
     // console.log("Messages", this.state);
     return (
       <Segment>

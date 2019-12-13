@@ -31,16 +31,16 @@ class Channels extends Component {
     this.addListeners();
   }
 
-  // componentWillUnmount() {
-  //   this.removeListners();
-  // }
+  componentWillUnmount() {
+    this.removeListners();
+  }
 
-  // removeListeners = () => {
-  //   this.state.channelsRef.off();
-  //   // this.state.channels.forEach(channel => {
-  //   //   this.state.messagesRef.child(channel.id).off();
-  //   // });
-  // };
+  removeListeners = () => {
+    this.state.channelsRef.off();
+    this.state.channels.forEach(channel => {
+      this.state.messagesRef.child(channel.id).off();
+    });
+  };
   addListeners = () => {
     let loadedChannels = [];
     this.state.channelsRef.on("child_added", snap => {
@@ -51,6 +51,10 @@ class Channels extends Component {
       // this.addNotificationListener(snap.key);
     });
   };
+
+  // setFirstChannel =()=> {
+
+  // }
   handleSubmit = event => {
     event.preventDefault();
     if (this.isFormValid(this.state)) {
@@ -164,7 +168,7 @@ class Channels extends Component {
         </Header>
         <List divided relaxed>{this.displayChannels(channels)}</List> 
         </Segment>
-        {this.state.showConvo === false ? <div> </div> : <Messages key={currentChannel && currentChannel.id} currentChannel={currentChannel} currentUser={currentUser}  hideChannelConvo={this.hideChannelConvo}/>}
+        {this.state.showConvo === false ? <div> </div> : <Messages key={currentChannel && currentChannel.id} messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}  hideChannelConvo={this.hideChannelConvo}/>}
         
      
 
