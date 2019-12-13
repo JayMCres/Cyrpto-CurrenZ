@@ -1,13 +1,12 @@
-import React, { Component, Fragment } from "react";
-import { Segment, Comment, Label, Icon, List } from "semantic-ui-react";
+import React, { Component } from "react";
+import { Segment, Label, Icon } from "semantic-ui-react";
 import MessageHeader from "./MessageHeader";
 import MessageForm from "./MessageForm";
 import Message from "./Message";
-import firebase from "../../config/firebase";
+// import firebase from "../../config/firebase";
 
 export default class Messages extends Component {
   state = {
-    messagesRef: firebase.database().ref("messages"),
     channel: this.props.currentChannel,
     messages: [],
     messagesLoading: true

@@ -4,7 +4,7 @@ import { Segment, Header } from "semantic-ui-react";
 import { connect } from "react-redux";
 // import NewsList from "./newsfeed/NewsList";
 import SidePriceChart from "./SidePriceChart";
-import UserProfile from "../DashboardComps/CryptoSideCont/UserProfile";
+import UserProfile from "../../DashboardComps/CryptoSideCont/UserProfile";
 import SideBar from "./SideBar";
 
 class SideBarCont extends Component {

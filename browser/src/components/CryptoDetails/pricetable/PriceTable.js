@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Segment, Table } from "semantic-ui-react";
+import { Table } from "semantic-ui-react";
 
 class PriceTable extends Component {
   render() {
-    console.log("Price Table", this.props);
+    // console.log("Price Table", this.props);
     return (
       <Table.Row>
         {/* <Image

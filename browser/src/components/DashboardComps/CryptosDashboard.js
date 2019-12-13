@@ -9,7 +9,7 @@ import LoadingPage from "./CryptoContainer/LoadingPage";
 import Search from "./CryptoContainer/Search";
 import Exchanges from "./ExchangeComps/ExchangeCont";
 import CryptoSideCont from "./CryptoSideCont/CryptoSideCont";
-import Channels from "../chatapp/Channels";
+import CryptoSideSub from "./CryptoSideCont/CryptoSideSub";
 import CryptoDetailsCont from "../CryptoDetails/CryptoDetailsCont";
 
 class CryptosDashboard extends Component {
@@ -111,7 +111,7 @@ class CryptosDashboard extends Component {
                 showIndepthPage={this.showIndepthPage}
               />
               <Segment style={{ "border-style": "inset" }}>
-                <Channels
+                <CryptoSideSub
                   currentChannel={currentChannel}
                   currentUser={this.props.currentUser}
                   isPrivateChannel={isPrivateChannel}

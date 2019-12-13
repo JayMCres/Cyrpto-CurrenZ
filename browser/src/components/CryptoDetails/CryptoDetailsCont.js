@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CryptoDetails from "./CryptoDetails";
 import { Grid, Segment } from "semantic-ui-react";
-import SideBarCont from "./SideBarCont";
+import SideBarCont from "./siderbar/SideBarCont";
 
 export default class CryptoDetailsCont extends Component {
   render() {

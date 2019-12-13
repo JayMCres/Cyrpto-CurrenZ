@@ -11,7 +11,7 @@ import {
 } from "semantic-ui-react";
 import md5 from "md5";
 import { Link } from "react-router-dom";
-import app from "./App.css";
+// import app from "./App.css";
 
 export default class Register extends Component {
   state = {
@@ -76,7 +76,7 @@ export default class Register extends Component {
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then(createdUser => {
-          console.log(createdUser);
+          // console.log(createdUser);
           createdUser.user
             .updateProfile({
               displayName: this.state.username,

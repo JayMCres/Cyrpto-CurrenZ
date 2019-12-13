@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { Segment } from "semantic-ui-react";
-import NewsList from "./newsfeed/NewsList";
-import Channels from "../chatapp/Channels";
-import SideBarMenu from "./SideBarMenu";
+
+import Channels from "../../chatapp/Channels";
+import CryptoSideMenu from "./CryptoSideMenu";
+import FavoritesList from "../Favorites/FavoritesList";
 
 export default class MessageMenu extends Component {
   state = {
     activeItem: "channels"
   };
 
-  sideBarMenuToggle = (e, { name }) => {
+  sideMenuToggle = (e, { name }) => {
     this.setState({ activeItem: name });
   };
 
@@ -17,7 +18,7 @@ export default class MessageMenu extends Component {
     const { activeItem } = this.state;
     const onSideMenuClick = link => {
       const SIDE_PAGES = {
-        news: <NewsList filteredNews={this.props.filteredNews} />,
+        favoities: <FavoritesList />,
         channels: (
           <Channels
             currentChannel={this.props.currentChannel}
@@ -32,12 +33,12 @@ export default class MessageMenu extends Component {
     return (
       <div>
         <Segment>
-          <SideBarMenu
+          <CryptoSideMenu
             activeItem={activeItem}
-            sideBarMenuToggle={this.sideBarMenuToggle}
+            sideMenuToggle={this.sideMenuToggle}
           />
+          {onSideMenuClick(activeItem)}
         </Segment>
-        <Segment>{onSideMenuClick(activeItem)}</Segment>
       </div>
     );
   }

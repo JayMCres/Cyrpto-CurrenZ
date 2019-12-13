@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Comment, Image, List } from "semantic-ui-react";
+import React from "react";
+import { Image, List } from "semantic-ui-react";
 import moment from "moment";
 
 const isOwnMessage = (message, user) => {
