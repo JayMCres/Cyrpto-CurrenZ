@@ -38,7 +38,6 @@ class CryptoListItem extends Component {
     this.props.fetchCryptoDetails();
     this.props.fetchMonthly();
     this.props.fetchHistoricals();
-    // this.props.fetchCrypto();
   };
   render() {
     // console.log("Crypto Item Props", this.props);

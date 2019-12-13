@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 // import NewsList from "./newsfeed/NewsList";
 import SidePriceChart from "./SidePriceChart";
 import UserProfile from "../DashboardComps/CryptoSideCont/UserProfile";
-import SideBarMenu from "./SideBarMenu";
+import SideBar from "./SideBar";
 
 class SideBarCont extends Component {
   render() {
@@ -32,7 +32,7 @@ class SideBarCont extends Component {
           })}
         </Segment>
         <Segment>
-          <SideBarMenu
+          <SideBar
             currentChannel={this.props.currentChannel}
             currentUser={this.props.currentUser}
             isPrivateChannel={this.props.isPrivateChannel}
