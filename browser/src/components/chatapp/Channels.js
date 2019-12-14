@@ -24,7 +24,8 @@ class Channels extends Component {
     channelsRef: firebase.database().ref("channels"),
     messagesRef: firebase.database().ref("messages"),
     activeChannel: "",
-    showConvo: false
+    showConvo: false,
+    firstLoad: true
   };
 
   componentDidMount() {
@@ -46,15 +47,20 @@ class Channels extends Component {
     this.state.channelsRef.on("child_added", snap => {
       loadedChannels.push(snap.val());
       // console.log(loadedChannels);
-      this.setState({ channels: loadedChannels });
-      // this.setState({ channels: loadedChannels }, () => this.setFirstChannel());
+      // this.setState({ channels: loadedChannels });
+      this.setState({ channels: loadedChannels }, () => this.setFirstChannel());
       // this.addNotificationListener(snap.key);
     });
   };
 
-  // setFirstChannel =()=> {
-
-  // }
+  setFirstChannel = () => {
+    const firstChannel = this.state.channels[0];
+    if (this.state.firstLoad && this.state.channels.length > 0) {
+      this.props.setCurrentChannel(firstChannel);
+      this.setActiveChannel(firstChannel);
+    }
+    this.setState({ firstLoad: false });
+  };
   handleSubmit = event => {
     event.preventDefault();
     if (this.isFormValid(this.state)) {

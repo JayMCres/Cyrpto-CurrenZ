@@ -15,7 +15,7 @@ export default class MessageHeader extends Component {
         <Header floated="right">
           <Input
             // loading={searchLoading}
-            // onChange={handleSearchChange}
+            onChange={this.props.handleSearchChange}
             size="mini"
             icon="search"
             name="searchTerm"

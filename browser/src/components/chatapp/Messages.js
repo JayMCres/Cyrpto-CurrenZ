@@ -9,7 +9,9 @@ export default class Messages extends Component {
   state = {
     channel: this.props.currentChannel,
     messages: [],
-    messagesLoading: true
+    messagesLoading: true,
+    searchTerm: "",
+    searchResults: []
     // messagesRef: firebase.database().ref("messages")
   };
 
@@ -45,19 +47,25 @@ export default class Messages extends Component {
     // this.addToListeners(channelId, ref, "child_added");
   };
 
-  displayMessages = messages => {
-    messages.length > 0 &&
-      messages.map(message => (
-        <Message
-          key={message.timestamp}
-          message={message}
-          user={this.props.currentUser}
-        />
-      ));
+  handleSearchChange = event => {
+    this.setState({ searchTerm: event.target.value }, () =>
+      this.handleSearchMessages()
+    );
   };
 
+  handleSearchMessages = () => {
+    const channelMessages = [...this.state.messages];
+    const regex = new RegExp(this.state.searchTerm, "gi");
+    const searchResults = channelMessages.reduce((acc, message) => {
+      if (message.content && message.content.match(regex)) {
+        acc.push(message);
+      }
+      return acc;
+    }, []);
+    this.setState({ searchResults });
+  };
   render() {
-    const { channel, messages } = this.state;
+    const { channel, messages, searchTerm, searchResults } = this.state;
     const { currentUser, messagesRef } = this.props;
     // console.log("Messages", this.state);
     return (
@@ -65,21 +73,30 @@ export default class Messages extends Component {
         <Label as="a" corner="right" color="red">
           <Icon name="remove" onClick={() => this.props.hideChannelConvo()} />
         </Label>
-        <MessageHeader currentChannel={channel} />
+        <MessageHeader
+          currentChannel={channel}
+          handleSearchChange={this.handleSearchChange}
+        />
         <Segment style={{ overflow: "auto", maxHeight: 250 }}>
-          {/* <List divided relaxed> */}
-
-          {messages.map(message => {
-            return (
-              <Message
-                key={message.timestamp}
-                message={message}
-                user={this.props.currentUser}
-              />
-            );
-          })}
-          {/* </List> */}
-          {/* <Comment.Group>{this.displayMessages(messages)}</Comment.Group> */}
+          {searchTerm
+            ? searchResults.map(message => {
+                return (
+                  <Message
+                    key={message.timestamp}
+                    message={message}
+                    user={this.props.currentUser}
+                  />
+                );
+              })
+            : messages.map(message => {
+                return (
+                  <Message
+                    key={message.timestamp}
+                    message={message}
+                    user={this.props.currentUser}
+                  />
+                );
+              })}
         </Segment>
         <MessageForm
           currentChannel={channel}
