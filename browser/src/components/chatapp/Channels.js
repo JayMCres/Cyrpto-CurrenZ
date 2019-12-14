@@ -33,7 +33,7 @@ class Channels extends Component {
   }
 
   componentWillUnmount() {
-    this.removeListners();
+    this.removeListeners();
   }
 
   removeListeners = () => {
