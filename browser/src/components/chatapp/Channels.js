@@ -22,9 +22,9 @@ class Channels extends Component {
     channelName: "",
     channelDetails: "",
     channelsRef: firebase.database().ref("channels"),
-    messagesRef: firebase.database().ref("messages"),
+    // messagesRef: firebase.database().ref("messages"),
     activeChannel: "",
-    showConvo: false,
+    // showConvo: false,
     firstLoad: true
   };
 
@@ -68,13 +68,13 @@ class Channels extends Component {
     }
   };
 
-  renderChannelConvo = () => {
-    this.setState({ showConvo: true });
-  };
+  // renderChannelConvo = () => {
+  //   this.setState({ showConvo: true });
+  // };
 
-  hideChannelConvo = () => {
-    this.setState({ showConvo: false });
-  };
+  // hideChannelConvo = () => {
+  //   this.setState({ showConvo: false });
+  // };
 
   isFormValid = ({ channelName, channelDetails }) =>
     channelName && channelDetails;
@@ -117,7 +117,7 @@ class Channels extends Component {
     //   .remove();
     //   this.clearNotifications();
     this.props.setCurrentChannel(channel);
-    this.renderChannelConvo();
+    this.props.renderChannelConvo();
     this.props.setPrivateChannel(false);
     // this.setState({ channel });
   };
@@ -125,6 +125,7 @@ class Channels extends Component {
   setActiveChannel = channel => {
     this.setState({ activeChannel: channel.id });
   };
+
   displayChannels = channels =>
     channels.length > 0 &&
     channels.map(channel => {
@@ -155,9 +156,9 @@ class Channels extends Component {
     this.setState({ modal: false });
   };
   render() {
-    console.log("Channels State", this.state);
-    console.log("Channels Props", this.props);
-    const { channels, modal, messagesRef } = this.state;
+    // console.log("Channels State", this.state);
+    // console.log("Channels Props", this.props);
+    const { channels, modal, showConvo } = this.state;
     const { currentChannel, currentUser } = this.props;
     return (
       // prettier-ignore
@@ -174,8 +175,10 @@ class Channels extends Component {
         </Header>
         <List divided relaxed>{this.displayChannels(channels)}</List> 
         </Segment>
-        {this.state.showConvo === false ? <div> </div> : <Messages key={currentChannel && currentChannel.id} messagesRef={messagesRef} currentChannel={currentChannel} currentUser={currentUser}  hideChannelConvo={this.hideChannelConvo}/>}
-        
+     
+      {/* {currentChannel === null ? <div> LOADING </div> : <Messages key={currentChannel && currentChannel.id}  currentChannel={currentChannel} currentUser={currentUser}  hideChannelConvo={this.hideChannelConvo} isPrivateChannel={this.props.isPrivateChannel}/>}
+     
+         */}
      
 
       <Modal basic  open={modal} onClose={this.closeModal}>

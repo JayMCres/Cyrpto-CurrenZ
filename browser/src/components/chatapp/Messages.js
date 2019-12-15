@@ -3,7 +3,7 @@ import { Segment, Label, Icon } from "semantic-ui-react";
 import MessageHeader from "./MessageHeader";
 import MessageForm from "./MessageForm";
 import Message from "./Message";
-// import firebase from "../../config/firebase";
+import firebase from "../../config/firebase";
 
 export default class Messages extends Component {
   state = {
@@ -11,21 +11,36 @@ export default class Messages extends Component {
     messages: [],
     messagesLoading: true,
     searchTerm: "",
-    searchResults: []
+    searchResults: [],
+    privateChannel: this.props.isPrivateChannel,
+    messagesRef: firebase.database().ref("messages"),
+    privateMessagesRef: firebase.database().ref("privateMessages")
     // messagesRef: firebase.database().ref("messages")
   };
 
   componentDidMount() {
     const { currentUser } = this.props;
     const { channel } = this.state;
-    // console.log("Message User", currentUser);
-    // console.log("Message channel", channel);
     if (channel && currentUser) {
       // this.removeListeners(listeners);
       this.addListeners(channel.id);
       // this.addUserStarsListener(channel.id, currentUser.uid);
     }
   }
+
+  // handleComponentMount = async () => {
+  //   await this.setState({
+  //     channel: this.props.currentChannel,
+  //     privateChannel: this.props.isPrivateChannel
+  //   });
+  //   const { currentUser } = this.props;
+  //   const { channel } = this.state;
+  //   if (channel && currentUser) {
+  //     // this.removeListeners(listeners);
+  //     this.addListeners(channel.id);
+  //     // this.addUserStarsListener(channel.id, currentUser.uid);
+  //   }
+  // };
 
   addListeners = channelId => {
     this.addMessageListener(channelId);
@@ -34,7 +49,8 @@ export default class Messages extends Component {
 
   addMessageListener = channelId => {
     let loadedMessages = [];
-    this.props.messagesRef.child(channelId).on("child_added", snap => {
+    const ref = this.getMessagesRef();
+    ref.child(channelId).on("child_added", snap => {
       loadedMessages.push(snap.val());
       // console.log("current Messages", loadedMessages);
       this.setState({
@@ -53,6 +69,11 @@ export default class Messages extends Component {
     );
   };
 
+  getMessagesRef = () => {
+    const { messagesRef, privateMessagesRef, privateChannel } = this.state;
+    return privateChannel ? privateMessagesRef : messagesRef;
+  };
+
   handleSearchMessages = () => {
     const channelMessages = [...this.state.messages];
     const regex = new RegExp(this.state.searchTerm, "gi");
@@ -65,8 +86,14 @@ export default class Messages extends Component {
     this.setState({ searchResults });
   };
   render() {
-    const { channel, messages, searchTerm, searchResults } = this.state;
-    const { currentUser, messagesRef } = this.props;
+    const {
+      channel,
+      messages,
+      searchTerm,
+      searchResults,
+      messagesRef
+    } = this.state;
+    const { currentUser, privateChannel } = this.props;
     // console.log("Messages", this.state);
     return (
       <Segment>
@@ -76,6 +103,7 @@ export default class Messages extends Component {
         <MessageHeader
           currentChannel={channel}
           handleSearchChange={this.handleSearchChange}
+          isPrivateChannel={privateChannel}
         />
         <Segment style={{ overflow: "auto", maxHeight: 250 }}>
           {searchTerm
@@ -102,6 +130,8 @@ export default class Messages extends Component {
           currentChannel={channel}
           messagesRef={messagesRef}
           currentUser={currentUser}
+          isPrivateChannel={privateChannel}
+          getMessagesRef={this.getMessagesRef}
         />
       </Segment>
     );

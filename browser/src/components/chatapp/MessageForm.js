@@ -14,11 +14,11 @@ export default class MessageForm extends Component {
   };
 
   sendMessage = () => {
-    const { messagesRef, currentUser } = this.props;
+    const { getMessagesRef, currentUser } = this.props;
     const { message, channel } = this.state;
     if (message) {
       this.setState({ loading: true });
-      messagesRef
+      getMessagesRef()
         .child(channel.id)
         .push()
         .set(this.createMessage())

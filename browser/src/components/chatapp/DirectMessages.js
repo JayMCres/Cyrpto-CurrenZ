@@ -10,7 +10,8 @@ class DirectMessages extends Component {
     user: null,
     usersRef: firebase.database().ref("users"),
     connectedRef: firebase.database().ref(".info/connected"),
-    presenceRef: firebase.database().ref("presence")
+    presenceRef: firebase.database().ref("presence"),
+    privateMessageRef: firebase.database().ref("privateMessages")
   };
 
   componentDidMount() {
