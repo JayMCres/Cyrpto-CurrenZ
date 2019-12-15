@@ -11,6 +11,13 @@ const SideBarMenu = props => {
       >
         Channels
       </Menu.Item>
+      <Menu.Item
+        name="direct"
+        active={props.activeItem === "direct"}
+        onClick={props.sideMenuToggle}
+      >
+        Direct Message
+      </Menu.Item>
 
       <Menu.Item
         name="favorites"

@@ -4,6 +4,7 @@ import { Segment } from "semantic-ui-react";
 import Channels from "../../chatapp/Channels";
 import CryptoSideMenu from "./CryptoSideMenu";
 import FavoritesList from "../Favorites/FavoritesList";
+import DirectMessages from "../../directmessage/DirectMessages";
 
 export default class MessageMenu extends Component {
   state = {
@@ -25,7 +26,8 @@ export default class MessageMenu extends Component {
             currentUser={this.props.currentUser}
             isPrivateChannel={this.props.isPrivateChannel}
           />
-        )
+        ),
+        direct: <DirectMessages currentUser={this.props.currentUser} />
       };
       return <div>{SIDE_PAGES[link]}</div>;
     };
