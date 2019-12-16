@@ -25,19 +25,32 @@ const server = app.listen(port, () => console.log(`Listening on port ${port}`));
 const io = require("socket.io").listen(server);
 const connections = [];
 
+// let interval;
+// io.on("connection", socket => {
+//   console.log("New client connected");
+//   if (interval) {
+//     clearInterval(interval);
+//   }
+//   interval = setInterval(() => getApiAndEmit(socket), 10000);
+//   socket.on("disconnect", () => {
+//     console.log("Client disconnected");
+//   });
+// });
 io.sockets.on("connection", socket => {
+  if (connections.length === 0) {
+    connections.push(socket);
+    console.log(
+      "made socket connection: %s sockets connected",
+      socket.id,
+      connections.length
+    );
+  }
+  setInterval(() => getApiAndEmit(socket), 20000);
   socket.once("diconnect", () => {
     connections.splice(connections.indexOf(socket), 1);
     socket.disconnect();
     console.log("disconnected: %s sockets remaining", connections.length);
   });
-  connections.push(socket);
-  console.log(
-    "made socket connection: %s sockets connected",
-    socket.id,
-    connections.length
-  );
-  setInterval(() => getApiAndEmit(socket), 20000);
 });
 
 const getApiAndEmit = async socket => {
