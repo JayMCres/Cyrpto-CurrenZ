@@ -54,7 +54,7 @@ export default class FavoritesList extends Component {
             content="Next"
             icon="right arrow"
             labelPosition="right"
-            disabled={this.state.endIdx >= this.props.favorites.length - 1}
+            disabled={this.state.endIdx > this.props.favorites.length - 1}
           />
 
           <Card.Group centered itemsPerRow={5}>
