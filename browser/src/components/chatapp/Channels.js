@@ -13,7 +13,7 @@ import {
   Message,
   List
 } from "semantic-ui-react";
-import Messages from "./Messages";
+// import Messages from "./Messages";
 
 class Channels extends Component {
   state = {
@@ -108,6 +108,25 @@ class Channels extends Component {
       });
   };
 
+  removeChannels = channelId => {
+    const deleteChannel = this.state.channels.find(
+      item => item.id === channelId
+    );
+
+    const updateChannels = this.state.channels.filter(item => {
+      return item.id !== channelId;
+    });
+    if (deleteChannel) {
+      // console.log("deleteCrypto", deleteCrypto);
+      this.setState({
+        channels: updateChannels
+      });
+    }
+    this.state.channelsRef.child(deleteChannel.id).remove();
+
+    // this.addListeners();
+  };
+
   changeChannel = channel => {
     // console.log(channel);
     this.setActiveChannel(channel);
@@ -144,6 +163,13 @@ class Channels extends Component {
           <List.Content>
             <List.Header as="a">{channel.name}</List.Header>
           </List.Content>
+          <List.Icon
+            floated="left"
+            name="close"
+            size="small"
+            verticalAlign="middle"
+            onClick={() => this.removeChannels(channel.id)}
+          />
         </List.Item>
       );
     });
@@ -156,7 +182,7 @@ class Channels extends Component {
     this.setState({ modal: false });
   };
   render() {
-    // console.log("Channels State", this.state);
+    console.log("Channels State", this.state);
     // console.log("Channels Props", this.props);
     const { channels, modal, showConvo } = this.state;
     const { currentChannel, currentUser } = this.props;

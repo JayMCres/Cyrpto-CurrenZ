@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Segment } from "semantic-ui-react";
 
 import Channels from "../../chatapp/Channels";
-// import CryptoSideMenu from "./CryptoSideMenu";
-// import FavoritesList from "../FavoritesCont";
+
 import DirectMessages from "../../chatapp/DirectMessages";
 import Messages from "../../chatapp/Messages";
 
@@ -26,27 +25,6 @@ export default class CryptoSideSub extends Component {
   };
 
   render() {
-    const { activeItem } = this.state;
-    const onSideMenuClick = link => {
-      const SIDE_PAGES = {
-        // favoities: <FavoritesList />,
-        channels: (
-          <Channels
-            currentChannel={this.props.currentChannel}
-            currentUser={this.props.currentUser}
-            isPrivateChannel={this.props.isPrivateChannel}
-          />
-        ),
-        direct: (
-          <DirectMessages
-            currentChannel={this.props.currentChannel}
-            currentUser={this.props.currentUser}
-            isPrivateChannel={this.props.isPrivateChannel}
-          />
-        )
-      };
-      return <div>{SIDE_PAGES[link]}</div>;
-    };
     const { currentChannel, currentUser, isPrivateChannel } = this.props;
     return (
       <div>

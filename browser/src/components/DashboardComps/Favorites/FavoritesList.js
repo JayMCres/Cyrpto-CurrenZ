@@ -27,7 +27,7 @@ export default class FavoritesList extends Component {
   };
 
   render() {
-    // console.log("Index Container State", this.state.marketIndexes);
+    // console.log("favorites List", this.props);
 
     // console.log("stockIndexItems", marketIndexItems);
     const favoriteItems = this.props.favorites.slice(
@@ -58,9 +58,11 @@ export default class FavoritesList extends Component {
           />
 
           <Card.Group centered itemsPerRow={5}>
-            {favoriteItems.map(item => {
+            {favoriteItems.map((item, index) => {
+              // console.log(item);
               return (
                 <Favorite
+                  key={index}
                   {...item}
                   removeCryptoFromFavorites={
                     this.props.removeCryptoFromFavorites

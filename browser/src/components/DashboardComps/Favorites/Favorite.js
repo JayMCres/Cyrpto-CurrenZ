@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import { Card, Statistic, List, Image, Label, Icon } from "semantic-ui-react";
+import { Card, Message, List, Image, Label, Icon } from "semantic-ui-react";
+// import { connect } from "react-redux";
+// import WeeklyCharts from "./WeeklyCharts";
+
+// import { fetchHistoricals } from "../../../actions/cryptos";
 
 export default class Favorite extends Component {
   render() {
-    // console.log("Favorite card", this.props);
+    // console.log("Favorite card", this.state);
     return (
       <Card inverted color="violet">
         <List>
@@ -19,7 +23,6 @@ export default class Favorite extends Component {
             <Image
               avatar
               src={`http://cryptocompare.com/${this.props.details.image}`}
-              onClick={() => this.props.showIndepthPage()}
             />
             <List.Content>
               <List.Header as="a">{this.props.details.ticker}</List.Header>
@@ -37,3 +40,14 @@ export default class Favorite extends Component {
     );
   }
 }
+// const mapStateToProps = state => ({
+//   prices: state.cryptos.prices
+// });
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchHistoricals: ticker => dispatch(fetchHistoricals(ticker))
+//   };
+// };
+
+// export default connect(null)(Favorite);

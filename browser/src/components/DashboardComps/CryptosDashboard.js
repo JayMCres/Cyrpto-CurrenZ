@@ -22,7 +22,8 @@ class CryptosDashboard extends Component {
     endpoint: "http://localhost:5000",
     inputValue: "",
     favorites: [],
-    favoritesRef: firebase.database().ref("favorites")
+    favoritesRef: firebase.database().ref("favorites"),
+    favoritePrices: []
   };
   getInitialState = () => {
     return {
@@ -103,6 +104,8 @@ class CryptosDashboard extends Component {
 
     console.log("preventDoubles", preventDoubles);
     if (!preventDoubles) {
+      // this.saveNewFavorite(foundCrypto);
+
       const key = this.state.favoritesRef.push().key;
 
       const newFavorite = {
@@ -122,6 +125,7 @@ class CryptosDashboard extends Component {
   };
 
   addNewItemToFavorites = newFav => {
+    console.log("new fav", newFav);
     this.setState({
       favorites: [...this.state.favorites, newFav]
     });
@@ -148,18 +152,18 @@ class CryptosDashboard extends Component {
     // this.addListeners();
   };
 
-  renderFavoritesCont = () => {
-    if (this.state.favorites === null) {
-      return <div></div>;
-    } else {
-      return (
-        <FavoritesCont
-          favorites={this.state.favorites}
-          removeCryptoFromFavorites={this.removeCryptoFromFavorites}
-        />
-      );
-    }
-  };
+  // renderFavoritesCont = () => {
+  //   if (this.state.favorites === null) {
+  //     return <div></div>;
+  //   } else {
+  //     return (
+  //       <FavoritesCont
+  //         favorites={this.state.favorites}
+  //         removeCryptoFromFavorites={this.removeCryptoFromFavorites}
+  //       />
+  //     );
+  //   }
+  // };
 
   render() {
     console.log("Dashboard State", this.state);
@@ -172,6 +176,7 @@ class CryptosDashboard extends Component {
           <Segment>
             <Exchanges />
             <FavoritesCont
+              showIndepthPage={this.showIndepthPage}
               favorites={this.state.favorites}
               removeCryptoFromFavorites={this.removeCryptoFromFavorites}
             />
