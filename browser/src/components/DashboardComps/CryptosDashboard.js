@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Segment, Grid } from "semantic-ui-react";
 import io from "socket.io-client";
-import { fetchNews, fetchCryptoPrices } from "../../actions/cryptos";
+import { fetchNews, fetchCryptos } from "../../actions/cryptos";
 
 import CryptosList from "./CryptoContainer/CryptosList";
 import FavoritesCont from "./Favorites/FavoritesCont";
@@ -32,6 +32,7 @@ class CryptosDashboard extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchNews());
+    // this.props.dispatch(fetchCryptos());
     this.addListeners();
   }
   componentWillMount() {
@@ -111,6 +112,7 @@ class CryptosDashboard extends Component {
     this.setState({
       favorites: [...this.state.favorites, newFav]
     });
+    this.addListeners();
   };
 
   addListeners = () => {
@@ -125,10 +127,10 @@ class CryptosDashboard extends Component {
   };
 
   renderFavoritesCont = () => {
-    if (this.state.favorites.length === 0) {
+    if (this.state.favorites === null) {
       return <div></div>;
     } else {
-      return <FavoritesCont />;
+      return <FavoritesCont favorites={this.state.favorites} />;
     }
   };
 
@@ -142,7 +144,7 @@ class CryptosDashboard extends Component {
         ) : (
           <Segment>
             <Exchanges />
-            <FavoritesCont favorites={this.state.favorites} />
+            {this.renderFavoritesCont()}
           </Segment>
         )}
         {!this.state.indepthPage ? (
@@ -204,6 +206,7 @@ class CryptosDashboard extends Component {
 const mapStateToProps = state => ({
   currentChannel: state.channels.currentChannel,
   isPrivateChannel: state.channels.isPrivateChannel
+  // cryptos: state.cryptos.cryptos
 });
 
 export default connect(mapStateToProps)(CryptosDashboard);

@@ -30,7 +30,10 @@ export default class FavoritesList extends Component {
     // console.log("Index Container State", this.state.marketIndexes);
 
     // console.log("stockIndexItems", marketIndexItems);
-
+    const favoriteItems = this.props.favorites.slice(
+      this.state.startIdx,
+      this.state.endIdx
+    );
     return (
       <div>
         <Message color="violet">
@@ -51,12 +54,12 @@ export default class FavoritesList extends Component {
             content="Next"
             icon="right arrow"
             labelPosition="right"
-            // disabled={this.state.endIdx === this.state.favorites.length + }
+            disabled={this.state.endIdx >= this.props.favorites.length - 1}
           />
 
           <Card.Group centered itemsPerRow={5}>
-            {this.props.favorites.map(item => {
-              return <Favorite key={item.id} {...item} />;
+            {favoriteItems.map(item => {
+              return <Favorite {...item} />;
             })}
           </Card.Group>
         </Segment>
