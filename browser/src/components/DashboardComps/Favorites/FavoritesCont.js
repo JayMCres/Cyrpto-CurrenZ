@@ -6,7 +6,10 @@ export default class FavoritesCont extends Component {
   render() {
     return (
       <Segment inverted>
-        <FavoritesList favorites={this.props.favorites} />
+        <FavoritesList
+          favorites={this.props.favorites}
+          removeCryptoFromFavorites={this.props.removeCryptoFromFavorites}
+        />
       </Segment>
     );
   }

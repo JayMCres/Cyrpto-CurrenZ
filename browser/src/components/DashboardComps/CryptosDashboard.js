@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Segment, Grid } from "semantic-ui-react";
 import io from "socket.io-client";
-import { fetchNews, fetchCryptos } from "../../actions/cryptos";
+import { fetchNews, fetchCryptoPrices } from "../../actions/cryptos";
 
 import CryptosList from "./CryptoContainer/CryptosList";
 import FavoritesCont from "./Favorites/FavoritesCont";
@@ -81,9 +81,9 @@ class CryptosDashboard extends Component {
       );
     });
 
-  addCryptoToFavorites = async cryptoId => {
+  addCryptoToFavorites = cryptoId => {
     const userId = this.props.currentUser.uid;
-    console.log("User", userId);
+    // console.log("User", userId);
     const foundCrypto = this.state.coinList.find(item => item.id === cryptoId);
 
     const preventDoubles = this.state.favorites.find(
@@ -115,6 +115,27 @@ class CryptosDashboard extends Component {
     this.addListeners();
   };
 
+  removeCryptoFromFavorites = cryptoId => {
+    const deleteCrypto = this.state.favorites.find(
+      item => item.id === cryptoId
+    );
+
+    const updateCrypto = this.state.favorites.filter(item => {
+      return item.id !== cryptoId;
+    });
+    if (deleteCrypto) {
+      console.log("deleteCrypto", deleteCrypto);
+      this.state.favoritesRef
+        .child(deleteCrypto.id)
+        .remove()
+        .then(
+          this.setState({
+            favorites: updateCrypto
+          })
+        );
+    }
+  };
+
   addListeners = () => {
     let loadedFavorites = [];
     this.state.favoritesRef.on("child_added", snap => {
@@ -130,12 +151,17 @@ class CryptosDashboard extends Component {
     if (this.state.favorites === null) {
       return <div></div>;
     } else {
-      return <FavoritesCont favorites={this.state.favorites} />;
+      return (
+        <FavoritesCont
+          favorites={this.state.favorites}
+          removeCryptoFromFavorites={this.removeCryptoFromFavorites}
+        />
+      );
     }
   };
 
   render() {
-    console.log("Dashboard State", this.state);
+    // console.log("Dashboard State", this.state);
     const { currentChannel, isPrivateChannel } = this.props;
     return (
       <Segment inverted>

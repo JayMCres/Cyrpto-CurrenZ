@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import { Card, Statistic, List, Image } from "semantic-ui-react";
+import { Card, Statistic, List, Image, Label, Icon } from "semantic-ui-react";
 
 export default class Favorite extends Component {
   render() {
-    console.log("Favorite card", this.props);
+    // console.log("Favorite card", this.props);
     return (
       <Card inverted color="violet">
+        <Label as="a" corner="right" color="red">
+          <Icon
+            name="remove"
+            onClick={() => this.props.removeCryptoFromFavorites(this.props.id)}
+          />
+        </Label>
         <List>
           <List.Item>
             <Image

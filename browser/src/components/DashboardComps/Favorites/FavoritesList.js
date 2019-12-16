@@ -59,7 +59,14 @@ export default class FavoritesList extends Component {
 
           <Card.Group centered itemsPerRow={5}>
             {favoriteItems.map(item => {
-              return <Favorite {...item} />;
+              return (
+                <Favorite
+                  {...item}
+                  removeCryptoFromFavorites={
+                    this.props.removeCryptoFromFavorites
+                  }
+                />
+              );
             })}
           </Card.Group>
         </Segment>
