@@ -6,13 +6,15 @@ export default class Favorite extends Component {
     // console.log("Favorite card", this.props);
     return (
       <Card inverted color="violet">
-        <Label as="a" corner="right" color="red">
-          <Icon
-            name="remove"
-            onClick={() => this.props.removeCryptoFromFavorites(this.props.id)}
-          />
-        </Label>
         <List>
+          <Label size="mini" as="a" corner="right" color="red">
+            <Icon
+              name="remove"
+              onClick={() =>
+                this.props.removeCryptoFromFavorites(this.props.id)
+              }
+            />
+          </Label>
           <List.Item>
             <Image
               avatar

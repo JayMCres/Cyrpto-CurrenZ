@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+// import HomePage from "./components/HomepageComps/HomePage";
 import CryptosDashboard from "./components/DashboardComps/CryptosDashboard";
 
 class App extends Component {

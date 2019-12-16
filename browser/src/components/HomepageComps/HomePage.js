@@ -11,7 +11,7 @@ class HomePage extends Component {
 
     return (
       <Segment inverted>
-        <CryptosDashboard />
+        <CryptosDashboard currentUser={this.props.currentUser} />
       </Segment>
     );
   }

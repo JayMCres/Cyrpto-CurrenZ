@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Segment, Grid } from "semantic-ui-react";
 import io from "socket.io-client";
-import { fetchNews, fetchCryptoPrices } from "../../actions/cryptos";
+import { fetchNews, fetchCryptos } from "../../actions/cryptos";
 
 import CryptosList from "./CryptoContainer/CryptosList";
 import FavoritesCont from "./Favorites/FavoritesCont";
@@ -32,7 +32,7 @@ class CryptosDashboard extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchNews());
-    // this.props.dispatch(fetchCryptos());
+    this.props.dispatch(fetchCryptos());
     this.addListeners();
   }
   componentWillMount() {
@@ -68,6 +68,17 @@ class CryptosDashboard extends Component {
     });
   };
 
+  addListeners = () => {
+    let loadedFavorites = [];
+    this.state.favoritesRef.on("child_added", snap => {
+      loadedFavorites.push(snap.val());
+      // console.log(loadedChannels);
+      // this.setState({ channels: loadedChannels });
+      this.setState({ favorites: loadedFavorites });
+      // this.addNotificationListener(snap.key);
+    });
+  };
+
   filterCryptos = () =>
     this.state.coinList.filter(item => {
       return (
@@ -84,11 +95,13 @@ class CryptosDashboard extends Component {
   addCryptoToFavorites = cryptoId => {
     const userId = this.props.currentUser.uid;
     // console.log("User", userId);
-    const foundCrypto = this.state.coinList.find(item => item.id === cryptoId);
-
+    const foundCrypto = this.props.cryptos.find(item => item.id === cryptoId);
+    // console.log("foundCrypto", foundCrypto);
     const preventDoubles = this.state.favorites.find(
-      item => item.id === cryptoId
+      item => item.details.id === cryptoId
     );
+
+    console.log("preventDoubles", preventDoubles);
     if (!preventDoubles) {
       const key = this.state.favoritesRef.push().key;
 
@@ -113,6 +126,7 @@ class CryptosDashboard extends Component {
       favorites: [...this.state.favorites, newFav]
     });
     this.addListeners();
+    // this.renderFavoritesCont();
   };
 
   removeCryptoFromFavorites = cryptoId => {
@@ -125,26 +139,13 @@ class CryptosDashboard extends Component {
     });
     if (deleteCrypto) {
       console.log("deleteCrypto", deleteCrypto);
-      this.state.favoritesRef
-        .child(deleteCrypto.id)
-        .remove()
-        .then(
-          this.setState({
-            favorites: updateCrypto
-          })
-        );
+      this.setState({
+        favorites: updateCrypto
+      });
     }
-  };
+    this.state.favoritesRef.child(deleteCrypto.id).remove();
 
-  addListeners = () => {
-    let loadedFavorites = [];
-    this.state.favoritesRef.on("child_added", snap => {
-      loadedFavorites.push(snap.val());
-      // console.log(loadedChannels);
-      // this.setState({ channels: loadedChannels });
-      this.setState({ favorites: loadedFavorites });
-      // this.addNotificationListener(snap.key);
-    });
+    // this.addListeners();
   };
 
   renderFavoritesCont = () => {
@@ -161,7 +162,7 @@ class CryptosDashboard extends Component {
   };
 
   render() {
-    // console.log("Dashboard State", this.state);
+    console.log("Dashboard State", this.state);
     const { currentChannel, isPrivateChannel } = this.props;
     return (
       <Segment inverted>
@@ -170,7 +171,10 @@ class CryptosDashboard extends Component {
         ) : (
           <Segment>
             <Exchanges />
-            {this.renderFavoritesCont()}
+            <FavoritesCont
+              favorites={this.state.favorites}
+              removeCryptoFromFavorites={this.removeCryptoFromFavorites}
+            />
           </Segment>
         )}
         {!this.state.indepthPage ? (
@@ -231,8 +235,8 @@ class CryptosDashboard extends Component {
 }
 const mapStateToProps = state => ({
   currentChannel: state.channels.currentChannel,
-  isPrivateChannel: state.channels.isPrivateChannel
-  // cryptos: state.cryptos.cryptos
+  isPrivateChannel: state.channels.isPrivateChannel,
+  cryptos: state.cryptos.cryptos
 });
 
 export default connect(mapStateToProps)(CryptosDashboard);
