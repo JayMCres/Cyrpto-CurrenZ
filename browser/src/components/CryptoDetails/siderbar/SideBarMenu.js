@@ -5,11 +5,11 @@ const SideBarMenu = props => {
   return (
     <Menu>
       <Menu.Item
-        name="channels"
-        active={props.activeItem === "channels"}
+        name="messages"
+        active={props.activeItem === "messages"}
         onClick={props.sideBarMenuToggle}
       >
-        Channels
+        Messenger
       </Menu.Item>
 
       <Menu.Item

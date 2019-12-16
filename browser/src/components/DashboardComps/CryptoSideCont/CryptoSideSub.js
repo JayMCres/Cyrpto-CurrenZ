@@ -3,11 +3,11 @@ import { Segment } from "semantic-ui-react";
 
 import Channels from "../../chatapp/Channels";
 // import CryptoSideMenu from "./CryptoSideMenu";
-import FavoritesList from "../Favorites/FavoritesList";
+// import FavoritesList from "../FavoritesCont";
 import DirectMessages from "../../chatapp/DirectMessages";
 import Messages from "../../chatapp/Messages";
 
-export default class MessageMenu extends Component {
+export default class CryptoSideSub extends Component {
   state = {
     activeItem: "channels",
     showConvo: true
@@ -29,7 +29,7 @@ export default class MessageMenu extends Component {
     const { activeItem } = this.state;
     const onSideMenuClick = link => {
       const SIDE_PAGES = {
-        favoities: <FavoritesList />,
+        // favoities: <FavoritesList />,
         channels: (
           <Channels
             currentChannel={this.props.currentChannel}

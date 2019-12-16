@@ -2,15 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Segment, Grid } from "semantic-ui-react";
 import io from "socket.io-client";
-import { fetchNews } from "../../actions/cryptos";
+import { fetchNews, fetchCryptoPrices } from "../../actions/cryptos";
 
 import CryptosList from "./CryptoContainer/CryptosList";
+import FavoritesCont from "./Favorites/FavoritesCont";
 import LoadingPage from "./CryptoContainer/LoadingPage";
 import Search from "./CryptoContainer/Search";
 import Exchanges from "./ExchangeComps/ExchangeCont";
 import CryptoSideCont from "./CryptoSideCont/CryptoSideCont";
 import CryptoSideSub from "./CryptoSideCont/CryptoSideSub";
 import CryptoDetailsCont from "../CryptoDetails/CryptoDetailsCont";
+import firebase from "../../config/firebase";
 
 class CryptosDashboard extends Component {
   state = {
@@ -18,7 +20,9 @@ class CryptosDashboard extends Component {
     priorCoinList: [],
     indepthPage: false,
     endpoint: "http://localhost:5000",
-    inputValue: ""
+    inputValue: "",
+    favorites: [],
+    favoritesRef: firebase.database().ref("favorites")
   };
   getInitialState = () => {
     return {
@@ -28,6 +32,7 @@ class CryptosDashboard extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchNews());
+    this.addListeners();
   }
   componentWillMount() {
     this.socket = io("http://localhost:5000");
@@ -75,11 +80,71 @@ class CryptosDashboard extends Component {
       );
     });
 
+  addCryptoToFavorites = async cryptoId => {
+    const userId = this.props.currentUser.uid;
+    console.log("User", userId);
+    const foundCrypto = this.state.coinList.find(item => item.id === cryptoId);
+
+    const preventDoubles = this.state.favorites.find(
+      item => item.id === cryptoId
+    );
+    if (!preventDoubles) {
+      const key = this.state.favoritesRef.push().key;
+
+      const newFavorite = {
+        id: key,
+        userId: userId,
+        details: foundCrypto
+      };
+
+      this.state.favoritesRef
+        .child(key)
+        .update(newFavorite)
+        .then(newFavorite => this.addNewItemToFavorites(newFavorite))
+        .catch(err => {
+          console.error(err);
+        });
+    }
+  };
+
+  addNewItemToFavorites = newFav => {
+    this.setState({
+      favorites: [...this.state.favorites, newFav]
+    });
+  };
+
+  addListeners = () => {
+    let loadedFavorites = [];
+    this.state.favoritesRef.on("child_added", snap => {
+      loadedFavorites.push(snap.val());
+      // console.log(loadedChannels);
+      // this.setState({ channels: loadedChannels });
+      this.setState({ favorites: loadedFavorites });
+      // this.addNotificationListener(snap.key);
+    });
+  };
+
+  renderFavoritesCont = () => {
+    if (this.state.favorites.length === 0) {
+      return <div></div>;
+    } else {
+      return <FavoritesCont />;
+    }
+  };
+
   render() {
+    console.log("Dashboard State", this.state);
     const { currentChannel, isPrivateChannel } = this.props;
     return (
       <Segment inverted>
-        <Exchanges />
+        {this.state.favorites.length === 0 ? (
+          <Exchanges />
+        ) : (
+          <Segment>
+            <Exchanges />
+            <FavoritesCont favorites={this.state.favorites} />
+          </Segment>
+        )}
         {!this.state.indepthPage ? (
           <Grid columns={2} divided>
             <Grid.Column width={10}>
@@ -100,7 +165,10 @@ class CryptosDashboard extends Component {
                     attached="bottom"
                     style={{ overflow: "auto", maxHeight: 1150 }}
                   >
-                    <CryptosList coinList={this.filterCryptos()} />
+                    <CryptosList
+                      coinList={this.filterCryptos()}
+                      addCryptoToFavorites={this.addCryptoToFavorites}
+                    />
                   </Segment>
                 </Segment>
               )}

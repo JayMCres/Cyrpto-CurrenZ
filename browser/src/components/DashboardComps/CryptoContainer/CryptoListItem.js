@@ -39,6 +39,7 @@ class CryptoListItem extends Component {
     this.props.fetchMonthly();
     this.props.fetchHistoricals();
   };
+
   render() {
     // console.log("Crypto Item Props", this.props);
     return (
@@ -64,6 +65,13 @@ class CryptoListItem extends Component {
         </Card.Content>
         <Card.Content extra>
           <div className="ui two buttons">
+            <Button
+              basic
+              color="violet"
+              onClick={() => this.props.addCryptoToFavorites(this.props.id)}
+            >
+              Add to Favorite
+            </Button>
             <Button
               basic
               color="violet"

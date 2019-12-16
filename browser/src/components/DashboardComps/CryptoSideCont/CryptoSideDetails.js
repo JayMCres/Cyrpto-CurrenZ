@@ -12,7 +12,7 @@ import {
 
 class CryptoSideDetails extends Component {
   render() {
-    console.log("Detial Side Props", this.props);
+    // console.log("Detial Side Props", this.props);
     return (
       <div>
         <Message>

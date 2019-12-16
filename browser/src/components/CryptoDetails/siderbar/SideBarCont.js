@@ -9,7 +9,7 @@ import SideBar from "./SideBar";
 
 class SideBarCont extends Component {
   render() {
-    // console.log("Side", this.props);
+    console.log("Side", this.props);
     const sidePrices = this.props.prices.map((price, index) => {
       return {
         dayOne: price[0],
