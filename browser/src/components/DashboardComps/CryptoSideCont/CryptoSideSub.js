@@ -59,7 +59,9 @@ class CryptoSideSub extends Component {
             isPrivateChannel={this.props.isPrivateChannel}
           />
         ),
-        watchlist: <WatchListCont />
+        watchlist: (
+          <WatchListCont favoritesPrices={this.state.favoritesPrices} />
+        )
       };
       return <div>{SIDE_PAGES[link]}</div>;
     };
@@ -69,6 +71,7 @@ class CryptoSideSub extends Component {
           activeItem={activeItem}
           sideMenuToggle={this.sideMenuToggle}
           handleCryptoPriceFetch={this.handleCryptoPriceFetch}
+          favoritesPrices={this.state.favoritesPrices}
         />
         {onSideMenuClick(activeItem)}
       </Segment>

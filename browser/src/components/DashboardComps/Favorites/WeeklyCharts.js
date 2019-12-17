@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 // import FavoriteCard from "./FavoriteCard";
 import WeeklyChart from "./WeeklyChart";
 
@@ -32,10 +32,4 @@ class WeeklyCharts extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  prices: state.cryptos.weeklyPrices
-});
-
-// export default WeeklyCharts;
-
-export default connect(mapStateToProps)(WeeklyCharts);
+export default WeeklyCharts;
