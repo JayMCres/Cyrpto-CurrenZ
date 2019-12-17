@@ -8,10 +8,10 @@ exports.getWeeklyPrices = async (req, res) => {
   const url = `https://min-api.cryptocompare.com/data/histoday?fsym=${req.body.ticker}&tsym=USD&limit=100&aggregate=1&pi_key=${key}`;
 
   let response = await fetch(url);
-  console.log("response", response);
+  // console.log("response", response);
 
   let json = await response.json();
-  console.log("JSON", json);
+  // console.log("JSON", json);
 
   let cryptoPrices = await json.Data;
   // console.log("Crypto Prices", cryptoPrices);
@@ -19,9 +19,9 @@ exports.getWeeklyPrices = async (req, res) => {
   // console.log("Crypto Prices", historicalArray);
 
   let historicalArray = await reverseArray.filter((obj, index) => {
-    return index > 5;
+    return index < 5;
   });
-  // // console.log("historical", historicalArray);
+  // console.log("historical", historicalArray);
 
   let reformated = await historicalArray.map((object, index) => {
     let date = moment(object.time * 1000).format("MMM DD YYYY");
@@ -41,7 +41,17 @@ exports.getWeeklyPrices = async (req, res) => {
       style: "currency",
       currency: "USD"
     });
-    return { label: date, value: object.close };
+    return {
+      ticker: req.body.ticker,
+      time: object.time,
+      d: date,
+      open: o,
+      high: h,
+      low: l,
+      p: close,
+      x: index,
+      y: object.close
+    };
   });
 
   let newArray = await reformated;
