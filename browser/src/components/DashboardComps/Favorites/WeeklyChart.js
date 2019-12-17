@@ -18,14 +18,7 @@ export default class WeeklyChart extends Component {
     };
 
     return (
-      // <div>test</div>
-      <Segment inverted>
-        {/* //   <Segment inverted attached="top"> */}
-        <Message attached="top" color="violet">
-          <strong>{this.props.dayOne.ticker}</strong>
-        </Message>
-        {/* // </Segment> */}
-        {/* // <Segment inverted attached="bottom"> */}
+      <Message>
         <Chart
           // chartType="LineChart",
           chartType="AreaChart"
@@ -44,8 +37,7 @@ export default class WeeklyChart extends Component {
           // rows={rows}
           // columns={columns}
         />
-        {/* </Segment> */}
-      </Segment>
+      </Message>
     );
   }
 }

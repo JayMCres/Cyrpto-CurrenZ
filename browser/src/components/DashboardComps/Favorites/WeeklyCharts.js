@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import FavoriteCard from "./FavoriteCard";
+import { Segment } from "semantic-ui-react";
 import WeeklyChart from "./WeeklyChart";
 
 class WeeklyCharts extends Component {
   render() {
-    console.log("Charts", this.props);
+    // console.log("Charts", this.props);
     // const chartOne = this.props.histOne.reverse();
     // console.log("ChartOne", chartOne);
     const sidePrices = this.props.prices.map((price, index) => {
@@ -21,13 +22,12 @@ class WeeklyCharts extends Component {
     });
 
     return (
-      <div>
-        test
+      <Segment inverted>
         {sidePrices.map((crypto, index) => {
           // console.log("Item", crypto[0]);
           return <WeeklyChart key={index} {...crypto} />;
         })}
-      </div>
+      </Segment>
     );
   }
 }

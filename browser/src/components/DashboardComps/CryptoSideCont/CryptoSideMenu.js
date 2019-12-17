@@ -24,16 +24,19 @@ class CryptoSideMenu extends Component {
           name="charts"
           active={activeItem === "charts"}
           onClick={this.handleWatchListRender}
+          disabled={this.props.favoritesPrices.length !== 0}
+          style={{ color: "blue" }}
         >
-          <strong style={{ color: "blue" }}> Render Watchlist</strong>
+          Render Watchlist
         </Menu.Item>
         <Menu.Item
           name="watchlist"
           active={activeItem === "watchlist"}
           onClick={this.props.sideMenuToggle}
           disabled={this.props.favoritesPrices.length === 0}
+          style={{ color: "blue" }}
         >
-          <strong style={{ color: "blue" }}> WatchList</strong>
+          Watchlist
         </Menu.Item>
       </Menu>
     );

@@ -9,7 +9,7 @@ class WatchListCont extends Component {
   render() {
     // console.log("Favorite card", this.state);
     return (
-      <Segment>
+      <Segment style={{ overflow: "auto", maxHeight: 950 }}>
         <WeeklyCharts prices={this.props.favoritesPrices} />
       </Segment>
     );
