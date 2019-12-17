@@ -3,9 +3,9 @@ import { Card, Message, List, Image, Label, Icon } from "semantic-ui-react";
 // import { connect } from "react-redux";
 // import WeeklyCharts from "./WeeklyCharts";
 
-// import { fetchHistoricals } from "../../../actions/cryptos";
+// import { fetchWeekly } from "../../../actions/cryptos";
 
-export default class Favorite extends Component {
+class Favorite extends Component {
   render() {
     // console.log("Favorite card", this.state);
     return (
@@ -40,14 +40,6 @@ export default class Favorite extends Component {
     );
   }
 }
-// const mapStateToProps = state => ({
-//   prices: state.cryptos.prices
-// });
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchHistoricals: ticker => dispatch(fetchHistoricals(ticker))
-//   };
-// };
 
 // export default connect(null)(Favorite);
+export default Favorite;

@@ -33,7 +33,7 @@ class WeeklyCharts extends Component {
 }
 
 const mapStateToProps = state => ({
-  prices: state.cryptos.prices
+  prices: state.cryptos.weeklyPrices
 });
 
 // export default WeeklyCharts;

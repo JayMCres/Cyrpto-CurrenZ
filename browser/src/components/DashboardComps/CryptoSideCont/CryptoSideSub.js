@@ -1,64 +1,83 @@
 import React, { Component } from "react";
 import { Segment } from "semantic-ui-react";
+import { connect } from "react-redux";
+// import Channels from "../../chatapp/Channels";
 
-import Channels from "../../chatapp/Channels";
+// import DirectMessages from "../../chatapp/DirectMessages";
+// import Messages from "../../chatapp/Messages";
 
-import DirectMessages from "../../chatapp/DirectMessages";
-import Messages from "../../chatapp/Messages";
+import SideMessenger from "../../chatapp/SideMessenger";
+import CryptoSideMenu from "./CryptoSideMenu";
+import WatchListCont from "../Favorites/WatchListCont";
 
-export default class CryptoSideSub extends Component {
+class CryptoSideSub extends Component {
   state = {
-    activeItem: "channels",
-    showConvo: true
+    activeItem: "messenger",
+    favoritesPrices: []
   };
 
   sideMenuToggle = (e, { name }) => {
     this.setState({ activeItem: name });
   };
 
-  renderChannelConvo = () => {
-    this.setState({ showConvo: true });
+  addPricesToFavorites = async cryptoId => {
+    const foundCrypto = await this.props.cryptos.find(
+      item => item.id === cryptoId
+    );
+    console.log("found Crypto", foundCrypto);
+    const response = await fetch("http://localhost:5000/api/weeklyprices", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ ticker: foundCrypto.ticker })
+    });
+    const body = await response.json();
+    // console.log("favoritesPrices", body);
+    this.setState({
+      favoritesPrices: [...this.state.favoritesPrices, body]
+    });
   };
 
-  hideChannelConvo = () => {
-    this.setState({ showConvo: false });
+  handleCryptoPriceFetch = async () => {
+    return await this.props.favorites.map(crypto => {
+      // console.log(crypto.details.id);
+      return this.addPricesToFavorites(crypto.details.id);
+    });
   };
 
   render() {
+    console.log("Side Sub", this.state);
     const { currentChannel, currentUser, isPrivateChannel } = this.props;
+    const { activeItem } = this.state;
+    const onSideMenuClick = link => {
+      const SIDE_PAGES = {
+        messenger: (
+          <SideMessenger
+            currentChannel={this.props.currentChannel}
+            currentUser={this.props.currentUser}
+            isPrivateChannel={this.props.isPrivateChannel}
+          />
+        ),
+        watchlist: <WatchListCont />
+      };
+      return <div>{SIDE_PAGES[link]}</div>;
+    };
     return (
-      <div>
-        <Segment>
-          <DirectMessages
-            currentChannel={this.props.currentChannel}
-            currentUser={this.props.currentUser}
-            isPrivateChannel={this.props.isPrivateChannel}
-          />
-          <Channels
-            currentChannel={this.props.currentChannel}
-            currentUser={this.props.currentUser}
-            isPrivateChannel={this.props.isPrivateChannel}
-            renderChannelConvo={this.renderChannelConvo}
-          />
-          {currentChannel === null || this.state.showConvo === false ? (
-            <div> </div>
-          ) : (
-            <Messages
-              key={currentChannel && currentChannel.id}
-              currentChannel={currentChannel}
-              currentUser={currentUser}
-              hideChannelConvo={this.hideChannelConvo}
-              isPrivateChannel={isPrivateChannel}
-            />
-          )}
-
-          {/* <CryptoSideMenu
-            activeItem={activeItem}
-            sideMenuToggle={this.sideMenuToggle}
-          />
-          {onSideMenuClick(activeItem)} */}
-        </Segment>
-      </div>
+      <Segment>
+        <CryptoSideMenu
+          activeItem={activeItem}
+          sideMenuToggle={this.sideMenuToggle}
+          handleCryptoPriceFetch={this.handleCryptoPriceFetch}
+        />
+        {onSideMenuClick(activeItem)}
+      </Segment>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  cryptos: state.cryptos.cryptos
+});
+
+export default connect(mapStateToProps)(CryptoSideSub);

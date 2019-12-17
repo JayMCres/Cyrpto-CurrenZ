@@ -21,7 +21,6 @@ class CryptosList extends Component {
             <CryptoListItem
               key={crypto.id}
               {...crypto}
-              addCryptoToFavorites={this.props.addCryptoToFavorites}
               setCurrentCrypto={() => this.props.setCurrentCrypto(crypto)}
               fetchCryptoPrices={() =>
                 this.props.fetchCryptoPrices(crypto.ticker)
@@ -33,6 +32,8 @@ class CryptosList extends Component {
               fetchHistoricals={() =>
                 this.props.fetchHistoricals(crypto.ticker)
               }
+              addCryptoToFavorites={this.props.addCryptoToFavorites}
+              addPricesToFavorites={this.props.addPricesToFavorites}
             />
           );
         })}

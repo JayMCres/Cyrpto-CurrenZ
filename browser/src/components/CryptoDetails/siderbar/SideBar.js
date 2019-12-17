@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Segment } from "semantic-ui-react";
 import NewsList from "../newsfeed/NewsList";
-// import Channels from "../../chatapp/Channels";
+import SideMessenger from "../../chatapp/SideMessenger";
 import SideBarMenu from "./SideBarMenu";
-import CryptoSideSub from "../../DashboardComps/CryptoSideCont/CryptoSideSub";
+// import CryptoSideSub from "../../DashboardComps/CryptoSideCont/CryptoSideSub";
 
 export default class SideBar extends Component {
   state = {
@@ -20,7 +20,7 @@ export default class SideBar extends Component {
       const SIDE_PAGES = {
         news: <NewsList filteredNews={this.props.filteredNews} />,
         messages: (
-          <CryptoSideSub
+          <SideMessenger
             currentChannel={this.props.currentChannel}
             currentUser={this.props.currentUser}
             isPrivateChannel={this.props.isPrivateChannel}

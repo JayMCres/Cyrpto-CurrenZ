@@ -7,6 +7,7 @@ export const FETCH_EXCHANGES = "FETCH_EXCHANGES";
 export const SET_CURRENT_CRYPTO = "SET_CURRENT_CRYPTO";
 export const FETCH_CRYPTO_PRICES = "FETCH_CRYPTO_PRICES";
 export const SET_CRYPTO_MONTHLY = "SET_CRYPTO_MONTHLY";
+export const SET_CRYPTO_WEEKLY = "SET_CRYPTO_WEEKLY";
 export const SET_CRYPTO_PRICES = "SET_CRYPTO_PRICES";
 export const FETCH_CRYPTO_DETAILS = "FETCH_CRYPTO_DETAILS";
 export const SET_CRYPTO_DETAILS = "SET_CRYPTO_DETAILS";
@@ -110,6 +111,29 @@ export const setCryptoMonthly = data => async dispatch => {
   const prices = await data;
   dispatch({
     type: SET_CRYPTO_MONTHLY,
+    payload: prices
+  });
+};
+
+export function fetchWeekly(ticker) {
+  return dispatch => {
+    return fetch("http://localhost:5000/api/weeklyprices", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ ticker })
+    }).then(response => {
+      let data = response.json();
+      dispatch(setCryptoWeekly(data));
+    });
+  };
+}
+
+export const setCryptoWeekly = data => async dispatch => {
+  const prices = await data;
+  dispatch({
+    type: SET_CRYPTO_WEEKLY,
     payload: prices
   });
 };

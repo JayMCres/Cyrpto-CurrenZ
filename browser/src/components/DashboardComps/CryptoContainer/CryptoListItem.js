@@ -40,9 +40,9 @@ class CryptoListItem extends Component {
     this.props.fetchHistoricals();
   };
 
-  handleFavoriteClick = async () => {
-    await this.props.addCryptoToFavorites(this.props.id);
-    await this.props.fetchCryptoPrices();
+  handleFavoriteClick = () => {
+    this.props.addCryptoToFavorites(this.props.id);
+    // this.props.addPricesToFavorites(this.props.id);
   };
 
   render() {
@@ -73,8 +73,8 @@ class CryptoListItem extends Component {
             <Button
               basic
               color="violet"
-              onClick={() => this.props.addCryptoToFavorites(this.props.id)}
-              // onClick={() => this.handleFavoriteClick()}
+              // onClick={() => this.props.addCryptoToFavorites(this.props.id)}
+              onClick={() => this.handleFavoriteClick()}
             >
               Add to Favorite
             </Button>
