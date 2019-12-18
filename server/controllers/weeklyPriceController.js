@@ -5,7 +5,7 @@ const moment = require("moment");
 exports.getWeeklyPrices = async (req, res) => {
   console.log("BODY", req.body);
 
-  const url = `https://min-api.cryptocompare.com/data/histoday?fsym=${req.body.ticker}&tsym=USD&limit=100&aggregate=1&pi_key=${key}`;
+  const url = `https://min-api.cryptocompare.com/data/histoday?fsym=${req.body.foundCrypto.ticker}&tsym=USD&limit=100&aggregate=1&pi_key=${key}`;
 
   let response = await fetch(url);
   // console.log("response", response);
@@ -42,7 +42,8 @@ exports.getWeeklyPrices = async (req, res) => {
       currency: "USD"
     });
     return {
-      ticker: req.body.ticker,
+      id: req.body.foundCrypto.id,
+      ticker: req.body.foundCrypto.ticker,
       time: object.time,
       d: date,
       open: o,
