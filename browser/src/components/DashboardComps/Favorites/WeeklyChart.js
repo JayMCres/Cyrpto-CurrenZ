@@ -37,13 +37,19 @@ export default class WeeklyChart extends Component {
             }
           />
         </Label>
-        <Header as="h4" inverted color="violet">
-          {this.props.dayOne.ticker}
-        </Header>
+        {/* <Header as="h4" inverted color="violet"> */}
+        <div>
+          <Image
+            avatar
+            src={`http://cryptocompare.com/${this.props.dayOne.image}`}
+          />
+          <span>{this.props.dayOne.company}</span>
+        </div>
+        {/* </Header> */}
         <Chart
           // chartType="LineChart",
           chartType="AreaChart"
-          width="250px"
+          width="350px"
           height="200px"
           data={[
             ["Date", "Price"],
