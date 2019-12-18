@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Segment, Card, Button, Message } from "semantic-ui-react";
-import Favorite from "./Favorite";
+// import Favorite from "./Favorite";
+import WeeklyChart from "./WeeklyChart";
 
 export default class FavoritesList extends Component {
   state = {
@@ -34,6 +35,17 @@ export default class FavoritesList extends Component {
       this.state.startIdx,
       this.state.endIdx
     );
+    const sidePrices = this.props.prices.map((price, index) => {
+      return {
+        dayOne: price[0],
+        dayTwo: price[1],
+        dayThree: price[2],
+        dayFour: price[3],
+        dayFive: price[4],
+        daySix: price[5],
+        daySeven: price[6]
+      };
+    });
     return (
       <div>
         <Message color="violet">
@@ -58,7 +70,20 @@ export default class FavoritesList extends Component {
           />
 
           <Card.Group centered itemsPerRow={5}>
-            {favoriteItems.map((item, index) => {
+            {sidePrices.map((crypto, index) => {
+              // console.log("Item", crypto[0]);
+              return (
+                <WeeklyChart
+                  key={index}
+                  {...crypto}
+                  removeCryptoFromFavorites={
+                    this.props.removeCryptoFromFavorites
+                  }
+                />
+              );
+            })}
+
+            {/* {favoriteItems.map((item, index) => {
               // console.log(item);
               return (
                 <Favorite
@@ -67,9 +92,10 @@ export default class FavoritesList extends Component {
                   removeCryptoFromFavorites={
                     this.props.removeCryptoFromFavorites
                   }
+                  prices={this.props.favoritesPrices}
                 />
               );
-            })}
+            })} */}
           </Card.Group>
         </Segment>
       </div>

@@ -2,14 +2,9 @@ import React, { Component } from "react";
 import { Menu } from "semantic-ui-react";
 
 class CryptoSideMenu extends Component {
-  // componentDidMount() {
-  //   this.handleWatchListRender();
-  // }
-  handleWatchListRender = async () => {
-    await this.props.handleCryptoPriceFetch();
-  };
   render() {
     const { activeItem } = this.props;
+
     return (
       <Menu>
         <Menu.Item
@@ -19,12 +14,11 @@ class CryptoSideMenu extends Component {
         >
           <strong style={{ color: "blue" }}> Messenger</strong>
         </Menu.Item>
-
         <Menu.Item
           name="charts"
           active={activeItem === "charts"}
-          onClick={this.handleWatchListRender}
-          disabled={this.props.favoritesPrices.length !== 0}
+          // onClick={() => this.props.handleCryptoPriceFetch()}
+          // disabled={this.props.favoritesPrices.length !== 0}
           style={{ color: "blue" }}
         >
           Render Watchlist
@@ -33,7 +27,7 @@ class CryptoSideMenu extends Component {
           name="watchlist"
           active={activeItem === "watchlist"}
           onClick={this.props.sideMenuToggle}
-          disabled={this.props.favoritesPrices.length === 0}
+          // disabled={this.props.favoritesPrices.length === 0}
           style={{ color: "blue" }}
         >
           Watchlist

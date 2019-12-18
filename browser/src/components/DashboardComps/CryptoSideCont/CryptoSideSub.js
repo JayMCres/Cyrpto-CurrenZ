@@ -20,34 +20,34 @@ class CryptoSideSub extends Component {
     this.setState({ activeItem: name });
   };
 
-  addPricesToFavorites = async cryptoId => {
-    const foundCrypto = await this.props.cryptos.find(
-      item => item.id === cryptoId
-    );
-    console.log("found Crypto", foundCrypto);
-    const response = await fetch("http://localhost:5000/api/weeklyprices", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ ticker: foundCrypto.ticker })
-    });
-    const body = await response.json();
-    // console.log("favoritesPrices", body);
-    this.setState({
-      favoritesPrices: [...this.state.favoritesPrices, body]
-    });
-  };
+  // addPricesToFavorites = async cryptoId => {
+  //   const foundCrypto = await this.props.cryptos.find(
+  //     item => item.id === cryptoId
+  //   );
+  //   // console.log("found Crypto", foundCrypto);
+  //   const response = await fetch("http://localhost:5000/api/weeklyprices", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({ ticker: foundCrypto.ticker })
+  //   });
+  //   const body = await response.json();
+  //   // console.log("favoritesPrices", body);
+  //   this.setState({
+  //     favoritesPrices: [...this.state.favoritesPrices, body]
+  //   });
+  // };
 
-  handleCryptoPriceFetch = async () => {
-    return await this.props.favorites.map(crypto => {
-      // console.log(crypto.details.id);
-      return this.addPricesToFavorites(crypto.details.id);
-    });
-  };
+  // handleCryptoPriceFetch = async () => {
+  //   return await this.props.favorites.map(crypto => {
+  //     // console.log(crypto.details.id);
+  //     return this.addPricesToFavorites(crypto.details.id);
+  //   });
+  // };
 
   render() {
-    console.log("Side Sub", this.state);
+    // console.log("Side Sub", this.props);
     const { currentChannel, currentUser, isPrivateChannel } = this.props;
     const { activeItem } = this.state;
     const onSideMenuClick = link => {
@@ -60,20 +60,28 @@ class CryptoSideSub extends Component {
           />
         ),
         watchlist: (
-          <WatchListCont favoritesPrices={this.state.favoritesPrices} />
+          <WatchListCont
+          // favoritesPrices={this.state.favoritesPrices}
+          // favorites={this.props.favorites}
+          />
         )
       };
       return <div>{SIDE_PAGES[link]}</div>;
     };
     return (
       <Segment>
-        <CryptoSideMenu
+        {/* <CryptoSideMenu
           activeItem={activeItem}
           sideMenuToggle={this.sideMenuToggle}
-          handleCryptoPriceFetch={this.handleCryptoPriceFetch}
-          favoritesPrices={this.state.favoritesPrices}
+          // handleCryptoPriceFetch={this.handleCryptoPriceFetch}
+          // favoritesPrices={this.state.favoritesPrices}
+        /> */}
+        {/* {onSideMenuClick(activeItem)} */}
+        <SideMessenger
+          currentChannel={this.props.currentChannel}
+          currentUser={this.props.currentUser}
+          isPrivateChannel={this.props.isPrivateChannel}
         />
-        {onSideMenuClick(activeItem)}
       </Segment>
     );
   }

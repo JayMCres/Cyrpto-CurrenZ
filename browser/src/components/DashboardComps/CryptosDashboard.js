@@ -23,7 +23,7 @@ class CryptosDashboard extends Component {
     inputValue: "",
     favorites: [],
     favoritesRef: firebase.database().ref("favorites"),
-    // favoritesPrices: [],
+    favoritesPrices: [],
     response: "",
     post: ""
   };
@@ -130,32 +130,38 @@ class CryptosDashboard extends Component {
     }
   };
 
-  // addPricesToFavorites = async cryptoId => {
-  //   const foundCrypto = await this.props.cryptos.find(
-  //     item => item.id === cryptoId
-  //   );
-  //   console.log("found Crypto", foundCrypto);
-  //   const response = await fetch("http://localhost:5000/api/weeklyprices", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({ ticker: foundCrypto.ticker })
-  //   });
-  //   const body = await response.json();
-  //   // console.log("favoritesPrices", body);
-  //   this.setState({
-  //     favoritesPrices: [...this.state.favoritesPrices, body]
-  //   });
-  // };
+  addPricesToFavorites = async cryptoId => {
+    const foundCrypto = this.props.cryptos.find(item => item.id === cryptoId);
+    console.log("found Crypto", foundCrypto);
+    const preventDoubles = this.state.favoritesPrices.find(
+      item => item.ticker === foundCrypto.ticker
+    );
+    if (!preventDoubles) {
+      const response = await fetch("http://localhost:5000/api/weeklyprices", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          foundCrypto
+          // ticker: foundCrypto.ticker,
+          // id: foundCrypto.id
+        })
+      });
+      const body = await response.json();
+      // console.log("favoritesPrices", body);
+      this.setState({
+        favoritesPrices: [...this.state.favoritesPrices, body]
+      });
+    }
+  };
 
-  // handleCryptoPriceFetch = async () => {
-  //   return await this.state.favorites.map(crypto => {
-  //     // console.log(crypto.details.id);
-  //     const favId = crypto.details.id;
-  //     return this.addPricesToFavorites(favId);
-  //   });
-  // };
+  handleCryptoPriceFetch = async () => {
+    return await this.state.favorites.map(crypto => {
+      // console.log(crypto.details.id);
+      return this.addPricesToFavorites(crypto.details.id);
+    });
+  };
 
   addNewItemToFavorites = async newFav => {
     // console.log("new fav", newFav);
@@ -185,25 +191,12 @@ class CryptosDashboard extends Component {
     // this.addListeners();
   };
 
-  // renderFavoritesCont = () => {
-  //   if (this.state.favorites === null) {
-  //     return <div></div>;
-  //   } else {
-  //     return (
-  //       <FavoritesCont
-  //         favorites={this.state.favorites}
-  //         removeCryptoFromFavorites={this.removeCryptoFromFavorites}
-  //       />
-  //     );
-  //   }
-  // };
-
   render() {
-    console.log("Dashboard State", this.state);
     const { currentChannel, isPrivateChannel } = this.props;
+    console.log("Dashboard", this.state);
     return (
       <Segment inverted>
-        {this.state.favorites.length === 0 &&
+        {this.state.favorites.length === 0 ||
         this.props.cryptos.length === 0 ? (
           <Exchanges />
         ) : (
@@ -213,7 +206,8 @@ class CryptosDashboard extends Component {
               showIndepthPage={this.showIndepthPage}
               favorites={this.state.favorites}
               removeCryptoFromFavorites={this.removeCryptoFromFavorites}
-              addPricesToFavorites={this.addPricesToFavorites}
+              handleCryptoPriceFetch={this.handleCryptoPriceFetch}
+              favoritesPrices={this.state.favoritesPrices}
             />
           </Segment>
         )}
