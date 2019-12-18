@@ -23,10 +23,10 @@ class WeeklyCharts extends Component {
 
     return (
       <Segment inverted>
-        {sidePrices.map((crypto, index) => {
+        {/* {sidePrices.map((crypto, index) => {
           // console.log("Item", crypto[0]);
           return <WeeklyChart key={index} {...crypto} />;
-        })}
+        })} */}
       </Segment>
     );
   }

@@ -34,14 +34,14 @@ class CryptosDashboard extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(fetchNews());
     this.props.dispatch(fetchCryptos());
+    this.props.dispatch(fetchNews());
     this.addListeners();
   }
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.socket = io("http://localhost:5000");
     this.socket.on("connect", this.connect);
-    // this.socket.on("disconnect", this.disconnect);
+    this.socket.on("disconnect", this.disconnect);
     const { endpoint } = this.state;
     const socket = io(endpoint);
     socket.on("FromAPI", data =>
@@ -49,9 +49,6 @@ class CryptosDashboard extends Component {
     );
   }
 
-  componentDidUnmount() {
-    this.socket.on("disconnect", this.disconnect);
-  }
   showIndepthPage = () => {
     return this.setState({
       indepthPage: !this.state.indepthPage
@@ -174,14 +171,13 @@ class CryptosDashboard extends Component {
 
   removeCryptoFromFavorites = cryptoId => {
     const deleteCrypto = this.state.favorites.find(
-      item => item.id === cryptoId
+      item => item.details.id === cryptoId
     );
-
+    console.log("deleteCrypto", deleteCrypto);
     const updateCrypto = this.state.favorites.filter(item => {
       return item.id !== cryptoId;
     });
     if (deleteCrypto) {
-      // console.log("deleteCrypto", deleteCrypto);
       this.setState({
         favorites: updateCrypto
       });

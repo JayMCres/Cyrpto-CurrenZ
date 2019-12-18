@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { Segment, Card, Button, Message } from "semantic-ui-react";
-// import Favorite from "./Favorite";
+import Favorite from "./Favorite";
 import WeeklyChart from "./WeeklyChart";
 
 export default class FavoritesList extends Component {
   state = {
     startIdx: 0,
-    endIdx: 5
+    endIdx: 4
   };
 
   showMore = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx + 5,
-        endIdx: prevState.endIdx + 5
+        startIdx: prevState.startIdx + 4,
+        endIdx: prevState.endIdx + 4
       };
     });
   };
@@ -21,8 +21,8 @@ export default class FavoritesList extends Component {
   showLess = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx - 5,
-        endIdx: prevState.endIdx - 5
+        startIdx: prevState.startIdx - 4,
+        endIdx: prevState.endIdx - 4
       };
     });
   };
@@ -31,21 +31,15 @@ export default class FavoritesList extends Component {
     // console.log("favorites List", this.props);
 
     // console.log("stockIndexItems", marketIndexItems);
-    const favoriteItems = this.props.favorites.slice(
+    // const favoriteItems = this.props.favorites.slice(
+    //   this.state.startIdx,
+    //   this.state.endIdx
+    // );
+    const favPrices = this.props.prices.slice(
       this.state.startIdx,
       this.state.endIdx
     );
-    const sidePrices = this.props.prices.map((price, index) => {
-      return {
-        dayOne: price[0],
-        dayTwo: price[1],
-        dayThree: price[2],
-        dayFour: price[3],
-        dayFive: price[4],
-        daySix: price[5],
-        daySeven: price[6]
-      };
-    });
+
     return (
       <div>
         <Message color="violet">
@@ -66,20 +60,22 @@ export default class FavoritesList extends Component {
             content="Next"
             icon="right arrow"
             labelPosition="right"
-            disabled={this.state.endIdx > this.props.favorites.length - 1}
+            disabled={this.state.endIdx > this.props.prices.length - 1}
           />
 
-          <Card.Group centered itemsPerRow={5}>
-            {sidePrices.map((crypto, index) => {
+          <Card.Group centered itemsPerRow={4}>
+            {favPrices.map((crypto, index) => {
               // console.log("Item", crypto[0]);
               return (
-                <WeeklyChart
-                  key={index}
-                  {...crypto}
-                  removeCryptoFromFavorites={
-                    this.props.removeCryptoFromFavorites
-                  }
-                />
+                <Card>
+                  <WeeklyChart
+                    key={index}
+                    {...crypto}
+                    removeCryptoFromFavorites={
+                      this.props.removeCryptoFromFavorites
+                    }
+                  />
+                </Card>
               );
             })}
 
@@ -92,7 +88,7 @@ export default class FavoritesList extends Component {
                   removeCryptoFromFavorites={
                     this.props.removeCryptoFromFavorites
                   }
-                  prices={this.props.favoritesPrices}
+                  // prices={this.props.favoritesPrices}
                 />
               );
             })} */}
