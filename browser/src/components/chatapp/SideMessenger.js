@@ -33,6 +33,7 @@ export default class SideMessenger extends Component {
             currentChannel={this.props.currentChannel}
             currentUser={this.props.currentUser}
             isPrivateChannel={this.props.isPrivateChannel}
+            renderChannelConvo={this.renderChannelConvo}
           />
           <Channels
             currentChannel={this.props.currentChannel}

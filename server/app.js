@@ -1,5 +1,6 @@
 const express = require("express");
-const key = "fe278748eb49ae23227e6769d92ef40bde306a9f0c3d91513b3c09680189c717";
+// const key = "fe278748eb49ae23227e6769d92ef40bde306a9f0c3d91513b3c09680189c717";
+const key = "4ac5a3cde201f19ee79ef7575ff75d799c03a547b07e709c56b5cb068eb7c74e";
 const bodyParser = require("body-parser");
 const app = express();
 const fetch = require("node-fetch");
@@ -25,17 +26,6 @@ const server = app.listen(port, () => console.log(`Listening on port ${port}`));
 const io = require("socket.io").listen(server);
 const connections = [];
 
-// let interval;
-// io.on("connection", socket => {
-//   console.log("New client connected");
-//   if (interval) {
-//     clearInterval(interval);
-//   }
-//   interval = setInterval(() => getApiAndEmit(socket), 10000);
-//   socket.on("disconnect", () => {
-//     console.log("Client disconnected");
-//   });
-// });
 io.sockets.on("connection", socket => {
   if (connections.length === 0) {
     connections.push(socket);
@@ -54,19 +44,31 @@ io.sockets.on("connection", socket => {
 });
 
 const getApiAndEmit = async socket => {
-  const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=50&tsym=USD&api_key=${key}`;
+  // const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD&api_key=${key}`;
+  const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?tsym=USD&api_key=${key}`;
 
-  let response = await fetch(url);
+  // let response = await fetch(url);
+  let response = () => {
+    return new Promise(function(resolve, reject) {
+      fetch(url).then(response => {
+        resolve(response);
+      });
+    });
+  };
+  let responseData = await response();
+  // console.log(responseData);
 
-  let json = await response.json();
+  let jsonResponse = await responseData.json();
+  // console.log(jsonResponse);
+  let priceData = await jsonResponse.Data;
+  // console.log(priceData);
 
-  let data = await json.Data;
-
-  let combinedArray = await data.map(object => {
+  let combinedArray = await priceData.map(object => {
+    // console.log("object", object.DISPLAY.USD);
     let one = Object.values(object.CoinInfo);
 
     let two = Object.values(object.DISPLAY.USD);
-
+    // console.log("object", two);
     let combined = one.concat(two);
 
     return combined;
@@ -92,5 +94,6 @@ const getApiAndEmit = async socket => {
       mkcap: object[45]
     };
   });
+  // console.log(coinPrice);
   socket.emit("FromAPI", coinPrice);
 };

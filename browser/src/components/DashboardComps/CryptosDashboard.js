@@ -34,11 +34,13 @@ class CryptosDashboard extends Component {
   };
 
   componentDidMount() {
+    // this.fetchFavorites();
     this.props.dispatch(fetchCryptos());
     this.props.dispatch(fetchNews());
     this.addListeners();
   }
   UNSAFE_componentWillMount() {
+    // this.fetchFavorites();
     this.socket = io("http://localhost:5000");
     this.socket.on("connect", this.connect);
     this.socket.on("disconnect", this.disconnect);
@@ -49,11 +51,18 @@ class CryptosDashboard extends Component {
     );
   }
 
+  // componentWillUpdate(prevProps, prevState) {
+  //   if (prevState.favorites !== this.state.favorites) {
+  //     this.fetchFavorites();
+  //   }
+  // }
+
   showIndepthPage = () => {
     return this.setState({
       indepthPage: !this.state.indepthPage
     });
   };
+
   connect = () => {
     // alert("Connected:" + this.socket.id);
     this.setState({ state: "connected" });
@@ -72,13 +81,20 @@ class CryptosDashboard extends Component {
     });
   };
 
+  fetchFavorites = () => {
+    this.setState({ favoritesRef: firebase.database().ref("favorites") });
+  };
+
   addListeners = () => {
     let loadedFavorites = [];
     this.state.favoritesRef.on("child_added", snap => {
       loadedFavorites.push(snap.val());
       // console.log(loadedChannels);
       // this.setState({ channels: loadedChannels });
-      this.setState({ favorites: loadedFavorites });
+      this.setState({
+        favorites: loadedFavorites
+      });
+
       // this.addNotificationListener(snap.key);
     });
   };
@@ -129,7 +145,7 @@ class CryptosDashboard extends Component {
 
   addPricesToFavorites = async cryptoId => {
     const foundCrypto = this.props.cryptos.find(item => item.id === cryptoId);
-    console.log("found Crypto", foundCrypto);
+    // console.log("found Crypto", foundCrypto);
     const preventDoubles = this.state.favoritesPrices.find(
       item => item.ticker === foundCrypto.ticker
     );
@@ -166,7 +182,6 @@ class CryptosDashboard extends Component {
       favorites: [...this.state.favorites, newFav]
     });
     await this.addListeners();
-    // this.renderFavoritesCont();
   };
 
   removeCryptoFromFavorites = cryptoId => {
@@ -187,6 +202,18 @@ class CryptosDashboard extends Component {
     // this.addListeners();
   };
 
+  // renderFavoritesCont = () => {
+  //   return (
+  //     <FavoritesCont
+  //       showIndepthPage={this.showIndepthPage}
+  //       favorites={this.state.favorites}
+  //       removeCryptoFromFavorites={this.removeCryptoFromFavorites}
+  //       handleCryptoPriceFetch={this.handleCryptoPriceFetch}
+  //       favoritesPrices={this.state.favoritesPrices}
+  //     />
+  //   );
+  // };
+
   render() {
     const { currentChannel, isPrivateChannel } = this.props;
     console.log("Dashboard", this.state);
@@ -199,6 +226,7 @@ class CryptosDashboard extends Component {
           <Segment>
             <Exchanges />
             <FavoritesCont
+              // handleShowFavorites={this.handleShowFavorites}
               showIndepthPage={this.showIndepthPage}
               favorites={this.state.favorites}
               removeCryptoFromFavorites={this.removeCryptoFromFavorites}
@@ -232,6 +260,7 @@ class CryptosDashboard extends Component {
                       addCryptoToFavorites={this.addCryptoToFavorites}
                       addFavoriteCryptoPrices={this.addFavoriteCryptoPrices}
                       addPricesToFavorites={this.addPricesToFavorites}
+                      renderFavoritesCont={this.renderFavoritesCont}
                     />
                   </Segment>
                 </Segment>

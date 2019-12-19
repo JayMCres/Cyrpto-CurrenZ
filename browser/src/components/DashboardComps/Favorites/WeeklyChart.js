@@ -12,7 +12,7 @@ import Chart from "react-google-charts";
 
 export default class WeeklyChart extends Component {
   render() {
-    console.log("Weekly Chart Props", this.props);
+    // console.log("Weekly Chart Props", this.props);
     const options = {
       // title: this.props.dayOne.ticker,
       // chartArea: { width: "100%" },
@@ -49,7 +49,8 @@ export default class WeeklyChart extends Component {
         <Chart
           // chartType="LineChart",
           chartType="AreaChart"
-          width="350px"
+          // width="350px"
+          width="100%"
           height="200px"
           data={[
             ["Date", "Price"],

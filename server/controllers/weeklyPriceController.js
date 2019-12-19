@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
-const key = "fe278748eb49ae23227e6769d92ef40bde306a9f0c3d91513b3c09680189c717";
+// const key = "fe278748eb49ae23227e6769d92ef40bde306a9f0c3d91513b3c09680189c717";
+const key = "4ac5a3cde201f19ee79ef7575ff75d799c03a547b07e709c56b5cb068eb7c74e";
 const moment = require("moment");
 
 exports.getWeeklyPrices = async (req, res) => {
@@ -44,6 +45,8 @@ exports.getWeeklyPrices = async (req, res) => {
     return {
       id: req.body.foundCrypto.id,
       ticker: req.body.foundCrypto.ticker,
+      company: req.body.foundCrypto.company,
+      image: req.body.foundCrypto.image,
       time: object.time,
       d: date,
       open: o,

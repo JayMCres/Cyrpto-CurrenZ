@@ -34,6 +34,7 @@ class CryptosList extends Component {
               }
               addCryptoToFavorites={this.props.addCryptoToFavorites}
               addPricesToFavorites={this.props.addPricesToFavorites}
+              renderFavoritesCont={this.props.renderFavoritesCont}
             />
           );
         })}

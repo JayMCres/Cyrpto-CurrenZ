@@ -6,8 +6,17 @@ import WeeklyChart from "./WeeklyChart";
 export default class FavoritesList extends Component {
   state = {
     startIdx: 0,
-    endIdx: 4
+    endIdx: 4,
+    showFavorites: false,
+    bool: false
+    // loadedFavorites: []
   };
+
+  // componentWillMount() {
+  //   this.setState({
+  //     loadedFavorites: this.props.favorites
+  //   });
+  // }
 
   showMore = () => {
     this.setState(prevState => {
@@ -26,7 +35,19 @@ export default class FavoritesList extends Component {
       };
     });
   };
+  handleShowEnter = () => {
+    return this.setState({
+      showFavorites: true,
+      bool: true
+    });
+  };
 
+  handleShowExit = () => {
+    return this.setState({
+      showFavorites: false,
+      bool: false
+    });
+  };
   render() {
     // console.log("favorites List", this.props);
 
@@ -41,60 +62,52 @@ export default class FavoritesList extends Component {
     );
 
     return (
-      <div>
+      <Segment
+        inverted
+        onMouseEnter={() => this.handleShowEnter()}
+        onMouseLeave={() => this.handleShowExit()}
+      >
         <Message color="violet">
           <h3>Favorites</h3>
         </Message>
-        <Segment inverted>
-          <Button
-            floated="left"
-            onClick={() => this.showLess()}
-            content="Back"
-            icon="left arrow"
-            labelPosition="left"
-            disabled={this.state.startIdx === 0}
-          />
-          <Button
-            floated="right"
-            onClick={() => this.showMore()}
-            content="Next"
-            icon="right arrow"
-            labelPosition="right"
-            disabled={this.state.endIdx > this.props.prices.length - 1}
-          />
+        {this.state.showFavorites === true ? (
+          <Segment inverted>
+            <Button
+              floated="left"
+              onClick={() => this.showLess()}
+              content="Back"
+              icon="left arrow"
+              labelPosition="left"
+              disabled={this.state.startIdx === 0}
+            />
+            <Button
+              floated="right"
+              onClick={() => this.showMore()}
+              content="Next"
+              icon="right arrow"
+              labelPosition="right"
+              disabled={this.state.endIdx > this.props.prices.length - 1}
+            />
 
-          <Card.Group centered itemsPerRow={4}>
-            {favPrices.map((crypto, index) => {
-              // console.log("Item", crypto[0]);
-              return (
-                <Card>
-                  <WeeklyChart
-                    key={index}
-                    {...crypto}
-                    removeCryptoFromFavorites={
-                      this.props.removeCryptoFromFavorites
-                    }
-                  />
-                </Card>
-              );
-            })}
-
-            {/* {favoriteItems.map((item, index) => {
-              // console.log(item);
-              return (
-                <Favorite
-                  key={index}
-                  {...item}
-                  removeCryptoFromFavorites={
-                    this.props.removeCryptoFromFavorites
-                  }
-                  // prices={this.props.favoritesPrices}
-                />
-              );
-            })} */}
-          </Card.Group>
-        </Segment>
-      </div>
+            <Card.Group centered itemsPerRow={4}>
+              {favPrices.map((crypto, index) => {
+                // console.log("Item", crypto[0]);
+                return (
+                  <Card inverted>
+                    <WeeklyChart
+                      key={index}
+                      {...crypto}
+                      removeCryptoFromFavorites={
+                        this.props.removeCryptoFromFavorites
+                      }
+                    />
+                  </Card>
+                );
+              })}
+            </Card.Group>
+          </Segment>
+        ) : null}
+      </Segment>
     );
   }
 }

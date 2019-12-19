@@ -42,7 +42,6 @@ class CryptoListItem extends Component {
 
   handleFavoriteClick = () => {
     this.props.addCryptoToFavorites(this.props.id);
-    // this.props.addPricesToFavorites(this.props.id);
   };
 
   render() {
