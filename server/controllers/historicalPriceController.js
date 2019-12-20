@@ -1,6 +1,5 @@
 const fetch = require("node-fetch");
-// const key = "fe278748eb49ae23227e6769d92ef40bde306a9f0c3d91513b3c09680189c717";
-const key = "4ac5a3cde201f19ee79ef7575ff75d799c03a547b07e709c56b5cb068eb7c74e";
+const key = process.env.CC_API_KEY;
 const moment = require("moment");
 
 exports.getHistoricalPrices = async (req, res) => {

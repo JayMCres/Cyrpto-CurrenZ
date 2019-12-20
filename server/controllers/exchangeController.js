@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 // const key = "127351a0-17a9-4113-86af-8dab97d44e02";
 
-const key = "4ac5a3cde201f19ee79ef7575ff75d799c03a547b07e709c56b5cb068eb7c74e";
+const key = process.env.CC_API_KEY;
 
 exports.getExchanges = async (req, res) => {
   const URL = `https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=BTC&tsym=USD&api_key=${key}`;
