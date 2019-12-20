@@ -35,17 +35,17 @@ export default class FavoritesList extends Component {
       };
     });
   };
-  handleShowEnter = () => {
-    return this.setState({
-      showFavorites: true,
-      bool: true
+  handleShowEnter = async () => {
+    await this.props.handleCryptoPriceFetch();
+    this.setState({
+      showFavorites: true
     });
   };
 
-  handleShowExit = () => {
+  handleShowExit = async () => {
+    // await this.props.handlePriceClear();
     return this.setState({
-      showFavorites: false,
-      bool: false
+      showFavorites: false
     });
   };
   render() {

@@ -1,31 +1,20 @@
 import React, { Component } from "react";
 import { Segment } from "semantic-ui-react";
 import FavoritesList from "./FavoritesList";
-import ReactDOM from "react-dom";
-export default class FavoritesCont extends Component {
-  state = {
-    loadedFavorites: []
-  };
-  componentDidMount() {
-    this.props.handleCryptoPriceFetch();
-    this.setState({
-      loadedFavorites: this.props.favorites
-    });
-  }
 
-  // componentWillUpdate(prevProps, prevState) {
-  //   if (prevProps.favorites !== this.props.favorites) {
-  //     this.render(<FavoritesCont />);
-  //   }
+export default class FavoritesSubCont extends Component {
+  // componentDidMount() {
+  //   this.props.handleCryptoPriceFetch();
   // }
 
   render() {
-    console.log("Favorites Cont", this.props, this.state);
+    console.log("Favorites Sub Cont", this.props);
 
     return (
       <Segment inverted>
         <FavoritesList
-          // favorites={this.props.favorites}
+          handlePriceClear={this.props.handlePriceClear}
+          handleCryptoPriceFetch={this.props.handleCryptoPriceFetch}
           handleShowFavorites={this.props.handleShowFavorites}
           removeCryptoFromFavorites={this.props.removeCryptoFromFavorites}
           prices={this.props.favoritesPrices.map(price => {

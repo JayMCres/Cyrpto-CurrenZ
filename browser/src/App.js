@@ -2,12 +2,25 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import HomePage from "./components/HomepageComps/HomePage";
 import CryptosDashboard from "./components/DashboardComps/CryptosDashboard";
-
+import { fetchCryptos } from "./actions/cryptos";
+import firebase from "./config/firebase";
 class App extends Component {
+  state = {
+    favoritesRef: firebase.database().ref("favorites")
+  };
+
+  // componentDidMount() {
+  //   this.props.dispatch(fetchCryptos());
+  // }
   render() {
     // console.log("APP", this.props.currentUser);
     const { currentUser } = this.props;
-    return <CryptosDashboard currentUser={currentUser} />;
+    return (
+      <CryptosDashboard
+        currentUser={currentUser}
+        favoritesRef={this.state.favoritesRef}
+      />
+    );
   }
 }
 

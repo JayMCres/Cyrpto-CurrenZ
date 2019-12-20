@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Segment, Grid } from "semantic-ui-react";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import { fetchNews, fetchCryptos } from "../../actions/cryptos";
 
-import CryptosList from "./CryptoContainer/CryptosList";
-import FavoritesCont from "./Favorites/FavoritesCont";
-import LoadingPage from "./CryptoContainer/LoadingPage";
-import Search from "./CryptoContainer/Search";
+import CryptosContainer from "./CryptoContainer/CryptosContainer";
+import FavoritesMainCont from "./Favorites/FavoritesMainCont";
+
 import Exchanges from "./ExchangeComps/ExchangeCont";
 import CryptoSideCont from "./CryptoSideCont/CryptoSideCont";
 import CryptoSideSub from "./CryptoSideCont/CryptoSideSub";
@@ -16,46 +15,19 @@ import firebase from "../../config/firebase";
 
 class CryptosDashboard extends Component {
   state = {
-    coinList: [],
-    priorCoinList: [],
     indepthPage: false,
-    endpoint: "http://localhost:5000",
     inputValue: "",
     favorites: [],
-    favoritesRef: firebase.database().ref("favorites"),
     favoritesPrices: [],
     response: "",
     post: ""
   };
-  getInitialState = () => {
-    return {
-      status: "disconnected"
-    };
-  };
 
-  componentDidMount() {
-    // this.fetchFavorites();
+  async componentDidMount() {
     this.props.dispatch(fetchCryptos());
     this.props.dispatch(fetchNews());
     this.addListeners();
   }
-  UNSAFE_componentWillMount() {
-    // this.fetchFavorites();
-    this.socket = io("http://localhost:5000");
-    this.socket.on("connect", this.connect);
-    this.socket.on("disconnect", this.disconnect);
-    const { endpoint } = this.state;
-    const socket = io(endpoint);
-    socket.on("FromAPI", data =>
-      this.setState({ coinList: data, priorCoinList: this.state.coinList })
-    );
-  }
-
-  // componentWillUpdate(prevProps, prevState) {
-  //   if (prevState.favorites !== this.state.favorites) {
-  //     this.fetchFavorites();
-  //   }
-  // }
 
   showIndepthPage = () => {
     return this.setState({
@@ -63,59 +35,22 @@ class CryptosDashboard extends Component {
     });
   };
 
-  connect = () => {
-    // alert("Connected:" + this.socket.id);
-    this.setState({ state: "connected" });
-  };
-
-  disconnect = () => {
-    // alert("disconnected:" + this.socket.id);
-    this.setState({ state: "disconnected" });
-  };
-
-  handleChange = event => {
-    // console.log("Changing")
-    // console.log (event.target.name)
-    this.setState({
-      inputValue: event.target.value
-    });
-  };
-
-  fetchFavorites = () => {
-    this.setState({ favoritesRef: firebase.database().ref("favorites") });
-  };
-
   addListeners = () => {
     let loadedFavorites = [];
-    this.state.favoritesRef.on("child_added", snap => {
+    this.props.favoritesRef.on("child_added", snap => {
       loadedFavorites.push(snap.val());
       // console.log(loadedChannels);
       // this.setState({ channels: loadedChannels });
       this.setState({
         favorites: loadedFavorites
       });
-
-      // this.addNotificationListener(snap.key);
     });
   };
-
-  filterCryptos = () =>
-    this.state.coinList.filter(item => {
-      return (
-        item.company
-          .toLowerCase()
-          .includes(this.state.inputValue.toLowerCase()) ||
-        item.ticker
-          .toLowerCase()
-          .includes(this.state.inputValue.toLowerCase()) ||
-        item.market.toLowerCase().includes(this.state.inputValue.toLowerCase())
-      );
-    });
 
   addCryptoToFavorites = cryptoId => {
     const userId = this.props.currentUser.uid;
     // console.log("User", userId);
-    const foundCrypto = this.state.coinList.find(item => item.id === cryptoId);
+    const foundCrypto = this.props.cryptos.find(item => item.id === cryptoId);
     // console.log("foundCrypto", foundCrypto);
     const preventDoubles = this.state.favorites.find(
       item => item.details.id === cryptoId
@@ -125,7 +60,7 @@ class CryptosDashboard extends Component {
     if (!preventDoubles) {
       // this.saveNewFavorite(foundCrypto);
 
-      const key = this.state.favoritesRef.push().key;
+      const key = this.props.favoritesRef.push().key;
 
       const newFavorite = {
         id: key,
@@ -133,7 +68,7 @@ class CryptosDashboard extends Component {
         details: foundCrypto
       };
 
-      this.state.favoritesRef
+      this.props.favoritesRef
         .child(key)
         .update(newFavorite)
         .then(newFavorite => this.addNewItemToFavorites(newFavorite))
@@ -143,12 +78,22 @@ class CryptosDashboard extends Component {
     }
   };
 
+  addNewItemToFavorites = async newFav => {
+    // console.log("new fav", newFav);
+    await this.setState({
+      favorites: [...this.state.favorites, newFav]
+    });
+
+    await this.addListeners();
+  };
+
   addPricesToFavorites = async cryptoId => {
     const foundCrypto = this.props.cryptos.find(item => item.id === cryptoId);
     // console.log("found Crypto", foundCrypto);
     const preventDoubles = this.state.favoritesPrices.find(
       item => item.ticker === foundCrypto.ticker
     );
+
     if (!preventDoubles) {
       const response = await fetch("http://localhost:5000/api/weeklyprices", {
         method: "POST",
@@ -168,51 +113,37 @@ class CryptosDashboard extends Component {
       });
     }
   };
-
   handleCryptoPriceFetch = async () => {
-    return await this.state.favorites.map(crypto => {
+    await this.handlePriceClear();
+    await this.state.favorites.map(crypto => {
       // console.log(crypto.details.id);
       return this.addPricesToFavorites(crypto.details.id);
     });
   };
 
-  addNewItemToFavorites = async newFav => {
-    // console.log("new fav", newFav);
-    await this.setState({
-      favorites: [...this.state.favorites, newFav]
+  handlePriceClear = () => {
+    this.setState({
+      favoritesPrices: []
     });
-    await this.addListeners();
   };
 
-  removeCryptoFromFavorites = cryptoId => {
+  removeCryptoFromFavorites = async cryptoId => {
     const deleteCrypto = this.state.favorites.find(
       item => item.details.id === cryptoId
     );
-    console.log("deleteCrypto", deleteCrypto);
+    this.props.favoritesRef.child(deleteCrypto.id).remove();
+    // console.log("deleteCrypto", deleteCrypto);
     const updateCrypto = this.state.favorites.filter(item => {
       return item.id !== cryptoId;
     });
+
     if (deleteCrypto) {
-      this.setState({
+      await this.setState({
         favorites: updateCrypto
       });
+      await this.addListeners();
     }
-    this.state.favoritesRef.child(deleteCrypto.id).remove();
-
-    // this.addListeners();
   };
-
-  // renderFavoritesCont = () => {
-  //   return (
-  //     <FavoritesCont
-  //       showIndepthPage={this.showIndepthPage}
-  //       favorites={this.state.favorites}
-  //       removeCryptoFromFavorites={this.removeCryptoFromFavorites}
-  //       handleCryptoPriceFetch={this.handleCryptoPriceFetch}
-  //       favoritesPrices={this.state.favoritesPrices}
-  //     />
-  //   );
-  // };
 
   render() {
     const { currentChannel, isPrivateChannel } = this.props;
@@ -225,46 +156,29 @@ class CryptosDashboard extends Component {
         ) : (
           <Segment>
             <Exchanges />
-            <FavoritesCont
-              // handleShowFavorites={this.handleShowFavorites}
+            <FavoritesMainCont
+              handlePriceClear={this.handlePriceClear}
               showIndepthPage={this.showIndepthPage}
               favorites={this.state.favorites}
               removeCryptoFromFavorites={this.removeCryptoFromFavorites}
               handleCryptoPriceFetch={this.handleCryptoPriceFetch}
               favoritesPrices={this.state.favoritesPrices}
+              addPriceListeners={this.addPriceListeners}
+              handlePriceFetchUpdate={this.handlePriceFetchUpdate}
+              addPricesToFavorites={this.addPricesToFavorites}
             />
           </Segment>
         )}
         {!this.state.indepthPage ? (
           <Grid columns={2} divided>
             <Grid.Column width={10}>
-              {this.state.coinList.length === 0 ? (
-                // <Segment style={{ maxHeight: 500 }}>
-                <LoadingPage />
-              ) : (
-                // </Segment>
-                <Segment inverted>
-                  <Segment attached="top">
-                    <Search
-                      handleChange={this.handleChange}
-                      inputValue={this.state.inputValue}
-                    />
-                  </Segment>
-                  <Segment
-                    inverted
-                    attached="bottom"
-                    style={{ overflow: "auto", maxHeight: 1150 }}
-                  >
-                    <CryptosList
-                      coinList={this.filterCryptos()}
-                      addCryptoToFavorites={this.addCryptoToFavorites}
-                      addFavoriteCryptoPrices={this.addFavoriteCryptoPrices}
-                      addPricesToFavorites={this.addPricesToFavorites}
-                      renderFavoritesCont={this.renderFavoritesCont}
-                    />
-                  </Segment>
-                </Segment>
-              )}
+              <CryptosContainer
+                // coinList={this.filterCryptos()}
+                addCryptoToFavorites={this.addCryptoToFavorites}
+                addFavoriteCryptoPrices={this.addFavoriteCryptoPrices}
+                addPricesToFavorites={this.addPricesToFavorites}
+                // renderFavoritesCont={this.renderFavoritesCont}
+              />
             </Grid.Column>
             <Grid.Column width={6}>
               <CryptoSideCont
