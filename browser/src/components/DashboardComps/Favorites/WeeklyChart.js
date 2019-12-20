@@ -11,8 +11,25 @@ import {
 import Chart from "react-google-charts";
 
 export default class WeeklyChart extends Component {
+  state = {
+    disableButton: false
+  };
+
+  handleDisable = () => {
+    this.setState({
+      disableButton: true
+    });
+  };
+
+  handleClick = async () => {
+    await this.props.removeCryptoFromFavorites(this.props.dayOne.id);
+    this.setState({
+      disableButton: true
+    });
+  };
+
   render() {
-    // console.log("Weekly Chart Props", this.props);
+    console.log("Weekly Chart Props", this.state);
     const options = {
       // title: this.props.dayOne.ticker,
       // chartArea: { width: "100%" },
@@ -32,9 +49,8 @@ export default class WeeklyChart extends Component {
         <Label size="mini" as="a" corner="right" color="red">
           <Icon
             name="remove"
-            onClick={() =>
-              this.props.removeCryptoFromFavorites(this.props.dayOne.id)
-            }
+            onClick={this.handleClick}
+            disabled={this.state.disableButton === true}
           />
         </Label>
         {/* <Header as="h4" inverted color="violet"> */}

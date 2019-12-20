@@ -38,24 +38,24 @@ export default class FavoritesList extends Component {
   handleShowEnter = async () => {
     await this.props.handleCryptoPriceFetch();
     this.setState({
+      // startIdx: 0,
+      // endIdx: 4,
       showFavorites: true
     });
   };
 
   handleShowExit = async () => {
     // await this.props.handlePriceClear();
-    return this.setState({
-      showFavorites: false
+    this.setState(prevState => {
+      // console.log(prevState);
+      return {
+        showFavorites: false
+      };
     });
   };
   render() {
     // console.log("favorites List", this.props);
 
-    // console.log("stockIndexItems", marketIndexItems);
-    // const favoriteItems = this.props.favorites.slice(
-    //   this.state.startIdx,
-    //   this.state.endIdx
-    // );
     const favPrices = this.props.prices.slice(
       this.state.startIdx,
       this.state.endIdx
