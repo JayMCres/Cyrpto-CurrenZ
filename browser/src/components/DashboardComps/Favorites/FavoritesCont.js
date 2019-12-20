@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Segment } from "semantic-ui-react";
 import FavoritesList from "./FavoritesList";
-
+import ReactDOM from "react-dom";
 export default class FavoritesCont extends Component {
   state = {
     loadedFavorites: []
@@ -12,6 +12,12 @@ export default class FavoritesCont extends Component {
       loadedFavorites: this.props.favorites
     });
   }
+
+  // componentWillUpdate(prevProps, prevState) {
+  //   if (prevProps.favorites !== this.props.favorites) {
+  //     this.render(<FavoritesCont />);
+  //   }
+  // }
 
   render() {
     console.log("Favorites Cont", this.props, this.state);
