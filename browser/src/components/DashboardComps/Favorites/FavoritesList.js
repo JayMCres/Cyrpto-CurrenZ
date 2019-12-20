@@ -46,12 +46,15 @@ export default class FavoritesList extends Component {
 
   handleShowExit = async () => {
     // await this.props.handlePriceClear();
-    this.setState(prevState => {
+    await this.setState(prevState => {
       // console.log(prevState);
       return {
         showFavorites: false
       };
     });
+    if (this.state.startIdx !== 0) {
+      this.showLess();
+    }
   };
   render() {
     // console.log("favorites List", this.props);
