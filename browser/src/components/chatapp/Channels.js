@@ -128,11 +128,7 @@ class Channels extends Component {
   changeChannel = channel => {
     // console.log(channel);
     this.setActiveChannel(channel);
-    //   this.state.typingRef
-    //   .child(this.state.channel.id)
-    //   .child(this.state.user.uid)
-    //   .remove();
-    //   this.clearNotifications();
+
     this.props.setCurrentChannel(channel);
     this.props.renderChannelConvo();
     this.props.setPrivateChannel(false);
