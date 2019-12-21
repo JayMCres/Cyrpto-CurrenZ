@@ -108,23 +108,21 @@ class Channels extends Component {
       });
   };
 
-  removeChannels = channelId => {
+  removeChannels = async channelId => {
     const deleteChannel = this.state.channels.find(
       item => item.id === channelId
     );
-
+    this.state.channelsRef.child(deleteChannel.id).remove();
     const updateChannels = this.state.channels.filter(item => {
       return item.id !== channelId;
     });
     if (deleteChannel) {
       // console.log("deleteCrypto", deleteCrypto);
-      this.setState({
+      await this.setState({
         channels: updateChannels
       });
+      await this.addListeners();
     }
-    this.state.channelsRef.child(deleteChannel.id).remove();
-
-    // this.addListeners();
   };
 
   changeChannel = channel => {
