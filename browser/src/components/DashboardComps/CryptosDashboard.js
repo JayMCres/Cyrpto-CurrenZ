@@ -11,12 +11,10 @@ import Exchanges from "./ExchangeComps/ExchangeCont";
 import CryptoSideCont from "./CryptoSideCont/CryptoSideCont";
 import CryptoSideSub from "./CryptoSideCont/CryptoSideSub";
 import CryptoDetailsCont from "../CryptoDetails/CryptoDetailsCont";
-import firebase from "../../config/firebase";
 
 class CryptosDashboard extends Component {
   state = {
     indepthPage: false,
-    inputValue: "",
     favorites: [],
     favoritesPrices: [],
     response: "",
@@ -147,7 +145,7 @@ class CryptosDashboard extends Component {
 
   render() {
     const { currentChannel, isPrivateChannel } = this.props;
-    console.log("Dashboard", this.state);
+    // console.log("Dashboard", this.state);
     return (
       <Segment inverted>
         {this.state.favorites.length === 0 ||
@@ -173,11 +171,9 @@ class CryptosDashboard extends Component {
           <Grid columns={2} divided>
             <Grid.Column width={10}>
               <CryptosContainer
-                // coinList={this.filterCryptos()}
                 addCryptoToFavorites={this.addCryptoToFavorites}
                 addFavoriteCryptoPrices={this.addFavoriteCryptoPrices}
                 addPricesToFavorites={this.addPricesToFavorites}
-                // renderFavoritesCont={this.renderFavoritesCont}
               />
             </Grid.Column>
             <Grid.Column width={6}>

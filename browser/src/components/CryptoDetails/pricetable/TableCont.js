@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import TableHeader from "./TableHeader";
 import PriceTable from "./PriceTable";
-import { Segment, Table } from "semantic-ui-react";
+import { Segment, Table, Input } from "semantic-ui-react";
 
 export default class TableCont extends Component {
   render() {
-    console.log("TableCont", this.props);
+    // console.log("TableCont", this.props);
     return (
-      <Segment style={{ overflow: "auto", maxHeight: 500 }}>
-        <Table>
-          <TableHeader />
-          <Table.Body>
-            {this.props.historicals.map((crypto, index) => {
-              return <PriceTable key={index} {...crypto} />;
-            })}
-          </Table.Body>
-        </Table>
+      <Segment inverted>
+        <Segment style={{ overflow: "auto", maxHeight: 500 }}>
+          <Table>
+            <TableHeader />
+            <Table.Body>
+              {this.props.historicals.map((crypto, index) => {
+                return <PriceTable key={index} {...crypto} />;
+              })}
+            </Table.Body>
+          </Table>
+        </Segment>
       </Segment>
     );
   }

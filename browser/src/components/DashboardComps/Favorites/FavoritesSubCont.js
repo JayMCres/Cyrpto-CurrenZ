@@ -8,7 +8,7 @@ export default class FavoritesSubCont extends Component {
   // }
 
   render() {
-    console.log("Favorites Sub Cont", this.props);
+    // console.log("Favorites Sub Cont", this.props);
 
     return (
       // <Segment inverted>

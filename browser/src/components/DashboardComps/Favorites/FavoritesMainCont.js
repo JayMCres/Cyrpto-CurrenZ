@@ -13,7 +13,7 @@ export default class FavoritesMainCont extends Component {
   //   });
   // };
   render() {
-    console.log("Favorites Main Cont", this.state);
+    // console.log("Favorites Main Cont", this.state);
 
     return (
       <Segment inverted>

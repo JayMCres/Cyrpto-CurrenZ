@@ -6,11 +6,8 @@ import PriceTable from "./PriceTable";
 
 class TableHeader extends Component {
   render() {
-    console.log("LIST", this.props);
+    // console.log("LIST", this.props);
     return (
-      // <Segment>
-      //   <Input focus placeholder="Search..." />
-      //   <Table style={{ overflow: "auto" }} color={"blue"} inverted>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>Date</Table.HeaderCell>

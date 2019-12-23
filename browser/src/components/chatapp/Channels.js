@@ -68,14 +68,6 @@ class Channels extends Component {
     }
   };
 
-  // renderChannelConvo = () => {
-  //   this.setState({ showConvo: true });
-  // };
-
-  // hideChannelConvo = () => {
-  //   this.setState({ showConvo: false });
-  // };
-
   isFormValid = ({ channelName, channelDetails }) =>
     channelName && channelDetails;
 
@@ -101,7 +93,7 @@ class Channels extends Component {
       .then(() => {
         this.setState({ channelName: "", channelDetails: "" });
         this.closeModal();
-        console.log("channel added");
+        // console.log("channel added");
       })
       .catch(err => {
         console.error(err);
@@ -176,7 +168,7 @@ class Channels extends Component {
     this.setState({ modal: false });
   };
   render() {
-    console.log("Channels State", this.state);
+    // console.log("Channels State", this.state);
     // console.log("Channels Props", this.props);
     const { channels, modal, showConvo } = this.state;
     const { currentChannel, currentUser } = this.props;

@@ -29,7 +29,7 @@ export default class WeeklyChart extends Component {
   };
 
   render() {
-    console.log("Weekly Chart Props", this.state);
+    // console.log("Weekly Chart Props", this.state);
     const options = {
       // title: this.props.dayOne.ticker,
       // chartArea: { width: "100%" },

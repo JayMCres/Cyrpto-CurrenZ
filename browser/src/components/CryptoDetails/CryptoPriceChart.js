@@ -8,7 +8,7 @@ import {
   Button
 } from "semantic-ui-react";
 import ReactFC from "react-fusioncharts";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 // Step 3 - Include the fusioncharts library
 import FusionCharts from "fusioncharts";
@@ -24,56 +24,50 @@ ReactFC.fcRoot(FusionCharts, Area2d, FusionTheme);
 
 // Step 7 - Creating the JSON object to store the chart configurations
 
-class MonthlyPriceChart extends Component {
-  state = {
-    priceData: []
-  };
+export default class CryptoPriceChart extends Component {
+  // state = {
+  //   priceData: []
+  // };
 
-  componentDidMount() {
-    this.setChartData();
-  }
+  // componentWillMount() {
+  //   this.setChartData();
+  // }
 
-  setChartData = () => {
-    this.setState({
-      priceData: this.props.monthlyPrices
-    });
-  };
+  // setChartData = () => {
+  //   this.setState({
+  //     priceData: this.props.chartPrices
+  //   });
+  // };
 
   render() {
     // console.log("price chart", this.props);
     const chartConfigs = {
       type: "area2d", // The chart type
-      width: "1050", // Width of the chart
+      width: "100%", // Width of the chart
       height: "600", // Height of the chart
       dataFormat: "json", // Data type
+      renderAt: "chartContainer",
       dataSource: {
         // Chart Configuration
         chart: {
-          caption: "30 Day Price Performance",
+          // caption: "30 Day Price Performance",
           subCaption: "Crypto Price Tracker",
           xAxisName: "Date",
-          yAxisName: "US Dollars ($)",
+          // yAxisName: "US Dollars ($)",
           numberSuffix: "$",
           theme: "fusion"
         },
         // Chart Data
-        data: this.state.priceData
+        data: this.props.chartPrices
       }
     };
 
-    return (
-      <div>
-        {/* <Segment attached="bottom"> */}
-        <Segment>
-          <ReactFC {...chartConfigs} />
-        </Segment>
-      </div>
-    );
+    return <ReactFC {...chartConfigs} />;
   }
 }
 
-const mapStateToProps = state => ({
-  monthlyPrices: state.cryptos.monthlyPrices
-});
+// const mapStateToProps = state => ({
+//   monthlyPrices: state.cryptos.monthlyPrices
+// });
 
-export default connect(mapStateToProps)(MonthlyPriceChart);
+// export default connect(mapStateToProps)(MonthlyPriceChart);

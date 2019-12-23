@@ -5,7 +5,7 @@ import HomePage from "./components/HomepageComps/HomePage";
 // import CryptosDashboard from "./components/DashboardComps/CryptoContainer/CryptosDashboard";
 export default class MainContainer extends Component {
   render() {
-    console.log("Main State", this.state);
+    // console.log("Main State", this.state);
     return (
       // <Segment inverted>
       <HomePage />
