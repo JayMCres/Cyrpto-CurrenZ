@@ -36,7 +36,7 @@ class CryptoListItem extends Component {
     this.props.setCurrentCrypto();
     this.props.fetchCryptoPrices();
     this.props.fetchCryptoDetails();
-    this.props.fetchMonthly();
+    this.props.fetchChartPrices();
     this.props.fetchHistoricals();
   };
 
@@ -92,4 +92,3 @@ class CryptoListItem extends Component {
 }
 
 export default CryptoListItem;
-// export default connect(null, mapDispatchToProps)(CryptoListItem);

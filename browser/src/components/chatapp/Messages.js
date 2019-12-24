@@ -97,9 +97,6 @@ export default class Messages extends Component {
     // console.log("Messages", this.state);
     return (
       <Segment>
-        {/* <Label as="a" corner="right" color="red">
-          <Icon name="remove" onClick={() => this.props.hideChannelConvo()} />
-        </Label> */}
         <MessageHeader
           currentChannel={channel}
           handleSearchChange={this.handleSearchChange}

@@ -5,8 +5,8 @@ import SideBarCont from "./siderbar/SideBarCont";
 // import { connect } from "react-redux";
 export default class CryptoDetailsCont extends Component {
   render() {
+    console.log("Details Conatiner", this.props);
     return (
-      // <Segment inverted>
       <Grid columns={2} divided>
         <Grid.Column width={10}>
           <CryptoDetails showIndepthPage={this.props.showIndepthPage} />
@@ -19,9 +19,6 @@ export default class CryptoDetailsCont extends Component {
           />
         </Grid.Column>
       </Grid>
-      // </Segment>
     );
   }
 }
-
-// export default connect(mapStateToProps)(CryptoDetailsCont);

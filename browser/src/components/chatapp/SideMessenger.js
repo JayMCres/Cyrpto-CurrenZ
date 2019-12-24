@@ -27,7 +27,7 @@ export default class SideMessenger extends Component {
   render() {
     const { currentChannel, currentUser, isPrivateChannel } = this.props;
     return (
-      <div>
+      <Segment>
         <Segment>
           <DirectMessages
             currentChannel={this.props.currentChannel}
@@ -35,31 +35,26 @@ export default class SideMessenger extends Component {
             isPrivateChannel={this.props.isPrivateChannel}
             renderChannelConvo={this.renderChannelConvo}
           />
+
           <Channels
             currentChannel={this.props.currentChannel}
             currentUser={this.props.currentUser}
             isPrivateChannel={this.props.isPrivateChannel}
             renderChannelConvo={this.renderChannelConvo}
           />
-          {currentChannel === null || this.state.showConvo === false ? (
-            <div> </div>
-          ) : (
-            <Messages
-              key={currentChannel && currentChannel.id}
-              currentChannel={currentChannel}
-              currentUser={currentUser}
-              hideChannelConvo={this.hideChannelConvo}
-              isPrivateChannel={isPrivateChannel}
-            />
-          )}
-
-          {/* <CryptoSideMenu
-            activeItem={activeItem}
-            sideMenuToggle={this.sideMenuToggle}
-          />
-          {onSideMenuClick(activeItem)} */}
         </Segment>
-      </div>
+        {currentChannel === null || this.state.showConvo === false ? (
+          <div></div>
+        ) : (
+          <Messages
+            key={currentChannel && currentChannel.id}
+            currentChannel={currentChannel}
+            currentUser={currentUser}
+            hideChannelConvo={this.hideChannelConvo}
+            isPrivateChannel={isPrivateChannel}
+          />
+        )}
+      </Segment>
     );
   }
 }

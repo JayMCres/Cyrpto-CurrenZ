@@ -4,7 +4,7 @@ import {
   SET_CURRENT_CRYPTO,
   SET_CRYPTO_PRICES,
   SET_CRYPTO_DETAILS,
-  SET_CRYPTO_MONTHLY,
+  SET_CRYPTO_CHART,
   SET_HISTORICALS,
   FETCH_NEWS
 } from "../actions/cryptos";
@@ -16,15 +16,15 @@ const initialState = {
   prices: [],
   details: {},
   exchanges: [],
-  monthlyPrices: [],
+  chartPrices: [],
   historicals: [],
   news: []
 };
 
 export default function cryptosReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_CRYPTO_MONTHLY: {
-      return { ...state, monthlyPrices: action.payload };
+    case SET_CRYPTO_CHART: {
+      return { ...state, chartPrices: action.payload };
     }
     case SET_HISTORICALS: {
       return { ...state, historicals: action.payload };

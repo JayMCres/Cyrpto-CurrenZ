@@ -6,7 +6,7 @@ export const FETCH_CRYPTOS = "FETCH_CRYPTOS";
 export const FETCH_EXCHANGES = "FETCH_EXCHANGES";
 export const SET_CURRENT_CRYPTO = "SET_CURRENT_CRYPTO";
 export const FETCH_CRYPTO_PRICES = "FETCH_CRYPTO_PRICES";
-export const SET_CRYPTO_MONTHLY = "SET_CRYPTO_MONTHLY";
+export const SET_CRYPTO_CHART = "SET_CRYPTO_CHART";
 export const SET_CRYPTO_WEEKLY = "SET_CRYPTO_WEEKLY";
 export const SET_CRYPTO_PRICES = "SET_CRYPTO_PRICES";
 export const FETCH_CRYPTO_DETAILS = "FETCH_CRYPTO_DETAILS";
@@ -25,14 +25,7 @@ export const fetchCryptos = () => async dispatch => {
   // console.log("response", response.data);
   dispatch({ type: FETCH_CRYPTOS, payload: response.data });
 };
-// export function fetchCryptos() {
-//   return dispatch => {
-//     return fetch("http://localhost:5000/api/cryptos").then(response => {
-//       // let data = response.json();
-//       dispatch({ type: FETCH_CRYPTOS, payload: response.data });
-//     });
-//   };
-// }
+
 export const fetchExchanges = () => async dispatch => {
   const response = await Exchange.get();
   // console.log("response", response.data);
@@ -99,9 +92,9 @@ export const setCryptoPrices = data => async dispatch => {
   });
 };
 
-export function fetchMonthly(ticker) {
+export function fetchChartPrices(ticker) {
   return dispatch => {
-    return fetch("http://localhost:5000/api/monthlyprices", {
+    return fetch("http://localhost:5000/api/chartprices", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -109,15 +102,15 @@ export function fetchMonthly(ticker) {
       body: JSON.stringify({ ticker })
     }).then(response => {
       let data = response.json();
-      dispatch(setCryptoMonthly(data));
+      dispatch(setCryptoChart(data));
     });
   };
 }
 
-export const setCryptoMonthly = data => async dispatch => {
+export const setCryptoChart = data => async dispatch => {
   const prices = await data;
   dispatch({
-    type: SET_CRYPTO_MONTHLY,
+    type: SET_CRYPTO_CHART,
     payload: prices
   });
 };

@@ -12,7 +12,7 @@ import {
 
 class CryptoSideDetails extends Component {
   render() {
-    // console.log("Detial Side Props", this.props);
+    console.log("Detial Side Props", this.props);
     return (
       <div>
         <Message>
@@ -21,7 +21,7 @@ class CryptoSideDetails extends Component {
               <Image
                 avatar
                 src={`http://cryptocompare.com/${this.props.image}`}
-                onClick={() => this.props.showIndepthPage()}
+                // onClick={() => this.props.renderSideChart()}
               />
               <List.Content>
                 <List.Header as="a">{this.props.ticker}</List.Header>
@@ -33,13 +33,23 @@ class CryptoSideDetails extends Component {
                   </a>
                 </List.Description>
               </List.Content>
-              <Button
-                onClick={() => this.props.renderSideChart()}
-                floated="right"
-                icon
-              >
-                <Icon name="chart area" />
-              </Button>
+              <Button.Group basic size="small" floated="right">
+                <Button
+                  circular
+                  onClick={() => this.props.showIndepthPage()}
+                  icon
+                >
+                  <Icon circular name="btc" />
+                </Button>
+                <Button
+                  color="linkedin"
+                  circular
+                  onClick={() => this.props.renderSideChart()}
+                  icon
+                >
+                  <Icon circular name="chart area" />
+                </Button>
+              </Button.Group>
             </List.Item>
           </List>
         </Message>

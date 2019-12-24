@@ -180,12 +180,13 @@ class Channels extends Component {
         <Header as="h2">
           <span>
             <Icon name="mail" />
-            <Header.Content>CHANNELS</Header.Content> {" "}
-            ({channels.length}){" "}
+            <Header.Content>CHANNELS</Header.Content>
             <Icon float="right" name="add" onClick={this.openModal}/>
           </span>
         </Header>
+        <Segment style={{ overflow: "auto", maxHeight: 100 }}>
         <List divided relaxed>{this.displayChannels(channels)}</List> 
+        </Segment>
         </Segment>
      
       {/* {currentChannel === null ? <div> LOADING </div> : <Messages key={currentChannel && currentChannel.id}  currentChannel={currentChannel} currentUser={currentUser}  hideChannelConvo={this.hideChannelConvo} isPrivateChannel={this.props.isPrivateChannel}/>}

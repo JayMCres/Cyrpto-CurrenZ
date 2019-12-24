@@ -114,7 +114,7 @@ class DirectMessages extends Component {
             <Header.Content>USERS</Header.Content> ({users.length}){" "}
           </span>
         </Header>
-        <Segment style={{ overflow: "auto", maxHeight: 250 }}>
+        <Segment style={{ overflow: "auto", maxHeight: 100 }}>
           <List divided relaxed>
             {users.map(user => {
               return (

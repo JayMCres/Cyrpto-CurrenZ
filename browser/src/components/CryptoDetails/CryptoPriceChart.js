@@ -25,20 +25,6 @@ ReactFC.fcRoot(FusionCharts, Area2d, FusionTheme);
 // Step 7 - Creating the JSON object to store the chart configurations
 
 export default class CryptoPriceChart extends Component {
-  // state = {
-  //   priceData: []
-  // };
-
-  // componentWillMount() {
-  //   this.setChartData();
-  // }
-
-  // setChartData = () => {
-  //   this.setState({
-  //     priceData: this.props.chartPrices
-  //   });
-  // };
-
   render() {
     // console.log("price chart", this.props);
     const chartConfigs = {
@@ -65,9 +51,3 @@ export default class CryptoPriceChart extends Component {
     return <ReactFC {...chartConfigs} />;
   }
 }
-
-// const mapStateToProps = state => ({
-//   monthlyPrices: state.cryptos.monthlyPrices
-// });
-
-// export default connect(mapStateToProps)(MonthlyPriceChart);

@@ -139,17 +139,17 @@ const mapStateToProps = state => ({
   crypto: state.cryptos.crypto,
   details: state.cryptos.details,
   historicals: state.cryptos.historicals[0],
-  monthlyPrices: state.cryptos.monthlyPrices.filter((obj, index) => {
-    return index > state.cryptos.monthlyPrices.length - 31;
+  monthlyPrices: state.cryptos.chartPrices.filter((obj, index) => {
+    return index > state.cryptos.chartPrices.length - 31;
   }),
-  threeMonthsPrices: state.cryptos.monthlyPrices.filter((obj, index) => {
-    return index > state.cryptos.monthlyPrices.length - 91;
+  threeMonthsPrices: state.cryptos.chartPrices.filter((obj, index) => {
+    return index > state.cryptos.chartPrices.length - 91;
   }),
-  sixMonthsPrices: state.cryptos.monthlyPrices.filter((obj, index) => {
-    return index > state.cryptos.monthlyPrices.length - 181;
+  sixMonthsPrices: state.cryptos.chartPrices.filter((obj, index) => {
+    return index > state.cryptos.chartPrices.length - 181;
   }),
-  annualPrices: state.cryptos.monthlyPrices.filter((obj, index) => {
-    return index > state.cryptos.monthlyPrices.length - 366;
+  annualPrices: state.cryptos.chartPrices.filter((obj, index) => {
+    return index > state.cryptos.chartPrices.length - 366;
   })
 });
 

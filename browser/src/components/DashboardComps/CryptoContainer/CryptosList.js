@@ -7,7 +7,7 @@ import {
   fetchHistoricals,
   setCurrentCrypto,
   fetchCryptoDetails,
-  fetchMonthly
+  fetchChartPrices
 } from "../../../actions/cryptos";
 
 class CryptosList extends Component {
@@ -28,7 +28,9 @@ class CryptosList extends Component {
               fetchCryptoDetails={() =>
                 this.props.fetchCryptoDetails(crypto.ticker)
               }
-              fetchMonthly={() => this.props.fetchMonthly(crypto.ticker)}
+              fetchChartPrices={() =>
+                this.props.fetchChartPrices(crypto.ticker)
+              }
               fetchHistoricals={() =>
                 this.props.fetchHistoricals(crypto.ticker)
               }
@@ -48,7 +50,7 @@ const mapDispatchToProps = dispatch => {
     setCurrentCrypto: crypto => dispatch(setCurrentCrypto(crypto)),
     fetchCryptoPrices: ticker => dispatch(fetchCryptoPrices(ticker)),
     fetchCryptoDetails: ticker => dispatch(fetchCryptoDetails(ticker)),
-    fetchMonthly: ticker => dispatch(fetchMonthly(ticker)),
+    fetchChartPrices: ticker => dispatch(fetchChartPrices(ticker)),
     fetchHistoricals: ticker => dispatch(fetchHistoricals(ticker))
   };
 };

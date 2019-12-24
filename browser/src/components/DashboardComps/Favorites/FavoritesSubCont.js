@@ -3,10 +3,6 @@ import { Segment } from "semantic-ui-react";
 import FavoritesList from "./FavoritesList";
 
 export default class FavoritesSubCont extends Component {
-  // componentDidMount() {
-  //   this.props.handleCryptoPriceFetch();
-  // }
-
   render() {
     // console.log("Favorites Sub Cont", this.props);
 

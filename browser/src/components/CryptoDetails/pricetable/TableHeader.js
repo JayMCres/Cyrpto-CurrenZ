@@ -15,7 +15,6 @@ class TableHeader extends Component {
           <Table.HeaderCell>High</Table.HeaderCell>
           <Table.HeaderCell>Low</Table.HeaderCell>
           <Table.HeaderCell>Close</Table.HeaderCell>
-          {/* <Table.HeaderCell>Daily % Change</Table.HeaderCell> */}
         </Table.Row>
       </Table.Header>
     );

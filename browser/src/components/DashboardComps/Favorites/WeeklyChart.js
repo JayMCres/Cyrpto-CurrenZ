@@ -31,10 +31,6 @@ export default class WeeklyChart extends Component {
   render() {
     // console.log("Weekly Chart Props", this.state);
     const options = {
-      // title: this.props.dayOne.ticker,
-      // chartArea: { width: "100%" },
-      // legend: { textStyle: { color: "#00FF00" }, position: "bottom" },
-      // backgroundColor: "black",
       backgroundColor: { fill: "transparent" },
       hAxis: {
         textStyle: { color: "#00FF00" }
