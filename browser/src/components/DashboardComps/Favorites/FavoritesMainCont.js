@@ -8,6 +8,9 @@ export default class FavoritesMainCont extends Component {
 
     return (
       <Segment inverted>
+        {/* {this.props.favorites.length !== this.props.favoritesPrices.length ? (
+          <div>Loading...</div>
+        ) : ( */}
         <FavoritesSubCont
           handlePriceClear={this.props.handlePriceClear}
           favorites={this.props.favorites}
@@ -16,6 +19,7 @@ export default class FavoritesMainCont extends Component {
           favoritesPrices={this.props.favoritesPrices}
           handleCryptoPriceFetch={this.props.handleCryptoPriceFetch}
         />
+        {/* )} */}
       </Segment>
     );
   }

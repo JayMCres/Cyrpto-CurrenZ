@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 
-import { Segment, Table, Input } from "semantic-ui-react";
+import { Segment, Icon, Input, Button } from "semantic-ui-react";
 import TableCont from "./TableCont";
 
 export default class HistoricalPrices extends Component {
-  state = { inputValue: "" };
+  state = { inputValue: "", showPriceTable: true };
+
   handleChange = event => {
     // console.log("Changing")
     // console.log (event.target.name)
@@ -17,6 +18,12 @@ export default class HistoricalPrices extends Component {
     this.props.historicals.filter(item => {
       return item.d.toLowerCase().includes(this.state.inputValue.toLowerCase());
     });
+
+  handlePriceTableShow = () => {
+    this.setState({
+      showPriceTable: !this.state.showPriceTable
+    });
+  };
   render() {
     console.log("Historical Prices", this.props);
     return (
@@ -28,7 +35,19 @@ export default class HistoricalPrices extends Component {
           type="text"
           value={this.state.inputValue}
         />
-        <TableCont historicals={this.filterHistoricals()} />
+        <Button
+          floated="right"
+          size="small"
+          color="linkedin"
+          circular
+          onClick={() => this.handlePriceTableShow()}
+          icon
+        >
+          <Icon circular name="chart area" />
+        </Button>
+        {this.state.showPriceTable ? (
+          <TableCont historicals={this.filterHistoricals()} />
+        ) : null}
       </Segment>
     );
   }

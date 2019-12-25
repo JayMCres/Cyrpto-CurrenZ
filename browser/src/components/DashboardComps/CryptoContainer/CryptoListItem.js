@@ -45,7 +45,7 @@ class CryptoListItem extends Component {
   };
 
   render() {
-    // console.log("Crypto Item Props", this.props);
+    console.log("Crypto Item Props", this.props);
     return (
       <Card
         style={{ "border-style": "double", "border-color": "MediumSlateBlue" }}
