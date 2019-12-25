@@ -10,7 +10,7 @@ import {
   Label,
   Input
 } from "semantic-ui-react";
-import TableCont from "./pricetable/TableCont";
+import HistoricalPrices from "./pricetable/HistoricalPrices";
 import CryptoPriceChart from "./CryptoPriceChart";
 import ChartMenu from "./ChartMenu";
 class CryptoDetails extends Component {
@@ -127,7 +127,7 @@ class CryptoDetails extends Component {
           {this.props.historicals.length === 0 ? (
             <Message>Loading</Message>
           ) : (
-            <TableCont historicals={this.props.historicals} />
+            <HistoricalPrices historicals={this.props.historicals} />
           )}
         </Segment>
       </div>
@@ -139,18 +139,10 @@ const mapStateToProps = state => ({
   crypto: state.cryptos.crypto,
   details: state.cryptos.details,
   historicals: state.cryptos.historicals[0],
-  monthlyPrices: state.cryptos.chartPrices.filter((obj, index) => {
-    return index > state.cryptos.chartPrices.length - 31;
-  }),
-  threeMonthsPrices: state.cryptos.chartPrices.filter((obj, index) => {
-    return index > state.cryptos.chartPrices.length - 91;
-  }),
-  sixMonthsPrices: state.cryptos.chartPrices.filter((obj, index) => {
-    return index > state.cryptos.chartPrices.length - 181;
-  }),
-  annualPrices: state.cryptos.chartPrices.filter((obj, index) => {
-    return index > state.cryptos.chartPrices.length - 366;
-  })
+  monthlyPrices: state.cryptos.monthlyPrices,
+  threeMonthsPrices: state.cryptos.threeMonthsPrices,
+  sixMonthsPrices: state.cryptos.sixMonthsPrices,
+  annualPrices: state.cryptos.annualPrices
 });
 
 export default connect(mapStateToProps)(CryptoDetails);

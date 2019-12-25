@@ -14,13 +14,13 @@ class ExchangeCont extends Component {
     // console.log("Exchanges Props", this.props);
 
     return (
-      <Segment>
+      <Segment inverted color="violet">
         <Message>
           <Header as="h3" textAlign="center" dividing>
             CryptoCurrency Indexes
           </Header>
         </Message>
-        <Segment>
+        <Segment inverted color="grey">
           {this.props.exchanges.map((item, index) => {
             return <Exchange key={index} {...item} />;
           })}

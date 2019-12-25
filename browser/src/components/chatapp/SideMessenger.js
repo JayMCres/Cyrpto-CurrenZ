@@ -12,10 +12,6 @@ export default class SideMessenger extends Component {
     showConvo: true
   };
 
-  // sideMenuToggle = (e, { name }) => {
-  //   this.setState({ activeItem: name });
-  // };
-
   renderChannelConvo = () => {
     this.setState({ showConvo: true });
   };

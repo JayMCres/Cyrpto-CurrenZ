@@ -189,10 +189,7 @@ class Channels extends Component {
         </Segment>
         </Segment>
      
-      {/* {currentChannel === null ? <div> LOADING </div> : <Messages key={currentChannel && currentChannel.id}  currentChannel={currentChannel} currentUser={currentUser}  hideChannelConvo={this.hideChannelConvo} isPrivateChannel={this.props.isPrivateChannel}/>}
-     
-         */}
-     
+      
 
       <Modal basic  open={modal} onClose={this.closeModal}>
         <Modal.Header> Add Channel</Modal.Header>  <Modal.Content>

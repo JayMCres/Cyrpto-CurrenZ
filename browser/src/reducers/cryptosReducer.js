@@ -17,14 +17,35 @@ const initialState = {
   details: {},
   exchanges: [],
   chartPrices: [],
+  monthlyPrices: [],
+  threeMonthsPrices: [],
+  sixMonthsPrices: [],
+  annualPrices: [],
   historicals: [],
   news: []
 };
 
 export default function cryptosReducer(state = initialState, action) {
   switch (action.type) {
+    // case SET_CRYPTO_CHART: {
+    //   return { ...state, chartPrices: action.payload };
+    // }
     case SET_CRYPTO_CHART: {
-      return { ...state, chartPrices: action.payload };
+      return {
+        ...state,
+        monthlyPrices: action.payload.filter((obj, index) => {
+          return index > action.payload.length - 31;
+        }),
+        threeMonthsPrices: action.payload.filter((obj, index) => {
+          return index > action.payload.length - 91;
+        }),
+        sixMonthsPrices: action.payload.filter((obj, index) => {
+          return index > action.payload.length - 181;
+        }),
+        annualPrices: action.payload.filter((obj, index) => {
+          return index > action.payload.length - 365;
+        })
+      };
     }
     case SET_HISTORICALS: {
       return { ...state, historicals: action.payload };

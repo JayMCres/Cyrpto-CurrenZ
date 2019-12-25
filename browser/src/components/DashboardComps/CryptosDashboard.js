@@ -135,9 +135,14 @@ class CryptosDashboard extends Component {
       return item.id !== cryptoId;
     });
 
-    if (deleteCrypto) {
+    if (deleteCrypto && this.state.favorites.length > 1) {
       await this.setState({
         favorites: updateCrypto
+      });
+      await this.addListeners();
+    } else {
+      await this.setState({
+        favorites: []
       });
       await this.addListeners();
     }
@@ -145,14 +150,14 @@ class CryptosDashboard extends Component {
 
   render() {
     const { currentChannel, isPrivateChannel } = this.props;
-    // console.log("Dashboard", this.state);
+    console.log("Dashboard", this.state);
     return (
       <Segment inverted>
         {this.state.favorites.length === 0 ||
         this.props.cryptos.length === 0 ? (
           <Exchanges />
         ) : (
-          <Segment>
+          <Segment inverted>
             <Exchanges />
             <FavoritesMainCont
               handlePriceClear={this.handlePriceClear}
