@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import CryptoListItem from "./CryptoListItem";
+// import CryptoListItem from "./CryptoListItem";
 import { Card } from "semantic-ui-react";
 import {
   fetchCryptoPrices,
@@ -9,6 +9,7 @@ import {
   fetchCryptoDetails,
   fetchChartPrices
 } from "../../../actions/cryptos";
+import CryptoCardCont from "./CryptoCardCont";
 
 class CryptosList extends Component {
   render() {
@@ -18,7 +19,7 @@ class CryptosList extends Component {
       <Card.Group centered>
         {this.props.coinList.map(crypto => {
           return (
-            <CryptoListItem
+            <CryptoCardCont
               key={crypto.id}
               {...crypto}
               setCurrentCrypto={() => this.props.setCurrentCrypto(crypto)}
