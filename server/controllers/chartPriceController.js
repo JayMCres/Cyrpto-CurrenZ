@@ -2,10 +2,10 @@ const fetch = require("node-fetch");
 const key = process.env.CC_API_KEY;
 const moment = require("moment");
 
-exports.getMonthlyPrices = async (req, res) => {
-  console.log("BODY", req.body.ticker);
+exports.getChartPrices = async (req, res) => {
+  // console.log("BODY", req.body.ticker);
 
-  const url = `https://min-api.cryptocompare.com/data/histoday?fsym=${req.body.ticker}&tsym=USD&limit=100&aggregate=1&pi_key=${key}`;
+  const url = `https://min-api.cryptocompare.com/data/histoday?fsym=${req.body.ticker}&tsym=USD&limit=400&aggregate=1&pi_key=${key}`;
 
   let response = await fetch(url);
   // // console.log("response", response);
@@ -16,12 +16,12 @@ exports.getMonthlyPrices = async (req, res) => {
   let cryptoPrices = await json.Data;
   // // console.log("Crypto Prices", cryptoPrices);
 
-  let historicalArray = await cryptoPrices.filter((obj, index) => {
-    return index > cryptoPrices.length - 31;
-  });
+  // let historicalArray = await cryptoPrices.filter((obj, index) => {
+  //   return index > cryptoPrices.length - 31;
+  // });
   // // console.log("historical", historicalArray);
 
-  let reformated = await historicalArray.map((object, index) => {
+  let reformated = await cryptoPrices.map((object, index) => {
     let date = moment(object.time * 1000).format("MMM DD YYYY");
     let close = object.close.toLocaleString("us-EN", {
       style: "currency",

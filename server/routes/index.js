@@ -4,7 +4,7 @@ const cryptosController = require("../controllers/cryptosController");
 const cryptoController = require("../controllers/cryptoController");
 const exchangeController = require("../controllers/exchangeController");
 const historicalPriceController = require("../controllers/historicalPriceController");
-const monthlyPriceController = require("../controllers/monthlyPriceController");
+const chartPriceController = require("../controllers/chartPriceController");
 const newsController = require("../controllers/newsController");
 const weeklyPriceController = require("../controllers/weeklyPriceController");
 
@@ -16,7 +16,7 @@ routes.use(
   historicalPriceController.getHistoricalPrices
 );
 routes.use("/api/weeklyprices", weeklyPriceController.getWeeklyPrices);
-routes.use("/api/monthlyprices", monthlyPriceController.getMonthlyPrices);
+routes.use("/api/chartprices", chartPriceController.getChartPrices);
 routes.use("/api/news", newsController.getNewsArticles);
 
 module.exports = routes;

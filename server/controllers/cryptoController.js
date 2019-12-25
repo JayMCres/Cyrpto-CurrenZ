@@ -1,6 +1,5 @@
 const fetch = require("node-fetch");
-// const key = "127351a0-17a9-4113-86af-8dab97d44e02";
-const key = "100c8236-7ae3-4e94-beae-7ef9dd012670";
+const key = process.env.API_KEY_COIN;
 
 exports.getSingleCrypto = async (req, res) => {
   // console.log("body", req.body);

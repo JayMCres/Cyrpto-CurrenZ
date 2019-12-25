@@ -3,7 +3,7 @@ const key = process.env.CC_API_KEY;
 const moment = require("moment");
 
 exports.getWeeklyPrices = async (req, res) => {
-  console.log("BODY", req.body);
+  // console.log("BODY", req.body);
 
   const url = `https://min-api.cryptocompare.com/data/histoday?fsym=${req.body.foundCrypto.ticker}&tsym=USD&limit=100&aggregate=1&pi_key=${key}`;
 

@@ -25,7 +25,7 @@ export default class HistoricalPrices extends Component {
     });
   };
   render() {
-    console.log("Historical Prices", this.props);
+    // console.log("Historical Prices", this.props);
     return (
       <Segment inverted>
         <Input

@@ -35,7 +35,7 @@ io.sockets.on("connection", socket => {
       connections.length
     );
   }
-  setInterval(() => getApiAndEmit(socket), 20000);
+  setInterval(() => getApiAndEmit(socket), 30000);
   socket.once("diconnect", () => {
     connections.splice(connections.indexOf(socket), 1);
     socket.disconnect();
@@ -44,8 +44,8 @@ io.sockets.on("connection", socket => {
 });
 
 const getApiAndEmit = async socket => {
-  // const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD&api_key=${key}`;
-  const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?tsym=USD&api_key=${key}`;
+  const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=50&tsym=USD&api_key=${key}`;
+  // const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?tsym=USD&api_key=${key}`;
 
   // let response = await fetch(url);
   let response = () => {
