@@ -17,16 +17,17 @@ exports.getAllCryptos = async (req, res) => {
     let one = Object.values(object.CoinInfo);
     // console.log(one);
     let two = Object.values(object.DISPLAY.USD);
-    // let key = Object.keys(object.DISPLAY.USD);
-    // console.log("two", two);
+    // let key = object.DISPLAY.USD;
+    // console.log("two", key);
     let combined = one.concat(two);
-    // console.log("HI", combined);
+    console.log("HI", combined);
     return combined;
   });
 
   // console.log("COMBO", combinedArray[0]);
 
   let coinPrice = await combinedArray.map((object, index) => {
+    console.log([object[17], index]);
     return {
       index: index,
       id: object[0],
@@ -37,33 +38,41 @@ exports.getAllCryptos = async (req, res) => {
       market: object[16],
       price: object[17],
       LASTUPDATE: object[18],
-      LASTVOLUME: object[19],
-      LASTVOLUMETO: object[20],
-      LASTTRADEID: object[21],
-      VOLUMEDAY: object[22],
-      VOLUMEDAYTO: object[23],
-      VOLUME24HOUR: object[24],
-      VOLUME24HOURTO: object[25],
-      OPENDAY: object[26],
-      HIGHDAY: object[27],
-      LOWDAY: object[28],
-      OPEN24HOUR: object[29],
-      HIGH24HOUR: object[30],
-      LOW24HOUR: object[31],
-      LASTMARKET: object[32],
-      VOLUMEHOUR: object[33],
-      VOLUMEHOURTO: object[34],
-      OPENHOUR: object[35],
-      HIGHHOUR: object[36],
-      LOWHOUR: object[37],
-      CHANGE24HOUR: object[38],
-      CHANGEPCT24HOUR: object[39],
-      CHANGEDAY: object[40],
-      CHANGEPCTDAY: object[41],
-      SUPPLY: object[42],
-      MKTCAP: object[43],
-      TOTALVOLUME24H: object[44],
-      TOTALVOLUME24HTO: object[45]
+      MEDIAN: object[19],
+      LASTVOLUME: object[20],
+      LASTVOLUMETO: object[21],
+      LASTTRADEID: object[22],
+      VOLUMEDAY: object[23],
+      VOLUMEDAYTO: object[24],
+      VOLUME24HOUR: object[25],
+      VOLUME24HOURTO: object[26],
+      OPENDAY: object[27],
+      HIGHDAY: object[28],
+      LOWDAY: object[29],
+      OPEN24HOUR: object[30],
+      HIGH24HOUR: object[31],
+      LOW24HOUR: object[32],
+      LASTMARKET: object[33],
+      VOLUMEHOUR: object[34],
+      VOLUMEHOURTO: object[35],
+      OPENHOUR: object[36],
+      HIGHHOUR: object[37],
+      LOWHOUR: object[38],
+      TOPTIERVOLUME24HOUR: object[39],
+      TOPTIERVOLUME24HOURTO: object[40],
+      CHANGE24HOUR: object[41],
+      CHANGEPCT24HOUR: object[42],
+      CHANGEDAY: object[43],
+      CHANGEPCTDAY: object[44],
+      CHANGEHOUR: object[45],
+      CHANGEPCTHOUR: object[46],
+      SUPPLY: object[47],
+      MKTCAP: object[48],
+      TOTALVOLUME24H: object[49],
+      TOTALVOLUME24HTO: object[50],
+      TOTALTOPTIERVOLUME24H: object[51],
+      TOTALTOPTIERVOLUME24HTO: object[52],
+      IMAGEURL: object[53]
     };
   });
 
