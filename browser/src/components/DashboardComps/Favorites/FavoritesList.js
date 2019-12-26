@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Card, Button, Message } from "semantic-ui-react";
+import { Segment, Card, Button, Icon, Header } from "semantic-ui-react";
 import Favorite from "./Favorite";
 import WeeklyChart from "./WeeklyChart";
 
@@ -67,15 +67,37 @@ export default class FavoritesList extends Component {
     return (
       <Segment
         inverted
+        style={{
+          "background-color": "black"
+        }}
         onMouseEnter={() => this.handleShowEnter()}
         onMouseLeave={() => this.handleShowExit()}
       >
-        <Message color="violet">
-          <h3>Favorites</h3>
-        </Message>
+        <Header
+          as="h3"
+          block
+          style={{
+            "border-style": "double",
+            "border-color": "#6666ff",
+            "background-color": "black"
+          }}
+        >
+          <Icon name="btc" />
+          <Header.Content>Crypto Currency Watchlist</Header.Content>
+        </Header>
         {this.state.showFavorites === true ? (
-          <Segment inverted>
+          <Segment
+            inverted
+            style={{
+              "border-style": "double",
+              "border-color": "#6666ff",
+              "background-color": "black"
+            }}
+          >
             <Button
+              basic
+              inverted
+              color="violet"
               floated="left"
               onClick={() => this.showLess()}
               content="Back"
@@ -84,6 +106,9 @@ export default class FavoritesList extends Component {
               disabled={this.state.startIdx === 0}
             />
             <Button
+              basic
+              inverted
+              color="violet"
               floated="right"
               onClick={() => this.showMore()}
               content="Next"

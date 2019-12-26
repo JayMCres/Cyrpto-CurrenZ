@@ -60,7 +60,14 @@ export default class Login extends Component {
     const { email, password, loading } = this.state;
 
     return (
-      <Grid className="app" textAlign="center" verticalAlign="middle">
+      <Grid
+        className="app"
+        textAlign="center"
+        verticalAlign="middle"
+        style={{
+          "background-color": "black"
+        }}
+      >
         <Grid.Column style={{ width: 450 }}>
           <Header as="h2" icon color="violet" textAlign="center">
             <Icon name="code branch" color="violet" />

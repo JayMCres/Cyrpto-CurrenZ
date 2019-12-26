@@ -7,7 +7,11 @@ export default class FavoritesMainCont extends Component {
     // console.log("Favorites Main Cont", this.state);
 
     return (
-      <Segment inverted>
+      <Segment
+        style={{
+          "background-color": "black"
+        }}
+      >
         {/* {this.props.favorites.length !== this.props.favoritesPrices.length ? (
           <div>Loading...</div>
         ) : ( */}

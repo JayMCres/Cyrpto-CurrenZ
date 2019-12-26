@@ -147,7 +147,7 @@ class Channels extends Component {
             verticalAlign="middle"
           />
           <List.Content>
-            <List.Header as="a">{channel.name}</List.Header>
+            <List.Header style={{ color: "blue" }}>{channel.name}</List.Header>
           </List.Content>
           <List.Icon
             floated="left"
@@ -174,17 +174,25 @@ class Channels extends Component {
     const { currentChannel, currentUser } = this.props;
     return (
       // prettier-ignore
-      <div>
+      <div style={{"background-color": "black" }}>
         
-      <Segment  style={{ "border-style": "grove", "border-color": "MediumSlateBlue" }}>
-        <Header as="h2">
+      <Segment style={{
+          "background-color": "black",
+          "border-style": "double",
+          "border-color": "#6666ff"
+        }}>
+        <Header style={{
+          "color": "#6666ff"
+        }}as="h2">
           <span>
             <Icon name="mail" />
             <Header.Content>CHANNELS</Header.Content>
             <Icon float="right" name="add" onClick={this.openModal}/>
           </span>
         </Header>
-        <Segment style={{ overflow: "auto", maxHeight: 100 }}>
+        <Segment style={{ overflow: "auto", maxHeight: 100, 
+        "background-color": "#f0f0f0"
+     }}>
         <List divided relaxed>{this.displayChannels(channels)}</List> 
         </Segment>
         </Segment>

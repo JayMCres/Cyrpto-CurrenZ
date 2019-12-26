@@ -3,7 +3,10 @@ import React from "react";
 const Search = props => {
   // console.log("Props in search", props)
   return (
-    <div className="ui huge fluid icon input">
+    <div
+      className="ui huge fluid icon input"
+      style={{ "border-style": "double", "border-color": "#6666ff" }}
+    >
       <input
         onChange={props.handleChange}
         type="text"

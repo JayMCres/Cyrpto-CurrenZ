@@ -7,8 +7,7 @@ import {
   Segment,
   Icon,
   Message,
-  Label,
-  Input
+  Label
 } from "semantic-ui-react";
 import HistoricalPrices from "./pricetable/HistoricalPrices";
 import CryptoPriceChart from "./CryptoPriceChart";
@@ -63,8 +62,14 @@ class CryptoDetails extends Component {
     };
 
     return (
-      <div>
-        <Segment>
+      <div style={{ "border-style": "none", "background-color": "black" }}>
+        <Segment
+          style={{
+            "background-color": "#6666ff",
+            "border-style": "double",
+            "border-color": "#e6e6ff"
+          }}
+        >
           <Label as="a" corner="right" color="red">
             <Icon name="remove" onClick={() => this.props.showIndepthPage()} />
           </Label>
@@ -72,7 +77,7 @@ class CryptoDetails extends Component {
           <Grid textAlign="center" verticalAlign="middle">
             <Grid.Row>
               <Grid.Column width={4}>
-                <Segment>
+                <Segment style={{ "background-color": "#e6e6ff" }}>
                   <Image
                     src={`http://cryptocompare.com/${this.props.crypto.image}`}
                     size="small"
@@ -82,29 +87,28 @@ class CryptoDetails extends Component {
                 </Segment>
               </Grid.Column>
               <Grid.Column width={4}>
-                <Segment>
-                  <Statistic size="small">
-                    <Statistic.Value>
-                      <Icon name="btc" />
-                      {this.props.crypto.price}
-                    </Statistic.Value>
+                <Segment style={{ "background-color": "#e6e6ff" }}>
+                  <Statistic size="mini">
+                    <Statistic.Value>{this.props.crypto.price}</Statistic.Value>
                     <Statistic.Label>Price</Statistic.Label>
                   </Statistic>
                 </Segment>
               </Grid.Column>
               <Grid.Column width={4}>
-                <Segment>
-                  <Statistic size="small">
-                    <Statistic.Value>{this.props.crypto.mkcap}</Statistic.Value>
+                <Segment style={{ "background-color": "#e6e6ff" }}>
+                  <Statistic size="mini">
+                    <Statistic.Value>
+                      {this.props.crypto.MKTCAP}
+                    </Statistic.Value>
                     <Statistic.Label>Capitalization</Statistic.Label>
                   </Statistic>
                 </Segment>
               </Grid.Column>
               <Grid.Column width={4}>
-                <Segment>
-                  <Statistic size="small">
+                <Segment style={{ "background-color": "#e6e6ff" }}>
+                  <Statistic size="mini">
                     <Statistic.Value>
-                      {this.props.crypto.supply}
+                      {this.props.crypto.SUPPLY}
                     </Statistic.Value>
                     <Statistic.Label>Supply</Statistic.Label>
                   </Statistic>
@@ -113,17 +117,46 @@ class CryptoDetails extends Component {
             </Grid.Row>
           </Grid>
         </Segment>
-        <Segment attached secondary>
+        <Segment
+          attached
+          secondary
+          style={{
+            "background-color": "black",
+            "border-style": "double",
+            "border-color": "#6666ff"
+          }}
+        >
           <Message color="violet">{this.props.details.description}</Message>
         </Segment>
-        <Segment attached="middle">
+        <Segment
+          inverted
+          attached="middle"
+          style={{
+            "background-color": "black",
+            "border-style": "double",
+            "border-color": "#6666ff"
+          }}
+        >
           <ChartMenu
             handleItemClick={this.handleItemClick}
             activeItem={this.state.activeItem}
           />
-          <Segment inverted>{onChartMenuClick(this.state.activeItem)}</Segment>
+          <Segment
+            inverted
+            style={{ "border-style": "none", "background-color": "black" }}
+          >
+            {onChartMenuClick(this.state.activeItem)}
+          </Segment>
         </Segment>
-        <Segment attached="bottom">
+        <Segment
+          inverted
+          style={{
+            "background-color": "black",
+            "border-style": "double",
+            "border-color": "#6666ff"
+          }}
+          attached="bottom"
+        >
           {this.props.historicals.length === 0 ? (
             <Message>Loading</Message>
           ) : (

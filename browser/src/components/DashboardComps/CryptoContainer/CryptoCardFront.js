@@ -27,14 +27,16 @@ export default class CryptoCardFront extends Component {
     } else if (this.state.currentPrice < this.state.pastPrice) {
       return "red";
     } else {
-      return "black";
+      return "grey";
     }
   };
   render() {
     console.log("CryptoCardFront", this.props);
     return (
       <Card
-        style={{ "border-style": "double", "border-color": "MediumSlateBlue" }}
+        style={{
+          "background-color": "black"
+        }}
       >
         <Card.Content>
           <Image
@@ -43,8 +45,20 @@ export default class CryptoCardFront extends Component {
             src={`http://cryptocompare.com/${this.props.details.image}`}
             onClick={() => this.props.handleCardFlip()}
           />
-          <Card.Header>{this.props.details.company}</Card.Header>
-          <Card.Meta>{this.props.details.ticker}</Card.Meta>
+          <Card.Header
+            style={{
+              color: "#6666ff"
+            }}
+          >
+            {this.props.details.company}
+          </Card.Header>
+          <Card.Meta
+            style={{
+              color: "#6666ff"
+            }}
+          >
+            {this.props.details.ticker}
+          </Card.Meta>
           <Card.Description>
             <Statistic size="tiny">
               <Statistic.Value style={{ color: this.handlePriceChange() }}>
@@ -58,16 +72,26 @@ export default class CryptoCardFront extends Component {
           <br></br>
           <div className="ui two buttons">
             <Button
-              basic
-              color="violet"
+              size="small"
+              style={{
+                color: "#6666ff",
+                "border-color": "#6666ff",
+                "border-style": "double",
+                "background-color": "black"
+              }}
               // onClick={() => this.props.addCryptoToFavorites(this.props.id)}
               onClick={() => this.props.handleFavoriteClick()}
             >
               Add to Favorite
             </Button>
             <Button
-              basic
-              color="violet"
+              size="small"
+              style={{
+                color: "#6666ff",
+                "border-color": "#6666ff",
+                "border-style": "double",
+                "background-color": "black"
+              }}
               onClick={() => this.props.handleCryptoRenderClick()}
             >
               Crypto Details

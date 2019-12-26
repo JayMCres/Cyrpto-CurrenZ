@@ -22,16 +22,27 @@ class SideBarCont extends Component {
       };
     });
     return (
-      <Segment inverted>
-        <Segment>
-          <UserProfile currentUser={this.props.currentUser} />
+      <Segment
+        inverted
+        style={{ "border-style": "none", "background-color": "black" }}
+      >
+        <Segment style={{ "background-color": "#6666ff" }}>
+          <UserProfile
+            currentUser={this.props.currentUser}
+            clearFavorites={this.props.clearFavorites}
+          />
         </Segment>
-        <Segment>
+        <Segment
+          inverted
+          style={{ "border-style": "none", "background-color": "black" }}
+        >
           {sidePrices.map((price, index) => {
             return <SidePriceChart key={index} {...price} />;
           })}
         </Segment>
-        <Segment>
+        <Segment
+          style={{ "border-style": "none", "background-color": "black" }}
+        >
           <SideBar
             currentChannel={this.props.currentChannel}
             currentUser={this.props.currentUser}

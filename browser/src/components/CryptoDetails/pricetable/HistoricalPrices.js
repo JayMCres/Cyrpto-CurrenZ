@@ -27,7 +27,10 @@ export default class HistoricalPrices extends Component {
   render() {
     // console.log("Historical Prices", this.props);
     return (
-      <Segment inverted>
+      <Segment
+        inverted
+        style={{ "border-style": "none", "background-color": "black" }}
+      >
         <Input
           focus
           placeholder="Search..."
@@ -38,7 +41,8 @@ export default class HistoricalPrices extends Component {
         <Button
           floated="right"
           size="small"
-          color="linkedin"
+          inverted
+          color="violet"
           circular
           onClick={() => this.handlePriceTableShow()}
           icon

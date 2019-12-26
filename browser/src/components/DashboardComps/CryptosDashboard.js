@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Segment, Grid } from "semantic-ui-react";
+import { Segment, Grid, Message } from "semantic-ui-react";
 // import io from "socket.io-client";
 import { fetchNews, fetchCryptos } from "../../actions/cryptos";
 
@@ -148,45 +148,78 @@ class CryptosDashboard extends Component {
     }
   };
 
+  clearFavorites = () => {
+    this.setState({
+      favorites: []
+    });
+  };
+
   render() {
     const { currentChannel, isPrivateChannel } = this.props;
     console.log("Dashboard", this.state);
     return (
-      <Segment inverted>
+      <Segment
+        style={{
+          "background-color": "black"
+        }}
+      >
         {this.state.favorites.length === 0 ||
         this.props.cryptos.length === 0 ? (
-          <Exchanges />
+          <Message></Message>
         ) : (
-          <Segment inverted>
-            <Exchanges />
-            <FavoritesMainCont
-              handlePriceClear={this.handlePriceClear}
-              showIndepthPage={this.showIndepthPage}
-              favorites={this.state.favorites}
-              removeCryptoFromFavorites={this.removeCryptoFromFavorites}
-              handleCryptoPriceFetch={this.handleCryptoPriceFetch}
-              favoritesPrices={this.state.favoritesPrices}
-              addPriceListeners={this.addPriceListeners}
-              handlePriceFetchUpdate={this.handlePriceFetchUpdate}
-              addPricesToFavorites={this.addPricesToFavorites}
-            />
-          </Segment>
+          // <Segment inverted>
+          //   <Exchanges />
+          <FavoritesMainCont
+            handlePriceClear={this.handlePriceClear}
+            showIndepthPage={this.showIndepthPage}
+            favorites={this.state.favorites}
+            removeCryptoFromFavorites={this.removeCryptoFromFavorites}
+            handleCryptoPriceFetch={this.handleCryptoPriceFetch}
+            favoritesPrices={this.state.favoritesPrices}
+            addPriceListeners={this.addPriceListeners}
+            handlePriceFetchUpdate={this.handlePriceFetchUpdate}
+            addPricesToFavorites={this.addPricesToFavorites}
+          />
+          // </Segment>
         )}
         {!this.state.indepthPage ? (
-          <Grid columns={2} divided>
-            <Grid.Column width={10}>
+          <Grid
+            columns={2}
+            divided
+            style={{
+              "background-color": "black"
+            }}
+          >
+            <Grid.Column
+              width={10}
+              style={{
+                "background-color": "black"
+              }}
+            >
               <CryptosContainer
                 addCryptoToFavorites={this.addCryptoToFavorites}
                 addFavoriteCryptoPrices={this.addFavoriteCryptoPrices}
                 addPricesToFavorites={this.addPricesToFavorites}
               />
             </Grid.Column>
-            <Grid.Column width={6}>
+            <Grid.Column
+              width={6}
+              style={{
+                "background-color": "black"
+              }}
+            >
               <CryptoSideCont
                 currentUser={this.props.currentUser}
                 showIndepthPage={this.showIndepthPage}
+                clearFavorites={this.clearFavorites}
               />
-              <Segment style={{ "border-style": "inset" }}>
+              <Segment
+                style={{
+                  "background-color": "black",
+                  "border-style": "double",
+                  "border-color": "#6666ff"
+                }}
+              >
                 <CryptoSideSub
                   currentChannel={currentChannel}
                   currentUser={this.props.currentUser}
@@ -199,15 +232,17 @@ class CryptosDashboard extends Component {
             </Grid.Column>
           </Grid>
         ) : (
-          <Segment inverted>
+          <Segment style={{ "background-color": "black" }}>
             <CryptoDetailsCont
               showIndepthPage={this.showIndepthPage}
               currentChannel={currentChannel}
               currentUser={this.props.currentUser}
               isPrivateChannel={isPrivateChannel}
+              clearFavorites={this.clearFavorites}
             />
           </Segment>
         )}
+        <Exchanges />
       </Segment>
     );
   }

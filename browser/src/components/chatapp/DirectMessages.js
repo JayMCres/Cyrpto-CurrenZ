@@ -107,14 +107,31 @@ class DirectMessages extends Component {
   render() {
     const { users } = this.state;
     return (
-      <Segment>
-        <Header as="h2">
+      <Segment
+        style={{
+          "background-color": "black",
+          "border-style": "double",
+          "border-color": "#6666ff"
+        }}
+      >
+        <Header
+          as="h2"
+          style={{
+            color: "#6666ff"
+          }}
+        >
           <span>
             <Icon name="mail" />
             <Header.Content>USERS</Header.Content> ({users.length}){" "}
           </span>
         </Header>
-        <Segment style={{ overflow: "auto", maxHeight: 100 }}>
+        <Segment
+          style={{
+            overflow: "auto",
+            maxHeight: 100,
+            "background-color": "#f0f0f0"
+          }}
+        >
           <List divided relaxed>
             {users.map(user => {
               return (
@@ -129,7 +146,9 @@ class DirectMessages extends Component {
                     color={this.isUserOnline(user) ? "green" : "red"}
                   />
                   <List.Content>
-                    <List.Header as="a">@{user.name}</List.Header>
+                    <List.Header style={{ color: "blue" }}>
+                      @{user.name}
+                    </List.Header>
                   </List.Content>
                   <Icon float="right" name="add" />
                 </List.Item>

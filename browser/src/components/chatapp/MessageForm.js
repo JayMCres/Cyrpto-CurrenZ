@@ -60,7 +60,13 @@ export default class MessageForm extends Component {
     const { errors, message, loading } = this.state;
     return (
       <div>
-        <Segment style={{ overflow: "auto", maxHeight: 300 }}>
+        <Segment
+          style={{
+            overflow: "auto",
+            maxHeight: 300,
+            "background-color": "#e6e6ff"
+          }}
+        >
           <Input
             fluid
             name="message"
@@ -82,10 +88,10 @@ export default class MessageForm extends Component {
             <Button
               disabled={loading}
               onClick={this.sendMessage}
-              color="violet"
               content="Add Replay"
               labelPosition="left"
               icon="edit"
+              color="violet"
             />
             {/* <Button
               color="teal"

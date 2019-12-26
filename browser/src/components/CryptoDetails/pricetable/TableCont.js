@@ -7,8 +7,15 @@ export default class TableCont extends Component {
   render() {
     // console.log("TableCont", this.props);
     return (
-      <Segment inverted style={{ overflow: "auto", maxHeight: 500 }}>
-        <Table color="violet" inverted>
+      <Segment
+        inverted
+        style={{
+          overflow: "auto",
+          maxHeight: 500,
+          "background-color": "black"
+        }}
+      >
+        <Table inverted color="violet">
           <TableHeader />
           <Table.Body>
             {this.props.historicals.map((crypto, index) => {

@@ -28,7 +28,7 @@ class SidePriceChart extends Component {
   render() {
     // console.log("price chart", this.props);
     const chartConfigs = {
-      type: "area2d", // The chart type
+      type: "area2d", // The chart type,
       width: "600", // Width of the chart
       height: "400", // Height of the chart
       dataFormat: "json", // Data type
@@ -36,11 +36,25 @@ class SidePriceChart extends Component {
         // Chart Configuration
         chart: {
           caption: "Weekly Price Change",
-          subCaption: "Crypto Price Tracker",
           xAxisName: "Date",
           yAxisName: "US Dollars ($)",
           numberSuffix: "$",
-          theme: "fusion"
+          theme: "fusion",
+          showBorder: "1",
+          borderColor: "blue",
+          bgColor: "#e6e6ff",
+          bgAlpha: "50",
+          canvasbgColor: "white",
+          canvasbgAlpha: "10",
+          canvasBorderColor: "blue",
+          canvasBorderThickness: "1",
+          showCanvasBorder: "1",
+          labelFontColor: "blue",
+          labelDisplay: "rotate",
+          slantLabel: "1",
+          xAxisNameFontColor: "blue",
+          yAxisNameFontColor: "blue",
+          yAxisValueFontColor: "blue"
         },
         // Chart Data
         data: [

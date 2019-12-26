@@ -126,6 +126,9 @@ export default class Register extends Component {
         textAlign="center"
         verticalAlign="middle"
         className="app"
+        style={{
+          "background-color": "black"
+        }}
         // style={{ width: 250 }}
       >
         <Grid.Column style={{ width: 450 }}>

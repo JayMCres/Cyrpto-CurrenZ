@@ -7,7 +7,11 @@ export default class CryptoDetailsCont extends Component {
   render() {
     console.log("Details Conatiner", this.props);
     return (
-      <Grid columns={2} divided>
+      <Grid
+        columns={2}
+        divided
+        style={{ "border-style": "none", "background-color": "black" }}
+      >
         <Grid.Column width={10}>
           <CryptoDetails showIndepthPage={this.props.showIndepthPage} />
         </Grid.Column>
@@ -16,6 +20,7 @@ export default class CryptoDetailsCont extends Component {
             currentChannel={this.props.currentChannel}
             currentUser={this.props.currentUser}
             isPrivateChannel={this.props.isPrivateChannel}
+            clearFavorites={this.props.clearFavorites}
           />
         </Grid.Column>
       </Grid>

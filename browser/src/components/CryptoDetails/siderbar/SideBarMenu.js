@@ -9,7 +9,7 @@ const SideBarMenu = props => {
         active={props.activeItem === "messages"}
         onClick={props.sideBarMenuToggle}
       >
-        Messenger
+        <strong style={{ color: "blue" }}>Messenger</strong>
       </Menu.Item>
 
       <Menu.Item
@@ -17,7 +17,7 @@ const SideBarMenu = props => {
         active={props.activeItem === "news"}
         onClick={props.sideBarMenuToggle}
       >
-        News Feed
+        <strong style={{ color: "blue" }}>News Feed</strong>
       </Menu.Item>
     </Menu>
   );

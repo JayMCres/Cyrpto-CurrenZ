@@ -27,18 +27,42 @@ export default class SideBar extends Component {
           />
         )
       };
-      return <div>{SIDE_PAGES[link]}</div>;
+      return (
+        <div
+          style={{
+            "background-color": "black",
+            "border-style": "double",
+            "border-color": "#6666ff"
+          }}
+        >
+          {SIDE_PAGES[link]}
+        </div>
+      );
     };
 
     return (
       <div>
-        <Segment>
+        <Segment
+          style={{
+            "background-color": "black",
+            "border-style": "double",
+            "border-color": "#6666ff"
+          }}
+        >
           <SideBarMenu
             activeItem={activeItem}
             sideBarMenuToggle={this.sideBarMenuToggle}
           />
         </Segment>
-        <Segment>{onSideMenuClick(activeItem)}</Segment>
+        <Segment
+          style={{
+            "border-style": "double",
+            "border-color": "#6666ff",
+            "background-color": "#e6e6ff"
+          }}
+        >
+          {onSideMenuClick(activeItem)}
+        </Segment>
       </div>
     );
   }

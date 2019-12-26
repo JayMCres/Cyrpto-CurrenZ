@@ -96,13 +96,19 @@ export default class Messages extends Component {
     const { currentUser, privateChannel } = this.props;
     // console.log("Messages", this.state);
     return (
-      <Segment>
+      <Segment style={{ "background-color": "black" }}>
         <MessageHeader
           currentChannel={channel}
           handleSearchChange={this.handleSearchChange}
           isPrivateChannel={privateChannel}
         />
-        <Segment style={{ overflow: "auto", maxHeight: 250 }}>
+        <Segment
+          style={{
+            overflow: "auto",
+            maxHeight: 250,
+            "background-color": "#e6e6ff"
+          }}
+        >
           {searchTerm
             ? searchResults.map(message => {
                 return (

@@ -14,8 +14,14 @@ class CryptoSideDetails extends Component {
   render() {
     console.log("Detial Side Props", this.props);
     return (
-      <div>
-        <Message>
+      <div style={{ "background-color": "black" }}>
+        <Message
+          style={{
+            "border-style": "double",
+            "border-color": "#6666ff",
+            "background-color": "black"
+          }}
+        >
           <List>
             <List.Item>
               <Image
@@ -33,16 +39,24 @@ class CryptoSideDetails extends Component {
                   </a>
                 </List.Description>
               </List.Content>
-              <Button.Group basic size="small" floated="right">
+              <Button.Group
+                basic
+                size="small"
+                inverted
+                color="violet"
+                floated="right"
+              >
                 <Button
+                  color="#6666ff"
                   circular
                   onClick={() => this.props.showIndepthPage()}
+                  disabled={this.props.prices.length === 0}
                   icon
                 >
                   <Icon circular name="btc" />
                 </Button>
                 <Button
-                  color="linkedin"
+                  color="#6666ff"
                   circular
                   onClick={() => this.props.renderSideChart()}
                   icon

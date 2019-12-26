@@ -37,11 +37,26 @@ export default class CryptoPriceChart extends Component {
         // Chart Configuration
         chart: {
           // caption: "30 Day Price Performance",
-          subCaption: "Crypto Price Tracker",
+
           xAxisName: "Date",
-          // yAxisName: "US Dollars ($)",
+          yAxisName: "US Dollars ($)",
           numberSuffix: "$",
-          theme: "fusion"
+          theme: "fusion",
+          showBorder: "1",
+          borderColor: "blue",
+          bgColor: "#e6e6ff",
+          bgAlpha: "50",
+          canvasbgColor: "white",
+          canvasbgAlpha: "10",
+          canvasBorderColor: "blue",
+          canvasBorderThickness: "1",
+          showCanvasBorder: "1",
+          labelFontColor: "#6666ff",
+          labelDisplay: "rotate",
+          slantLabel: "1",
+          xAxisNameFontColor: "#6666ff",
+          yAxisNameFontColor: "#6666ff",
+          yAxisValueFontColor: "#6666ff"
         },
         // Chart Data
         data: this.props.chartPrices

@@ -23,8 +23,8 @@ export default class SideMessenger extends Component {
   render() {
     const { currentChannel, currentUser, isPrivateChannel } = this.props;
     return (
-      <Segment>
-        <Segment>
+      <Segment style={{ "background-color": "black" }}>
+        <Segment style={{ "background-color": "black" }}>
           <DirectMessages
             currentChannel={this.props.currentChannel}
             currentUser={this.props.currentUser}

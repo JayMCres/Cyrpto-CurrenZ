@@ -62,22 +62,43 @@ export default class CryptosContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ "border-style": "none", "background-color": "black" }}>
         {this.state.coinList.length === 0 ? (
           // <Segment style={{ maxHeight: 500 }}>
           <LoadingPage />
         ) : (
-          <Segment inverted>
-            <Segment attached="top">
+          <Segment
+            style={{ "border-style": "none", "background-color": "black" }}
+          >
+            <Segment
+              style={{
+                "background-color": "black",
+                "border-style": "double",
+                "border-color": "#6666ff"
+              }}
+              attached="top"
+            >
               <Search
                 handleChange={this.handleChange}
                 inputValue={this.state.inputValue}
               />
             </Segment>
             <Segment
-              inverted
+              style={{
+                "background-color": "black",
+                "border-style": "double",
+                "border-color": "#6666ff",
+                overflow: "auto",
+                maxHeight: 1150
+              }}
+              // style={{
+              //   "border-style": "none",
+              //   "background-color": "black",
+              //   overflow: "auto",
+              //   maxHeight: 1150
+              // }}
               attached="bottom"
-              style={{ overflow: "auto", maxHeight: 1150 }}
+              // style={{ overflow: "auto", maxHeight: 1150 }}
             >
               <CryptosList
                 coinList={this.filterCryptos()}

@@ -15,44 +15,43 @@ class CryptoSideCont extends Component {
   };
   render() {
     const { currentUser } = this.props;
-    const sidePrices = this.props.prices.map((price, index) => {
-      return {
-        dayOne: price[0],
-        dayTwo: price[1],
-        dayThree: price[2],
-        dayFour: price[3],
-        dayFive: price[4],
-        daySix: price[5],
-        daySeven: price[6]
-      };
-    });
+
     return (
-      <div>
+      <div style={{ "background-color": "black" }}>
         <Message color="violet">
-          <UserProfile currentUser={currentUser} />
+          <UserProfile
+            currentUser={currentUser}
+            clearFavorites={this.props.clearFavorites}
+          />
         </Message>
         {this.props.crypto === null ? (
           <CryptoLoading />
         ) : (
-          <Segment inverted>
-            <Segment inverted attached="top">
+          <Segment style={{ "background-color": "black" }}>
+            <Segment
+              inverted
+              style={{ "background-color": "black" }}
+              attached="top"
+            >
               <CryptoSideDetails
                 {...this.props.crypto}
                 renderSideChart={this.renderSideChart}
                 showIndepthPage={this.props.showIndepthPage}
+                prices={this.props.chartPrices}
               />
             </Segment>
             {!this.state.showSideChart ? (
-              <Segment inverted centered attached="bottom">
-                {sidePrices.map((price, index) => {
-                  return (
-                    <WeeklyPriceChart
-                      key={index}
-                      {...price}
-                      crypto={this.props.crypto}
-                    />
-                  );
-                })}
+              <Segment
+                inverted
+                style={{ "background-color": "black" }}
+                centered
+                attached="bottom"
+              >
+                {this.props.chartPrices.length === 0 ? (
+                  <div>Loading...</div>
+                ) : (
+                  <WeeklyPriceChart prices={this.props.chartPrices} />
+                )}
               </Segment>
             ) : null}
           </Segment>
@@ -65,7 +64,8 @@ class CryptoSideCont extends Component {
 const mapStateToProps = state => ({
   crypto: state.cryptos.crypto,
   details: state.cryptos.details,
-  prices: state.cryptos.prices
+  prices: state.cryptos.prices,
+  chartPrices: state.cryptos.monthlyPrices
 });
 
 export default connect(mapStateToProps)(CryptoSideCont);
