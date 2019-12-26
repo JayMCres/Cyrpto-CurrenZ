@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Segment, Icon, Menu, Header, List } from "semantic-ui-react";
+import { Segment, Icon, Menu, Header, List, Input } from "semantic-ui-react";
 import firebase from "../../config/firebase";
 import { connect } from "react-redux";
 import { setCurrentChannel, setPrivateChannel } from "../../actions/channel";
+import DirectMessage from "./DirectMessage";
 
 class DirectMessages extends Component {
   state = {
@@ -11,7 +12,8 @@ class DirectMessages extends Component {
     usersRef: firebase.database().ref("users"),
     connectedRef: firebase.database().ref(".info/connected"),
     presenceRef: firebase.database().ref("presence"),
-    privateMessageRef: firebase.database().ref("privateMessages")
+    privateMessageRef: firebase.database().ref("privateMessages"),
+    inputValue: ""
   };
 
   componentDidMount() {
@@ -27,6 +29,21 @@ class DirectMessages extends Component {
       this.addListeners(this.state.user.uid);
     }
   };
+
+  handleChange = event => {
+    // console.log("Changing")
+    // console.log (event.target.name)
+    this.setState({
+      inputValue: event.target.value
+    });
+  };
+
+  filterUsers = () =>
+    this.state.users.filter(item => {
+      return item.name
+        .toLowerCase()
+        .includes(this.state.inputValue.toLowerCase());
+    });
 
   // prettier-ignore
   addListeners = currentUserUid => {
@@ -116,6 +133,7 @@ class DirectMessages extends Component {
       >
         <Header
           as="h2"
+          floated="left"
           style={{
             color: "#6666ff"
           }}
@@ -125,36 +143,31 @@ class DirectMessages extends Component {
             <Header.Content>USERS</Header.Content> ({users.length}){" "}
           </span>
         </Header>
+        <Header floated="right">
+          <Input
+            floated="right"
+            // loading={searchLoading}
+            onChange={this.handleChange}
+            type="text"
+            value={this.state.inputValue}
+            size="mini"
+            placeholder="Search Users"
+          />
+        </Header>
+        {/* </Segment> */}
         <Segment
+          attached="bottom"
           style={{
             overflow: "auto",
             maxHeight: 100,
             "background-color": "#f0f0f0"
           }}
         >
-          <List divided relaxed>
-            {users.map(user => {
-              return (
-                <List.Item
-                  key={user.uid}
-                  onClick={() => this.changeChannel(user)}
-                  // active={channel.id === this.state.activeChannel}
-                  style={{ opacity: 0.7, fontStyle: "italic" }}
-                >
-                  <Icon
-                    name="circle"
-                    color={this.isUserOnline(user) ? "green" : "red"}
-                  />
-                  <List.Content>
-                    <List.Header style={{ color: "blue" }}>
-                      @{user.name}
-                    </List.Header>
-                  </List.Content>
-                  <Icon float="right" name="add" />
-                </List.Item>
-              );
-            })}
-          </List>
+          <DirectMessage
+            users={this.filterUsers()}
+            isUserOnline={this.isUserOnline}
+            changeChannel={this.changeChannel}
+          />
         </Segment>
       </Segment>
     );
