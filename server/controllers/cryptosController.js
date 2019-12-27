@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const key = process.env.CC_API_KEY;
+const key = process.env.CC_TWO_KEY;
 
 exports.getAllCryptos = async (req, res) => {
   const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=50&tsym=USD&api_key=${key}`;
@@ -20,14 +20,14 @@ exports.getAllCryptos = async (req, res) => {
     // let key = object.DISPLAY.USD;
     // console.log("two", key);
     let combined = one.concat(two);
-    console.log("HI", combined);
+    // console.log("HI", combined);
     return combined;
   });
 
   // console.log("COMBO", combinedArray[0]);
 
   let coinPrice = await combinedArray.map((object, index) => {
-    console.log([object[17], index]);
+    // console.log([object[17], index]);
     return {
       index: index,
       id: object[0],

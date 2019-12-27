@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const key = process.env.CC_API_KEY;
+const key = process.env.CC_TWO_KEY;
 const moment = require("moment");
 
 exports.getNewsArticles = async (req, res) => {

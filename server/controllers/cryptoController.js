@@ -18,6 +18,6 @@ exports.getSingleCrypto = async (req, res) => {
   // console.log("Data Object", dataObject);
 
   let cryptoDetails = await dataObject[0];
-  console.log("cryptoDetails", cryptoDetails);
+  // console.log("cryptoDetails", cryptoDetails);
   res.send(cryptoDetails);
 };
