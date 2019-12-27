@@ -31,7 +31,7 @@ export default class CryptoCardFront extends Component {
     }
   };
   render() {
-    console.log("CryptoCardFront", this.props);
+    // console.log("CryptoCardFront", this.props);
     return (
       <Card
         style={{

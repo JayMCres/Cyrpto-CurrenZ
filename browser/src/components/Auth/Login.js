@@ -69,12 +69,31 @@ export default class Login extends Component {
         }}
       >
         <Grid.Column style={{ width: 450 }}>
-          <Header as="h2" icon color="violet" textAlign="center">
-            <Icon name="code branch" color="violet" />
+          <Header
+            as="h2"
+            icon
+            style={{
+              color: "#6666ff"
+            }}
+            textAlign="center"
+          >
+            <Icon
+              name="btc"
+              style={{
+                color: "#6666ff"
+              }}
+            />
             Login to Crypto-Curren-Z
           </Header>
           <Form onSubmit={this.handleSubmit} size="large">
-            <Segment stacked>
+            <Segment
+              stacked
+              style={{
+                "border-style": "outset",
+                "border-color": "#6666ff",
+                "background-color": "black"
+              }}
+            >
               <Form.Input
                 fluid
                 name="email"
@@ -96,9 +115,10 @@ export default class Login extends Component {
                 type="password"
               />
               <Button
+                inverted
+                color="violet"
                 disabled={loading}
                 className={loading ? "loading" : ""}
-                color="violet"
                 fluid
                 size="large"
               >

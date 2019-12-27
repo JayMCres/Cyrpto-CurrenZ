@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Segment, Header, Message } from "semantic-ui-react";
+import { Segment, List, Card } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 import { fetchExchanges } from "../../../actions/cryptos";
 
-import Exchange from "./Exchange";
+import Exchanges from "./Exchanges";
 
 class ExchangeCont extends Component {
   componentDidMount() {
@@ -21,9 +21,7 @@ class ExchangeCont extends Component {
           "border-color": "blue"
         }}
       >
-        {this.props.exchanges.map((item, index) => {
-          return <Exchange key={index} {...item} />;
-        })}
+        <Exchanges exchanges={this.props.exchanges} />
       </Segment>
     );
   }

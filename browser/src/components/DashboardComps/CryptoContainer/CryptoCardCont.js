@@ -26,7 +26,7 @@ export default class CryptoCardCont extends Component {
     });
   };
   render() {
-    console.log("CryptoCardCont", this.props);
+    // console.log("CryptoCardCont", this.props);
     return (
       // <Card onClick={() => this.handleCardFlip()}>
       <Card style={{ "border-style": "none", "background-color": "black" }}>

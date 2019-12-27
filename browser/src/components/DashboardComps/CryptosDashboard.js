@@ -163,6 +163,7 @@ class CryptosDashboard extends Component {
           "background-color": "black"
         }}
       >
+        <Exchanges />
         {this.state.favorites.length === 0 ||
         this.props.cryptos.length === 0 ? (
           <Message></Message>
@@ -242,7 +243,6 @@ class CryptosDashboard extends Component {
             />
           </Segment>
         )}
-        <Exchanges />
       </Segment>
     );
   }

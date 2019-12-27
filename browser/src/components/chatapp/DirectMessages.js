@@ -123,6 +123,7 @@ class DirectMessages extends Component {
 
   render() {
     const { users } = this.state;
+    // console.log("Direct Messages", this.props);
     return (
       <Segment
         style={{

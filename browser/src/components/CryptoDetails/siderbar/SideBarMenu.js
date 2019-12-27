@@ -4,6 +4,9 @@ import { Menu } from "semantic-ui-react";
 const SideBarMenu = props => {
   return (
     <Menu>
+      <Menu.Item style={{ "background-color": "#6666ff" }}>
+        <img src="https://cdn2.iconfinder.com/data/icons/bitcoin-and-mining/44/trade-512.png" />
+      </Menu.Item>
       <Menu.Item
         name="messages"
         active={props.activeItem === "messages"}

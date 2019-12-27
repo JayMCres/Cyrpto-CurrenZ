@@ -132,12 +132,31 @@ export default class Register extends Component {
         // style={{ width: 250 }}
       >
         <Grid.Column style={{ width: 450 }}>
-          <Header as="h2" icon color="orange" textAlign="center">
-            <Icon name="puzzle piece" color="orange" />
+          <Header
+            as="h2"
+            icon
+            style={{
+              color: "#66ff33"
+            }}
+            textAlign="center"
+          >
+            <Icon
+              name="bitcoin"
+              style={{
+                color: "#66ff33"
+              }}
+            />
             Register For Crypto-Curren-Z
           </Header>
           <Form onSubmit={this.handleRegSubmit} size="large">
-            <Segment stacked>
+            <Segment
+              stacked
+              style={{
+                "border-style": "outset",
+                "border-color": "#66ff33",
+                "background-color": "black"
+              }}
+            >
               <Form.Input
                 fluid
                 name="username"
@@ -185,7 +204,8 @@ export default class Register extends Component {
               <Button
                 disabled={loading}
                 className={loading ? "loading" : ""}
-                color="orange"
+                inverted
+                color="black"
                 fluid
                 size="large"
               >
