@@ -7,10 +7,13 @@ const historicalPriceController = require("../controllers/historicalPriceControl
 const chartPriceController = require("../controllers/chartPriceController");
 const newsController = require("../controllers/newsController");
 const weeklyPriceController = require("../controllers/weeklyPriceController");
+const ratesController = require("../controllers/ratesController");
+const marketCapController = require("../controllers/marketCapController");
 
 routes.use("/api/cryptos", cryptosController.getAllCryptos);
 routes.use("/api/crypto", cryptoController.getSingleCrypto);
 routes.use("/api/exchanges", exchangeController.getExchanges);
+routes.use("/api/rates", ratesController.getRates);
 routes.use(
   "/api/historicalprices",
   historicalPriceController.getHistoricalPrices
@@ -18,5 +21,5 @@ routes.use(
 routes.use("/api/weeklyprices", weeklyPriceController.getWeeklyPrices);
 routes.use("/api/chartprices", chartPriceController.getChartPrices);
 routes.use("/api/news", newsController.getNewsArticles);
-
+routes.use("/api/global-data", marketCapController.getGlobalData);
 module.exports = routes;
