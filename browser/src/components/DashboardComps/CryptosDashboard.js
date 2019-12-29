@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Segment, Grid, Message } from "semantic-ui-react";
+import { Segment, Grid, Message, Header, Icon } from "semantic-ui-react";
 // import io from "socket.io-client";
 import { fetchNews, fetchCryptos } from "../../actions/cryptos";
 
 import CryptosContainer from "./CryptoContainer/CryptosContainer";
 import FavoritesMainCont from "./Favorites/FavoritesMainCont";
 
-import Exchanges from "./ExchangeComps/ExchangeCont";
+import ExchangeRatesCont from "./ExchangeComps/ExchangeRatesCont";
 import CryptoSideCont from "./CryptoSideCont/CryptoSideCont";
 import CryptoSideSub from "./CryptoSideCont/CryptoSideSub";
 import CryptoDetailsCont from "../CryptoDetails/CryptoDetailsCont";
@@ -163,13 +163,14 @@ class CryptosDashboard extends Component {
           "background-color": "black"
         }}
       >
-        <Exchanges />
+        {/* <Segment style={{ "background-color": "black" }}> */}
+
+        <ExchangeRatesCont />
+        {/* </Segment> */}
         {this.state.favorites.length === 0 ||
         this.props.cryptos.length === 0 ? (
           <Message></Message>
         ) : (
-          // <Segment inverted>
-          //   <Exchanges />
           <FavoritesMainCont
             handlePriceClear={this.handlePriceClear}
             showIndepthPage={this.showIndepthPage}
@@ -181,7 +182,6 @@ class CryptosDashboard extends Component {
             handlePriceFetchUpdate={this.handlePriceFetchUpdate}
             addPricesToFavorites={this.addPricesToFavorites}
           />
-          // </Segment>
         )}
         {!this.state.indepthPage ? (
           <Grid

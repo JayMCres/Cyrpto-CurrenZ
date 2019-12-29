@@ -7,24 +7,22 @@ export default class FavoritesMainCont extends Component {
     // console.log("Favorites Main Cont", this.state);
 
     return (
-      <Segment
-        style={{
-          "background-color": "black"
-        }}
-      >
-        {/* {this.props.favorites.length !== this.props.favoritesPrices.length ? (
-          <div>Loading...</div>
-        ) : ( */}
-        <FavoritesSubCont
-          handlePriceClear={this.props.handlePriceClear}
-          favorites={this.props.favorites}
-          handleShowFavorites={this.props.handleShowFavorites}
-          removeCryptoFromFavorites={this.props.removeCryptoFromFavorites}
-          favoritesPrices={this.props.favoritesPrices}
-          handleCryptoPriceFetch={this.props.handleCryptoPriceFetch}
-        />
-        {/* )} */}
-      </Segment>
+      // <Segment
+      //   style={{
+      //     "background-color": "black"
+      //   }}
+      // >
+
+      <FavoritesSubCont
+        handlePriceClear={this.props.handlePriceClear}
+        favorites={this.props.favorites}
+        handleShowFavorites={this.props.handleShowFavorites}
+        removeCryptoFromFavorites={this.props.removeCryptoFromFavorites}
+        favoritesPrices={this.props.favoritesPrices}
+        handleCryptoPriceFetch={this.props.handleCryptoPriceFetch}
+      />
+
+      // </Segment>
     );
   }
 }
