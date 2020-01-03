@@ -163,10 +163,7 @@ class CryptosDashboard extends Component {
           "background-color": "black"
         }}
       >
-        {/* <Segment style={{ "background-color": "black" }}> */}
-
-        <CryptoDataCont />
-        {/* </Segment> */}
+        {/* <CryptoDataCont /> */}
         {this.state.favorites.length === 0 ||
         this.props.cryptos.length === 0 ? (
           <Message></Message>
@@ -183,6 +180,7 @@ class CryptosDashboard extends Component {
             addPricesToFavorites={this.addPricesToFavorites}
           />
         )}
+        <CryptoDataCont />
         {!this.state.indepthPage ? (
           <Grid
             columns={2}

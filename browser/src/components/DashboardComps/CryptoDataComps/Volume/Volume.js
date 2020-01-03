@@ -6,19 +6,25 @@ const Volume = props => {
   return (
     <Card
       style={{
-        "background-color": "#6666ff",
+        "background-color": "#6600ff",
         "text-align": "center"
       }}
     >
       <Item.Group divided>
         <Item>
           <Item.Content>
-            <Item.Header as="a">{props.ticker}</Item.Header>
-            <Item.Meta>
+            <Item.Meta
+              style={{
+                color: "white"
+              }}
+            >
               <span className="cinema">
-                <strong style={{ color: "white" }}>{props.data}</strong>
+                <strong>{props.ticker}</strong>
               </span>
             </Item.Meta>
+            <Item.Header as="a" style={{ color: "#f79d20" }}>
+              {props.data}
+            </Item.Header>
           </Item.Content>
         </Item>
       </Item.Group>

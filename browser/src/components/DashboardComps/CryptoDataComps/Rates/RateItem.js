@@ -6,9 +6,14 @@ const RateItem = props => {
   return (
     <Card
       style={{
-        "background-color": "black",
+        "background-color": "#6600ff",
         "text-align": "center"
       }}
+
+      // style={{
+      //   "background-color": "black",
+      //   "text-align": "center"
+      // }}
     >
       <Item.Group divided>
         <Item>
@@ -32,24 +37,6 @@ const RateItem = props => {
         </Item>
       </Item.Group>
     </Card>
-    // <Card
-    //   style={{
-    //     "background-color": "black"
-    //   }}
-    // >
-    //   >
-    //   <Statistic size="mini">
-    //     <Statistic.Value style={{ color: "orange" }}>
-    //       {props.value.toLocaleString("us-EN", {
-    //         style: "currency",
-    //         currency: "USD"
-    //       })}
-    //     </Statistic.Value>
-    //     <Statistic.Label style={{ color: "orange" }}>
-    //       {props.name}
-    //     </Statistic.Label>
-    //   </Statistic>
-    // </Card>
   );
 };
 export default RateItem;

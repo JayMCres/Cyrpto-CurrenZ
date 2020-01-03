@@ -6,7 +6,7 @@ import { fetchRates } from "../../../actions/rates";
 import { fetchExchanges } from "../../../actions/cryptos";
 import { fetchMarketData, fetchVolumeData } from "../../../actions/global";
 import { connect } from "react-redux";
-import ExchangeRateMenu from "./CryptoDataMenu";
+import CryptoDataMenu from "./CryptoDataMenu";
 import MarketCapCont from "./MarketCap/MarketCapCont";
 import VolumeCont from "./Volume/VolumeCont";
 
@@ -41,33 +41,11 @@ class CryptoDataCont extends Component {
           "background-color": "black"
         }}
       >
-        <Segment
-          inverted
-          style={{
-            "background-color": "black"
-          }}
-        >
-          <Header as="h2" style={{ color: "white" }} floated="right">
-            <Icon name="bity" />
-            Crypto-Curren-Z
-          </Header>
-          <ExchangeRateMenu
-            activeItem={activeItem}
-            handleItemClick={this.handleItemClick}
-          />
-          {onMainMenuClick(activeItem)}
-        </Segment>
-        {/* <Grid>
-          <Grid.Column width={14} verticalAlign="middle">
-            {onMainMenuClick(activeItem)}
-          </Grid.Column>
-          <Grid.Column width={2} centered>
-            <ExchangeRateMenu
-              activeItem={activeItem}
-              handleItemClick={this.handleItemClick}
-            />
-          </Grid.Column>
-        </Grid> */}
+        <CryptoDataMenu
+          activeItem={activeItem}
+          handleItemClick={this.handleItemClick}
+        />
+        {onMainMenuClick(activeItem)}
       </Segment>
     );
   }

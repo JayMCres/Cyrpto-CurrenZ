@@ -5,7 +5,7 @@ import RateItem from "./RateItem";
 export default class Rates extends Component {
   state = {
     startIdx: 0,
-    endIdx: 5
+    endIdx: 8
   };
 
   componentDidMount() {
@@ -21,17 +21,17 @@ export default class Rates extends Component {
   showMore = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx + 5,
-        endIdx: prevState.endIdx + 5
+        startIdx: prevState.startIdx + 8,
+        endIdx: prevState.endIdx + 8
       };
     });
   };
 
   handleIndexes = () => {
-    if (this.state.endIdx === this.props.rates.length) {
+    if (this.state.endIdx === this.props.rates.length + 1) {
       this.setState({
         startIdx: 0,
-        endIdx: 5
+        endIdx: 8
       });
     }
     this.showMore();
@@ -48,7 +48,7 @@ export default class Rates extends Component {
     );
 
     return (
-      <Card.Group itemsPerRow={5}>
+      <Card.Group itemsPerRow={8} centered>
         {ratesList.map((item, index) => {
           return <RateItem index={index} key={item.id} {...item} />;
         })}

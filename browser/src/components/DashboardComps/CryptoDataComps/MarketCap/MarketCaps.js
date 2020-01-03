@@ -5,7 +5,7 @@ import MarketCap from "./MarketCap";
 export default class MarketCaps extends Component {
   state = {
     startIdx: 0,
-    endIdx: 5
+    endIdx: 8
   };
 
   componentDidMount() {
@@ -21,17 +21,17 @@ export default class MarketCaps extends Component {
   showMore = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx + 5,
-        endIdx: prevState.endIdx + 5
+        startIdx: prevState.startIdx + 8,
+        endIdx: prevState.endIdx + 8
       };
     });
   };
 
   handleMarketCap = () => {
-    if (this.state.endIdx === this.props.marketData.length) {
+    if (this.state.endIdx === this.props.marketData.length + 1) {
       this.setState({
         startIdx: 0,
-        endIdx: 5
+        endIdx: 8
       });
     }
     this.showMore();
@@ -41,14 +41,14 @@ export default class MarketCaps extends Component {
   }
 
   render() {
-    console.log("MarketCaps Props", this.props);
+    // console.log("MarketCaps Props", this.props);
     const marketCapList = this.props.marketData.slice(
       this.state.startIdx,
       this.state.endIdx
     );
 
     return (
-      <Card.Group itemsPerRow={5}>
+      <Card.Group itemsPerRow={8} centered>
         {marketCapList.map((item, index) => {
           return <MarketCap index={index} key={item.ticker} {...item} />;
         })}

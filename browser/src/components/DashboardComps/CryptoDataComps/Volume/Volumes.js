@@ -5,7 +5,7 @@ import Volume from "./Volume";
 export default class Volumes extends Component {
   state = {
     startIdx: 0,
-    endIdx: 5
+    endIdx: 8
   };
 
   componentDidMount() {
@@ -21,17 +21,17 @@ export default class Volumes extends Component {
   showMore = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx + 5,
-        endIdx: prevState.endIdx + 5
+        startIdx: prevState.startIdx + 8,
+        endIdx: prevState.endIdx + 8
       };
     });
   };
 
   handleVolumes = () => {
-    if (this.state.endIdx === this.props.volumeData.length) {
+    if (this.state.endIdx === this.props.volumeData.length + 1) {
       this.setState({
         startIdx: 0,
-        endIdx: 5
+        endIdx: 8
       });
     }
     this.showMore();
@@ -41,14 +41,14 @@ export default class Volumes extends Component {
   }
 
   render() {
-    console.log("Volume Props", this.props);
+    // console.log("Volume Props", this.props);
     const volumeList = this.props.volumeData.slice(
       this.state.startIdx,
       this.state.endIdx
     );
 
     return (
-      <Card.Group itemsPerRow={5}>
+      <Card.Group itemsPerRow={8} centered>
         {volumeList.map((item, index) => {
           return <Volume index={index} key={item.ticker} {...item} />;
         })}

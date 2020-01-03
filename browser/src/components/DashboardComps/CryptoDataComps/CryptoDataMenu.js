@@ -1,26 +1,25 @@
 import React, { Component } from "react";
-import { Menu, Icon, Segment } from "semantic-ui-react";
+import { Menu, Icon, Segment, Header } from "semantic-ui-react";
 
 export default class CryptoDataMenu extends Component {
   render() {
     const { activeItem } = this.props;
     return (
       <Menu
-        inverted
         pointing
         secondary
+        size="mini"
+        fluid
+        widths={5}
         style={{
           "background-color": "black"
-
-          // "border-style": "double",
-          // "border-color": "blue"
         }}
       >
         <Menu.Item
           style={{
-            color: "blue",
-            "border-style": "ridge",
-            "border-color": "blue",
+            color: "#8080ff",
+            // "border-style": "ridge",
+            // "border-color": "blue",
             "text-align": "center"
           }}
           name="exchanges"
@@ -34,9 +33,9 @@ export default class CryptoDataMenu extends Component {
         </Menu.Item>
         <Menu.Item
           style={{
-            color: "blue",
-            "border-style": "ridge",
-            "border-color": "blue",
+            color: "#8080ff",
+            // "border-style": "ridge",
+            // "border-color": "blue",
             "text-align": "center"
           }}
           name="rates"
@@ -44,15 +43,15 @@ export default class CryptoDataMenu extends Component {
           onClick={this.props.handleItemClick}
         >
           <strong>
-            <Icon name="money bill alternate outline" />
+            <Icon name="globe" />
             Coversion Rates
           </strong>
         </Menu.Item>
         <Menu.Item
           style={{
-            color: "blue",
-            "border-style": "ridge",
-            "border-color": "blue",
+            color: "#8080ff",
+            // "border-style": "ridge",
+            // "border-color": "blue",
             "text-align": "center"
           }}
           name="market"
@@ -66,9 +65,9 @@ export default class CryptoDataMenu extends Component {
         </Menu.Item>
         <Menu.Item
           style={{
-            color: "blue",
-            "border-style": "ridge",
-            "border-color": "blue",
+            color: "#8080ff",
+            // "border-style": "ridge",
+            // "border-color": "blue",
             "text-align": "center"
           }}
           name="volume"
@@ -76,9 +75,15 @@ export default class CryptoDataMenu extends Component {
           onClick={this.props.handleItemClick}
         >
           <strong>
-            <Icon name="money bill alternate outline" />
+            <Icon name="credit card" />
             Volume
           </strong>
+        </Menu.Item>
+        <Menu.Item>
+          <Header as="h2" style={{ color: "white" }} floated="right">
+            <Icon name="bity" />
+            Crypto-Curren-Z
+          </Header>
         </Menu.Item>
       </Menu>
     );
