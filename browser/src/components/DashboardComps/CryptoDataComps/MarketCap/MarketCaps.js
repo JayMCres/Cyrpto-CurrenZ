@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Segment, Card, List } from "semantic-ui-react";
-import RateItem from "./RateItem";
+import MarketCap from "./MarketCap";
 
-export default class Rates extends Component {
+export default class MarketCaps extends Component {
   state = {
     startIdx: 0,
     endIdx: 5
@@ -14,7 +14,7 @@ export default class Rates extends Component {
 
   startCarousel = () => {
     this.carouselInterval = setInterval(() => {
-      this.handleIndexes();
+      this.handleMarketCap();
     }, 800);
   };
 
@@ -27,8 +27,8 @@ export default class Rates extends Component {
     });
   };
 
-  handleIndexes = () => {
-    if (this.state.endIdx === this.props.rates.length) {
+  handleMarketCap = () => {
+    if (this.state.endIdx === this.props.marketData.length) {
       this.setState({
         startIdx: 0,
         endIdx: 5
@@ -41,16 +41,16 @@ export default class Rates extends Component {
   }
 
   render() {
-    console.log("IndexList Props", this.state);
-    const ratesList = this.props.rates.slice(
+    console.log("MarketCaps Props", this.props);
+    const marketCapList = this.props.marketData.slice(
       this.state.startIdx,
       this.state.endIdx
     );
 
     return (
       <Card.Group itemsPerRow={5}>
-        {ratesList.map((item, index) => {
-          return <RateItem index={index} key={item.id} {...item} />;
+        {marketCapList.map((item, index) => {
+          return <MarketCap index={index} key={item.ticker} {...item} />;
         })}
       </Card.Group>
     );

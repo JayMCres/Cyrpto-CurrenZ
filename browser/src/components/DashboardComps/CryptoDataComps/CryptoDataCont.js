@@ -4,30 +4,32 @@ import ExchangeCont from "./Exchanges/ExchangeCont";
 import RatesCont from "./Rates/RatesCont";
 import { fetchRates } from "../../../actions/rates";
 import { fetchExchanges } from "../../../actions/cryptos";
-import { fetchGlobalData } from "../../../actions/global";
+import { fetchMarketData, fetchVolumeData } from "../../../actions/global";
 import { connect } from "react-redux";
-import ExchangeRateMenu from "./ExchangeRateMenu";
+import ExchangeRateMenu from "./CryptoDataMenu";
+import MarketCapCont from "./MarketCap/MarketCapCont";
+import VolumeCont from "./Volume/VolumeCont";
 
-class ExchangeIndexCont extends Component {
+class CryptoDataCont extends Component {
   state = { activeItem: "exchanges" };
 
   componentDidMount() {
     this.props.dispatch(fetchRates());
     this.props.dispatch(fetchExchanges());
-    this.props.dispatch(fetchGlobalData());
+    this.props.dispatch(fetchMarketData());
+    this.props.dispatch(fetchVolumeData());
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
-  handleHover = () => {
-    return "grey";
-  };
   render() {
     const { activeItem } = this.state;
     const onMainMenuClick = link => {
       const HOME_PAGES = {
         exchanges: <ExchangeCont />,
-        rates: <RatesCont />
+        rates: <RatesCont />,
+        market: <MarketCapCont />,
+        volume: <VolumeCont />
       };
       return <div>{HOME_PAGES[link]}</div>;
     };
@@ -71,4 +73,4 @@ class ExchangeIndexCont extends Component {
   }
 }
 
-export default connect(null)(ExchangeIndexCont);
+export default connect(null)(CryptoDataCont);

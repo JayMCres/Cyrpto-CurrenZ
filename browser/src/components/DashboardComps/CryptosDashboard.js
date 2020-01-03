@@ -7,7 +7,7 @@ import { fetchNews, fetchCryptos } from "../../actions/cryptos";
 import CryptosContainer from "./CryptoContainer/CryptosContainer";
 import FavoritesMainCont from "./Favorites/FavoritesMainCont";
 
-import ExchangeRatesCont from "./ExchangeComps/ExchangeRatesCont";
+import CryptoDataCont from "./CryptoDataComps/CryptoDataCont";
 import CryptoSideCont from "./CryptoSideCont/CryptoSideCont";
 import CryptoSideSub from "./CryptoSideCont/CryptoSideSub";
 import CryptoDetailsCont from "../CryptoDetails/CryptoDetailsCont";
@@ -156,7 +156,7 @@ class CryptosDashboard extends Component {
 
   render() {
     const { currentChannel, isPrivateChannel } = this.props;
-    console.log("Dashboard", this.state);
+    // console.log("Dashboard", this.state);
     return (
       <Segment
         style={{
@@ -165,7 +165,7 @@ class CryptosDashboard extends Component {
       >
         {/* <Segment style={{ "background-color": "black" }}> */}
 
-        <ExchangeRatesCont />
+        <CryptoDataCont />
         {/* </Segment> */}
         {this.state.favorites.length === 0 ||
         this.props.cryptos.length === 0 ? (

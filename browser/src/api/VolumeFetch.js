@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:5000/api/global-data"
+  baseURL: "http://localhost:5000/api/volume"
 });

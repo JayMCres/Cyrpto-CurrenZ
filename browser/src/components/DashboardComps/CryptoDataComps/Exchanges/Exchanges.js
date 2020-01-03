@@ -41,7 +41,7 @@ export default class Exchanges extends Component {
   }
 
   render() {
-    console.log("Exchanges Props", this.state);
+    // console.log("Exchanges Props", this.state);
     const exchangeList = this.props.exchanges.slice(
       this.state.startIdx,
       this.state.endIdx
