@@ -7,6 +7,8 @@ const weeklyPriceController = require("./weeklyPriceController");
 const newsController = require("./newsController");
 const ratesController = require("./ratesController");
 const marketCapController = require("./marketCapController");
+const volumeController = require("./volumeController");
+
 module.exports = {
   cryptosController,
   cryptoController,
@@ -16,5 +18,6 @@ module.exports = {
   weeklyPriceController,
   newsController,
   ratesController,
-  marketCapController
+  marketCapController,
+  volumeController
 };
