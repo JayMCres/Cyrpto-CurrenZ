@@ -19,9 +19,10 @@ class VolumeCont extends Component {
       </Header> */}
         <Volumes
           volumeData={this.props.volumeData.map(item => {
+            const volume = item[1] / 1000000000;
             return {
               ticker: item[0].toUpperCase(),
-              data: item[1].toLocaleString("us-EN", {
+              data: volume.toLocaleString("us-EN", {
                 style: "currency",
                 currency: "USD"
               })

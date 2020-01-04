@@ -8,6 +8,7 @@ export default class CryptoDataMenu extends Component {
       <Menu
         pointing
         secondary
+        inverted
         size="mini"
         fluid
         widths={5}

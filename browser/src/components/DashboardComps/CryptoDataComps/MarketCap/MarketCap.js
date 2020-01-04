@@ -23,7 +23,15 @@ const MarketCap = props => {
               </span>
             </Item.Meta>
             <Item.Header as="a" style={{ color: "#f79d20" }}>
-              {props.data}
+              {props.data}{" "}
+              <strong
+                style={{
+                  color: "#f79d20",
+                  "font-style": "italic"
+                }}
+              >
+                Billions
+              </strong>
             </Item.Header>
           </Item.Content>
         </Item>

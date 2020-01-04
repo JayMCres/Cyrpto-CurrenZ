@@ -19,9 +19,10 @@ class MarketCapCont extends Component {
       </Header> */}
         <MarketCaps
           marketData={this.props.marketData.map(item => {
+            const cap = item[1] / 1000000000;
             return {
               ticker: item[0].toUpperCase(),
-              data: item[1].toLocaleString("us-EN", {
+              data: cap.toLocaleString("us-EN", {
                 style: "currency",
                 currency: "USD"
               })

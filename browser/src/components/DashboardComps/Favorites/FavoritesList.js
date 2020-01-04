@@ -9,14 +9,7 @@ export default class FavoritesList extends Component {
     endIdx: 4,
     showFavorites: false,
     bool: false
-    // loadedFavorites: []
   };
-
-  // componentWillMount() {
-  //   this.setState({
-  //     loadedFavorites: this.props.favorites
-  //   });
-  // }
 
   showMore = () => {
     this.setState(prevState => {

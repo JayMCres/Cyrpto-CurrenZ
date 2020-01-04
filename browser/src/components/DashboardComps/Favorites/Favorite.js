@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import { Card, Segment, List, Image, Label, Icon } from "semantic-ui-react";
-// import { connect } from "react-redux";
-// import WeeklyChart from "./WeeklyChart";
-
-// import { fetchWeekly } from "../../../actions/cryptos";
 
 class Favorite extends Component {
   render() {
@@ -42,5 +38,4 @@ class Favorite extends Component {
   }
 }
 
-// export default connect(null)(Favorite);
 export default Favorite;
