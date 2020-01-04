@@ -93,14 +93,6 @@ export default class MessageForm extends Component {
               icon="edit"
               color="violet"
             />
-            {/* <Button
-              color="teal"
-              // disabled={uploadState === "uploading"}
-              // onClick={this.openModal}
-              content="Upload Media"
-              labelPosition="right"
-              icon="cloud upload"
-            /> */}
           </Button.Group>
         </Segment>
       </div>

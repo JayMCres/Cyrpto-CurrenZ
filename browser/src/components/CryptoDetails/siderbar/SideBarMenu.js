@@ -22,6 +22,13 @@ const SideBarMenu = props => {
       >
         <strong style={{ color: "blue" }}>News Feed</strong>
       </Menu.Item>
+      <Menu.Item
+        name="notes"
+        active={props.activeItem === "notes"}
+        onClick={props.sideBarMenuToggle}
+      >
+        <strong style={{ color: "blue" }}>Notes</strong>
+      </Menu.Item>
     </Menu>
   );
 };

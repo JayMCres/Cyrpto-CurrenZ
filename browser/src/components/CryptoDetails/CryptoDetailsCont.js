@@ -5,7 +5,7 @@ import SideBarCont from "./siderbar/SideBarCont";
 // import { connect } from "react-redux";
 export default class CryptoDetailsCont extends Component {
   render() {
-    console.log("Details Conatiner", this.props);
+    // console.log("Details Conatiner", this.props);
     return (
       <Grid
         columns={2}
