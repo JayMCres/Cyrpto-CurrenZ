@@ -3,7 +3,8 @@ import { Message, Card, Segment, Header, Icon } from "semantic-ui-react";
 import NotesForm from "./NotesForm";
 import firebase from "../../../config/firebase";
 import { connect } from "react-redux";
-import Notes from "./Notes";
+import NotesList from "./NotesList";
+import NotePopUp from "./NotePopUp";
 
 class NotesCont extends Component {
   state = {
@@ -11,11 +12,19 @@ class NotesCont extends Component {
     noteTitle: "",
     noteDetails: "",
     notesRef: firebase.database().ref("notes"),
-    activeNote: "",
+    // activeNote: {},
     firstLoad: true,
-    notes: []
+    notes: [],
+    showNote: null
   };
 
+  // setActiveNote = noteId => {
+  //   const foundNote = this.state.notes.filter(note => {
+  //     return noteId === note.id;
+  //   });
+  //   console.log("foundNote", foundNote);
+  //   this.setState({ activeNote: foundNote });
+  // };
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -102,48 +111,58 @@ class NotesCont extends Component {
   };
 
   isFormValid = ({ noteTitle, noteDetails }) => noteTitle && noteDetails;
+
   render() {
     // console.log("Notes Cont Props", this.props);
     console.log("Notes Cont State", this.state);
     const { noteTitle, noteDetails } = this.state;
     return (
-      // <div style={{"background-color": "black" }}>
+      <div style={{ "background-color": "black" }}>
+        {!this.state.showNote ? (
+          <Segment
+            style={{
+              "background-color": "black",
+              "border-style": "double",
+              "border-color": "#6666ff"
+            }}
+          >
+            <Header
+              style={{
+                color: "#6666ff"
+              }}
+              as="h2"
+            >
+              <span>
+                <Icon name="mail" />
+                <Header.Content>CRYPTO NOTES</Header.Content>
+              </span>
+            </Header>
 
-      <Segment
-        style={{
-          "background-color": "black",
-          "border-style": "double",
-          "border-color": "#6666ff"
-        }}
-      >
-        <Header
-          style={{
-            color: "#6666ff"
-          }}
-          as="h2"
-        >
-          <span>
-            <Icon name="mail" />
-            <Header.Content>CRYPTO NOTES</Header.Content>
-          </span>
-        </Header>
-
-        <NotesForm
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          noteTitle={noteTitle}
-          noteDetails={noteDetails}
-        />
-        <Segment
-          style={{
-            overflow: "auto",
-            maxHeight: 100,
-            "background-color": "#f0f0f0"
-          }}
-        >
-          <Notes notes={this.state.notes} removeNote={this.removeNote} />
-        </Segment>
-      </Segment>
+            <NotesForm
+              handleSubmit={this.handleSubmit}
+              handleChange={this.handleChange}
+              noteTitle={noteTitle}
+              noteDetails={noteDetails}
+            />
+            <Segment
+              style={{
+                overflow: "auto",
+                maxHeight: 150,
+                "background-color": "black"
+              }}
+            >
+              <NotesList
+                // activeNote={this.state.activeNote}
+                notes={this.state.notes}
+                removeNote={this.removeNote}
+                setActiveNote={this.setActiveNote}
+              />
+            </Segment>
+          </Segment>
+        ) : (
+          <NotePopUp />
+        )}
+      </div>
     );
   }
 }

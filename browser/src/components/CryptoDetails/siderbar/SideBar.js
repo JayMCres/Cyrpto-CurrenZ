@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Segment } from "semantic-ui-react";
-import NewsList from "../newsfeed/NewsList";
+import NewsList from "../news/NewsList";
 import SideMessenger from "../../chatapp/SideMessenger";
 import SideBarMenu from "./SideBarMenu";
 import NotesCont from "../Notes/NotesCont";
@@ -43,7 +43,11 @@ export default class SideBar extends Component {
     };
 
     return (
-      <div>
+      <div
+        style={{
+          "background-color": "black"
+        }}
+      >
         <Segment
           style={{
             "background-color": "black",

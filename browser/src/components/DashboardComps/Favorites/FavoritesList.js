@@ -84,7 +84,8 @@ export default class FavoritesList extends Component {
             style={{
               "border-style": "double",
               "border-color": "#6666ff",
-              "background-color": "black"
+              "background-color": "black",
+              minHeight: 70
             }}
           >
             <Button

@@ -175,7 +175,8 @@ const mapStateToProps = state => ({
   monthlyPrices: state.cryptos.monthlyPrices,
   threeMonthsPrices: state.cryptos.threeMonthsPrices,
   sixMonthsPrices: state.cryptos.sixMonthsPrices,
-  annualPrices: state.cryptos.annualPrices
+  annualPrices: state.cryptos.annualPrices,
+  feed: state.cryptos.feed
 });
 
 export default connect(mapStateToProps)(CryptoDetails);

@@ -24,7 +24,7 @@ const CryptoCardBack = props => (
             <List.Icon name="expand" size="small" verticalAlign="middle" />
             <List.Content>
               <List.Header as="a">{props.details.MKTCAP}</List.Header>
-              <List.Description as="a">Market Cap</List.Description>
+              <List.Description as="a">Market Cap</List.Description>{" "}
             </List.Content>
           </List.Item>
           <List.Item>

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import SidePriceChart from "./SidePriceChart";
 import UserProfile from "../../DashboardComps/CryptoSideCont/UserProfile";
 import SideBar from "./SideBar";
-
+// import CardsCont from "./cryptocards/CardsCont";
 class SideBarCont extends Component {
   render() {
     console.log("Side", this.props);

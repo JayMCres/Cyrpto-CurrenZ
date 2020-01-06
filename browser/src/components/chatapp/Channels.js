@@ -21,13 +21,16 @@ class Channels extends Component {
     modal: false,
     channelName: "",
     channelDetails: "",
-    channelsRef: firebase.database().ref("channels"),
-    // messagesRef: firebase.database().ref("messages"),
+    channelsRef: [],
     activeChannel: "",
-    // showConvo: false,
     firstLoad: true
   };
 
+  componentWillMount() {
+    this.setState({
+      channelsRef: firebase.database().ref("channels")
+    });
+  }
   componentDidMount() {
     this.addListeners();
   }
@@ -38,18 +41,12 @@ class Channels extends Component {
 
   removeListeners = () => {
     this.state.channelsRef.off();
-    // this.state.channels.forEach(channel => {
-    //   this.state.messagesRef.child(channel.id).off();
-    // });
   };
   addListeners = () => {
     let loadedChannels = [];
     this.state.channelsRef.on("child_added", snap => {
       loadedChannels.push(snap.val());
-      // console.log(loadedChannels);
-      // this.setState({ channels: loadedChannels });
       this.setState({ channels: loadedChannels }, () => this.setFirstChannel());
-      // this.addNotificationListener(snap.key);
     });
   };
 
@@ -120,7 +117,6 @@ class Channels extends Component {
   changeChannel = channel => {
     // console.log(channel);
     this.setActiveChannel(channel);
-
     this.props.setCurrentChannel(channel);
     this.props.renderChannelConvo();
     this.props.setPrivateChannel(false);

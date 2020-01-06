@@ -64,7 +64,6 @@ export default class CryptosContainer extends Component {
     return (
       <div style={{ "border-style": "none", "background-color": "black" }}>
         {this.state.coinList.length === 0 ? (
-          // <Segment style={{ maxHeight: 500 }}>
           <LoadingPage />
         ) : (
           <Segment

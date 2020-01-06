@@ -9,6 +9,7 @@ export default function exchangesReducer(state = initialState, action) {
     case FETCH_EXCHANGES: {
       return { ...state, exchanges: action.payload };
     }
+
     default:
       return state;
   }
