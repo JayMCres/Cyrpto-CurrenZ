@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
-const key = process.env.CC_TWO_KEY;
+// const key = process.env.CC_TWO_KEY;
+const key = process.env.CC_API_KEY;
 const bodyParser = require("body-parser");
 const app = express();
 const fetch = require("node-fetch");
@@ -35,7 +36,7 @@ io.sockets.on("connection", socket => {
       connections.length
     );
   }
-  setInterval(() => getApiAndEmit(socket), 30000);
+  setInterval(() => getApiAndEmit(socket), 20000);
   socket.once("diconnect", () => {
     connections.splice(connections.indexOf(socket), 1);
     socket.disconnect();

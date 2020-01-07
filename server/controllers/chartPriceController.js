@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
-const key = process.env.CC_TWO_KEY;
+// const key = process.env.CC_TWO_KEY;
+const key = process.env.CC_API_KEY;
 const moment = require("moment");
 
 exports.getChartPrices = async (req, res) => {
