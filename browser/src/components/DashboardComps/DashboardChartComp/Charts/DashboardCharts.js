@@ -31,7 +31,6 @@ export default class DashboardCharts extends Component {
       );
   }
   render() {
-    console.log("Exchanges Chart Props", this.state);
     return (
       <div
         style={{
@@ -83,7 +82,7 @@ export default class DashboardCharts extends Component {
                     "font-size": "15px"
                   }}
                 >
-                  {this.props.total_volume}
+                  {this.props.total_volume.toLocaleString()}
                 </a>{" "}
               </b>
             </List.Item>
@@ -121,7 +120,7 @@ export default class DashboardCharts extends Component {
                     "font-size": "15px"
                   }}
                 >
-                  {this.props.price_change_percentage_24h}%
+                  {this.props.price_change_percentage_24h.toFixed(2)}%
                 </a>{" "}
               </b>
             </List.Item>
@@ -138,7 +137,7 @@ export default class DashboardCharts extends Component {
                     "font-size": "15px"
                   }}
                 >
-                  {this.props.circulating_supply}
+                  {this.props.circulating_supply.toLocaleString()}
                 </a>
               </b>
             </List.Item>

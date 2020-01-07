@@ -6,19 +6,17 @@ import { connect } from "react-redux";
 import SidePriceChart from "./SidePriceChart";
 import UserProfile from "../../DashboardComps/CryptoSideCont/UserProfile";
 import SideBar from "./SideBar";
-// import CardsCont from "./cryptocards/CardsCont";
+import TickerFeedCont from "./tickerfeed/TickerFeedCont";
 class SideBarCont extends Component {
   render() {
     console.log("Side", this.props);
     const sidePrices = this.props.prices.map((price, index) => {
       return {
-        dayOne: price[0],
-        dayTwo: price[1],
+        dayOne: price[4],
+        dayTwo: price[3],
         dayThree: price[2],
-        dayFour: price[3],
-        dayFive: price[4],
-        daySix: price[5],
-        daySeven: price[6]
+        dayFour: price[1],
+        dayFive: price[0]
       };
     });
     return (
@@ -36,9 +34,10 @@ class SideBarCont extends Component {
           inverted
           style={{ "border-style": "none", "background-color": "black" }}
         >
-          {sidePrices.map((price, index) => {
+          <TickerFeedCont />
+          {/* {sidePrices.map((price, index) => {
             return <SidePriceChart key={index} {...price} />;
-          })}
+          })} */}
         </Segment>
         <Segment
           style={{ "border-style": "none", "background-color": "black" }}

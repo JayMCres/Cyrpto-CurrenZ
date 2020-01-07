@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Segment, Header } from "semantic-ui-react";
 import { connect } from "react-redux";
+import Markets from "./Markets";
 
-import Exchanges from "./Exchanges";
-
-class ExchangeCont extends Component {
+class MarketsCont extends Component {
   render() {
     // console.log("Exchanges Props", this.props);
 
@@ -16,14 +15,14 @@ class ExchangeCont extends Component {
           "border-color": "blue"
         }}
       >
-        <Exchanges exchanges={this.props.exchanges} />
+        <Markets markets={this.props.markets} />
       </Segment>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  exchanges: state.cryptos.exchanges
+  markets: state.cryptos.markets
 });
 
-export default connect(mapStateToProps)(ExchangeCont);
+export default connect(mapStateToProps)(MarketsCont);

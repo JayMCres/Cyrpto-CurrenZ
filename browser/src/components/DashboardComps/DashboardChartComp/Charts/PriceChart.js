@@ -24,9 +24,9 @@ ReactFC.fcRoot(FusionCharts, Area2d, FusionTheme);
 
 // Step 7 - Creating the JSON object to store the chart configurations
 
-export default class VolumeChart extends Component {
+export default class PriceChart extends Component {
   render() {
-    console.log("price chart", this.props);
+    // console.log("price chart", this.props);
     const chartConfigs = {
       type: "area2d", // The chart type
       width: "550", // Width of the chart
@@ -36,12 +36,13 @@ export default class VolumeChart extends Component {
       dataSource: {
         // Chart Configuration
         chart: {
-          caption: "30 Day Volume",
+          caption: "30 Day Price",
           captionFontSize: "11",
           captionFontColor: "#6666ff",
           captionFontBold: "1",
+
           // yAxisName: "US Dollars ($)",
-          // numberSuffix: "$",
+          numberPrefix: "$",
           theme: "fusion",
           showBorder: "1",
           borderColor: "blue",

@@ -7,12 +7,16 @@ import {
   fetchCryptos,
   fetchFeed,
   fetchCards,
-  fetchChartsList
+  fetchChartsList,
+  fetchGlobalData,
+  fetchMarkets
 } from "../../actions/cryptos";
+
+import { fetchExchangeFeed } from "../../actions/exchanges";
 
 import CryptosContainer from "./CryptoContainer/CryptosContainer";
 import FavoritesMainCont from "./Favorites/FavoritesMainCont";
-import DashboardCont from "./dashboardcharts/DashboardCont";
+import DashboardFeedCont from "./DashboardChartComp/DashboardFeedCont";
 import CryptoDataCont from "./CryptoDataComps/CryptoDataCont";
 import CryptoSideCont from "./CryptoSideCont/CryptoSideCont";
 import CryptoSideSub from "./CryptoSideCont/CryptoSideSub";
@@ -34,6 +38,9 @@ class CryptosDashboard extends Component {
     this.props.dispatch(fetchFeed());
     this.props.dispatch(fetchCards());
     this.props.dispatch(fetchChartsList());
+    this.props.dispatch(fetchGlobalData());
+    this.props.dispatch(fetchMarkets());
+    this.props.dispatch(fetchExchangeFeed());
     this.addListeners();
   }
 
@@ -194,64 +201,70 @@ class CryptosDashboard extends Component {
           />
         )}
 
-        <CryptoDataCont />
-
         {!this.state.indepthPage ? (
           <Segment
             style={{
-              "background-color": "black",
-              "border-style": "double",
-              "border-color": "#6666ff"
+              "background-color": "black"
             }}
           >
-            <Grid
-              columns={2}
-              divided
+            <CryptoDataCont />
+            <Segment
               style={{
-                "background-color": "black"
+                "background-color": "black",
+                "border-style": "double",
+                "border-color": "#6666ff"
               }}
             >
-              <Grid.Column
-                width={10}
+              <Grid
+                columns={2}
+                divided
                 style={{
                   "background-color": "black"
                 }}
               >
-                <CryptosContainer
-                  addCryptoToFavorites={this.addCryptoToFavorites}
-                  addFavoriteCryptoPrices={this.addFavoriteCryptoPrices}
-                  addPricesToFavorites={this.addPricesToFavorites}
-                />
-              </Grid.Column>
-              <Grid.Column
-                width={6}
-                style={{
-                  "background-color": "black"
-                }}
-              >
-                <CryptoSideCont
-                  currentUser={this.props.currentUser}
-                  showIndepthPage={this.showIndepthPage}
-                  clearFavorites={this.clearFavorites}
-                />
-                <Segment
+                <Grid.Column
+                  width={10}
                   style={{
-                    "background-color": "black",
-                    "border-style": "double",
-                    "border-color": "#6666ff"
+                    "background-color": "black"
                   }}
                 >
-                  <CryptoSideSub
-                    currentChannel={currentChannel}
-                    currentUser={this.props.currentUser}
-                    isPrivateChannel={isPrivateChannel}
-                    favorites={this.state.favorites}
+                  <CryptosContainer
+                    addCryptoToFavorites={this.addCryptoToFavorites}
+                    addFavoriteCryptoPrices={this.addFavoriteCryptoPrices}
                     addPricesToFavorites={this.addPricesToFavorites}
-                    favoritesPrices={this.state.favoritesPrices}
                   />
-                </Segment>
-              </Grid.Column>
-            </Grid>
+                </Grid.Column>
+                <Grid.Column
+                  width={6}
+                  style={{
+                    "background-color": "black"
+                  }}
+                >
+                  <CryptoSideCont
+                    currentUser={this.props.currentUser}
+                    showIndepthPage={this.showIndepthPage}
+                    clearFavorites={this.clearFavorites}
+                  />
+                  <Segment
+                    style={{
+                      "background-color": "black",
+                      "border-style": "double",
+                      "border-color": "#6666ff"
+                    }}
+                  >
+                    <CryptoSideSub
+                      currentChannel={currentChannel}
+                      currentUser={this.props.currentUser}
+                      isPrivateChannel={isPrivateChannel}
+                      favorites={this.state.favorites}
+                      addPricesToFavorites={this.addPricesToFavorites}
+                      favoritesPrices={this.state.favoritesPrices}
+                    />
+                  </Segment>
+                </Grid.Column>
+              </Grid>
+            </Segment>
+            <DashboardFeedCont />
           </Segment>
         ) : (
           <Segment style={{ "background-color": "black" }}>
@@ -264,17 +277,6 @@ class CryptosDashboard extends Component {
             />
           </Segment>
         )}
-        <Segment
-          attached="bottom"
-          onClick={this.showChartsPage}
-          style={{
-            "background-color": "black",
-            "border-style": "double",
-            "border-color": "#6666ff"
-          }}
-        >
-          {this.state.chartsPage ? <DashboardCont /> : null}
-        </Segment>
       </Segment>
     );
   }

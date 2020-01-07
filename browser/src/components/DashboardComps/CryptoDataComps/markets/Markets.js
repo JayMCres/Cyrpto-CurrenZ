@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
-import ExchangeItem from "./ExchangeItem";
+import Market from "./Market";
 
-export default class Exchanges extends Component {
+export default class Markets extends Component {
   state = {
     startIdx: 0,
-    endIdx: 8
+    endIdx: 5
   };
 
   componentDidMount() {
@@ -14,24 +14,24 @@ export default class Exchanges extends Component {
 
   startCarousel = () => {
     this.carouselInterval = setInterval(() => {
-      this.handleExchanges();
+      this.handleMarkets();
     }, 800);
   };
 
   showMore = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx + 8,
-        endIdx: prevState.endIdx + 8
+        startIdx: prevState.startIdx + 5,
+        endIdx: prevState.endIdx + 5
       };
     });
   };
 
-  handleExchanges = () => {
-    if (this.state.endIdx === this.props.exchanges.length - 4) {
+  handleMarkets = () => {
+    if (this.state.endIdx === this.props.markets.length) {
       this.setState({
         startIdx: 0,
-        endIdx: 8
+        endIdx: 5
       });
     }
     this.showMore();
@@ -42,21 +42,17 @@ export default class Exchanges extends Component {
 
   render() {
     // console.log("Exchanges Props", this.state);
-    const exchangeList = this.props.exchanges.slice(
+    const marketsList = this.props.markets.slice(
       this.state.startIdx,
       this.state.endIdx
     );
 
     return (
-      <Card.Group itemsPerRow={8}>
-        {/* <List divided horizontal size=" 'small'" itemsPerRow={10}> */}
-        {exchangeList.map((item, index) => {
-          return <ExchangeItem index={index} key={item.id} {...item} />;
+      <Card.Group itemsPerRow={5} centered>
+        {marketsList.map((item, index) => {
+          return <Market index={index} key={item.id} {...item} />;
         })}
-        {/* </List> */}
       </Card.Group>
     );
   }
 }
-
-// export default connect(mapStateToProps)(ExchangeCont);

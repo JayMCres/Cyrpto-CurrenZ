@@ -42,7 +42,6 @@ class DashboardChartCont extends Component {
   }
 
   render() {
-    console.log("Exchanges List Props", this.props);
     const chartsList = this.props.charts.slice(
       this.state.startIdx,
       this.state.endIdx

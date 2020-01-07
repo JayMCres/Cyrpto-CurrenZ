@@ -4,8 +4,11 @@ import News from "../api/NewsFetch";
 import Feed from "../api/FeedFetch";
 import Card from "../api/CardFetch";
 import Charts from "../api/ChartListFetch";
+import Global from "../api/GlobalDataFetch";
+import Market from "../api/MarketsFetch";
 
 export const FETCH_CRYPTOS = "FETCH_CRYPTOS";
+export const FETCH_GLOBAL = "FETCH_GLOBAL";
 export const FETCH_EXCHANGES = "FETCH_EXCHANGES";
 export const SET_CURRENT_CRYPTO = "SET_CURRENT_CRYPTO";
 export const FETCH_CRYPTO_PRICES = "FETCH_CRYPTO_PRICES";
@@ -19,11 +22,23 @@ export const FETCH_NEWS = "FETCH_NEWS";
 export const FETCH_FEED = "FETCH_FEED";
 export const FETCH_CARDS = "FETCH_CARDS";
 export const FETCH_CHARTS = "FETCH_CHARTS";
+export const FETCH_MARKETS = "FETCH_MARKETS";
 
 export const fetchChartsList = () => async dispatch => {
   const response = await Charts.get();
   // console.log("response", response.data);
   dispatch({ type: FETCH_CHARTS, payload: response.data });
+};
+
+export const fetchMarkets = () => async dispatch => {
+  const response = await Market.get();
+  // console.log("response", response.data);
+  dispatch({ type: FETCH_MARKETS, payload: response.data });
+};
+export const fetchGlobalData = () => async dispatch => {
+  const response = await Global.get();
+  // console.log("response", response.data);
+  dispatch({ type: FETCH_GLOBAL, payload: response.data });
 };
 
 export const fetchNews = () => async dispatch => {

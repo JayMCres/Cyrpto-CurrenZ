@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import CryptoDataMenu from "./CryptoDataMenu";
 import MarketCapCont from "./MarketCap/MarketCapCont";
 import VolumeCont from "./Volume/VolumeCont";
-
+import MarketsCont from "./markets/MarketsCont";
 class CryptoDataCont extends Component {
   state = { activeItem: "exchanges" };
 
@@ -29,7 +29,8 @@ class CryptoDataCont extends Component {
         exchanges: <ExchangeCont />,
         rates: <RatesCont />,
         market: <MarketCapCont />,
-        volume: <VolumeCont />
+        // volume: <VolumeCont />,
+        markets: <MarketsCont />
       };
       return <div>{HOME_PAGES[link]}</div>;
     };

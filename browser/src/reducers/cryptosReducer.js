@@ -9,7 +9,9 @@ import {
   FETCH_NEWS,
   FETCH_FEED,
   FETCH_CARDS,
-  FETCH_CHARTS
+  FETCH_CHARTS,
+  FETCH_GLOBAL,
+  FETCH_MARKETS
 } from "../actions/cryptos";
 
 const initialState = {
@@ -28,14 +30,19 @@ const initialState = {
   news: [],
   feed: [],
   cards: [],
-  charts: []
+  charts: [],
+  globalData: [],
+  markets: []
 };
 
 export default function cryptosReducer(state = initialState, action) {
   switch (action.type) {
-    // case SET_CRYPTO_CHART: {
-    //   return { ...state, chartPrices: action.payload };
-    // }
+    case FETCH_MARKETS: {
+      return { ...state, markets: action.payload };
+    }
+    case FETCH_GLOBAL: {
+      return { ...state, globalData: action.payload };
+    }
     case SET_CRYPTO_CHART: {
       return {
         ...state,

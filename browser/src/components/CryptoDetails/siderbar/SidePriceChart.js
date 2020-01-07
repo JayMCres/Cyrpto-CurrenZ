@@ -77,15 +77,15 @@ class SidePriceChart extends Component {
           {
             label: this.props.dayFive.d,
             value: this.props.dayFive.y
-          },
-          {
-            label: this.props.daySix.d,
-            value: this.props.daySix.y
-          },
-          {
-            label: this.props.daySeven.d,
-            value: this.props.daySeven.y
           }
+          // {
+          //   label: this.props.daySix.d,
+          //   value: this.props.daySix.y
+          // },
+          // {
+          //   label: this.props.daySeven.d,
+          //   value: this.props.daySeven.y
+          // }
         ]
       }
     };

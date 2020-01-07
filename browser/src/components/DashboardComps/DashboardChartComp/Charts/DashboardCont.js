@@ -5,15 +5,7 @@ import { connect } from "react-redux";
 
 class DashboardCont extends Component {
   render() {
-    // console.log("Exchanges Cont Props", this.props);
-    return (
-      <DashboardChartCont
-        charts={this.props.charts}
-        // exchanges={this.props.exchangesList.filter((item, index) => {
-        //   return index > 157;
-        // })}
-      />
-    );
+    return <DashboardChartCont charts={this.props.charts} />;
   }
 }
 
