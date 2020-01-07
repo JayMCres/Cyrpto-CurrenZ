@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Card, List } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import RateItem from "./RateItem";
 
 export default class Rates extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Icon, Segment, Header } from "semantic-ui-react";
+import { Menu, Icon, Header } from "semantic-ui-react";
 
 export default class CryptoDataMenu extends Component {
   render() {

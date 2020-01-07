@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Segment, Header, Grid, Image, List, Message } from "semantic-ui-react";
+import { Header, Grid, Image, List, Divider, Icon } from "semantic-ui-react";
 import PriceChart from "./PriceChart";
 import CapChart from "./CapChart";
 import VolumeChart from "./VolumeChart";
+import DashboardData from "./DashboardData";
 const moment = require("moment");
 
 export default class DashboardCharts extends Component {
@@ -32,117 +33,34 @@ export default class DashboardCharts extends Component {
   }
   render() {
     return (
-      <div
-        style={{
-          // "border-style": "double",
-          // "border-color": "blue",
-          "background-color": "black"
-        }}
-      >
-        <Header
-          as="h4"
-          dividing
+      <div>
+        <Grid
           style={{
-            color: "blue"
+            "background-color": "black"
           }}
         >
-          <Image circular src={this.props.image} />
-          {this.props.name}
-          <List bulleted horizontal floated="right">
-            <List.Item>
-              <b
+          <Grid.Row>
+            <Grid.Column width={4}>
+              <Header
+                as="h2"
                 style={{
-                  color: "white",
-                  "font-size": "10px"
+                  color: "Blue"
                 }}
               >
-                Market Cap|
-                <a
-                  style={{
-                    "font-size": "15px"
-                  }}
-                >
-                  {(this.props.market_cap / 1000000).toLocaleString("us-EN", {
-                    style: "currency",
-                    currency: "USD"
-                  })}
-                </a>{" "}
-              </b>
-            </List.Item>
-            <List.Item>
-              <b
-                style={{
-                  color: "white",
-                  "font-size": "10px"
-                }}
-              >
-                Volume|
-                <a
-                  style={{
-                    "font-size": "15px"
-                  }}
-                >
-                  {this.props.total_volume.toLocaleString()}
-                </a>{" "}
-              </b>
-            </List.Item>
-            <List.Item>
-              <b
-                style={{
-                  color: "white",
-                  "font-size": "10px"
-                }}
-              >
-                Price|
-                <a
-                  style={{
-                    "font-size": "15px"
-                  }}
-                >
-                  {this.props.current_price.toLocaleString("us-EN", {
-                    style: "currency",
-                    currency: "USD"
-                  })}
-                </a>{" "}
-              </b>
-            </List.Item>
-
-            <List.Item>
-              <b
-                style={{
-                  color: "white",
-                  "font-size": "10px"
-                }}
-              >
-                Change 24hrs|
-                <a
-                  style={{
-                    "font-size": "15px"
-                  }}
-                >
-                  {this.props.price_change_percentage_24h.toFixed(2)}%
-                </a>{" "}
-              </b>
-            </List.Item>
-            <List.Item>
-              <b
-                style={{
-                  color: "white",
-                  "font-size": "10px"
-                }}
-              >
-                Supply |{" "}
-                <a
-                  style={{
-                    "font-size": "15px"
-                  }}
-                >
-                  {this.props.circulating_supply.toLocaleString()}
-                </a>
-              </b>
-            </List.Item>
-          </List>
-        </Header>
+                <Image circular src={this.props.image} /> {this.props.name}
+              </Header>
+            </Grid.Column>
+            <Grid.Column width={12} verticalAlign="middle">
+              <DashboardData {...this.props} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Divider horizontal>
+          <Header as="h4" style={{ color: "blue" }}>
+            <Icon name="chart line" />
+            Charts
+          </Header>
+        </Divider>
 
         <Grid
           centered

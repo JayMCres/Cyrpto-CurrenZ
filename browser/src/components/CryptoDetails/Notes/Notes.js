@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  List,
-  Segment,
-  Modal,
-  Icon,
-  Form,
-  Button,
-  Input
-} from "semantic-ui-react";
+import { List } from "semantic-ui-react";
 import moment from "moment";
 
 export default class Notes extends Component {

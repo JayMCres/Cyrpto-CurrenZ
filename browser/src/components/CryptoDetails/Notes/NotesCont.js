@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Message, Card, Segment, Header, Icon } from "semantic-ui-react";
+import { Segment, Header, Icon } from "semantic-ui-react";
 import NotesForm from "./NotesForm";
 import firebase from "../../../config/firebase";
 import { connect } from "react-redux";
@@ -12,19 +12,10 @@ class NotesCont extends Component {
     noteTitle: "",
     noteDetails: "",
     notesRef: firebase.database().ref("notes"),
-    // activeNote: {},
     firstLoad: true,
-    notes: [],
     showNote: null
   };
 
-  // setActiveNote = noteId => {
-  //   const foundNote = this.state.notes.filter(note => {
-  //     return noteId === note.id;
-  //   });
-  //   console.log("foundNote", foundNote);
-  //   this.setState({ activeNote: foundNote });
-  // };
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -63,7 +54,7 @@ class NotesCont extends Component {
   addNote = () => {
     const userId = this.props.currentUser.uid;
     const { notesRef, noteTitle, noteDetails } = this.state;
-    const { currentUser, crypto } = this.props;
+    const { crypto } = this.props;
 
     const key = notesRef.push().key;
 
@@ -114,7 +105,7 @@ class NotesCont extends Component {
 
   render() {
     // console.log("Notes Cont Props", this.props);
-    console.log("Notes Cont State", this.state);
+    // console.log("Notes Cont State", this.state);
     const { noteTitle, noteDetails } = this.state;
     return (
       <div style={{ "background-color": "black" }}>

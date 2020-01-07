@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  Header,
-  Grid,
-  Image,
-  Statistic,
-  Segment,
-  Icon,
-  Message,
-  Label
-} from "semantic-ui-react";
+import { Header, Segment, Icon, Message } from "semantic-ui-react";
 import TickerFeed from "./TickerFeed";
 
 class TickerFeedCont extends Component {

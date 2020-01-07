@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, List, Message } from "semantic-ui-react";
+import { Image, List } from "semantic-ui-react";
 
 const ExchangeFeed = props => {
   console.log("Exchange Feed Props", props);
@@ -11,7 +11,6 @@ const ExchangeFeed = props => {
         "border-width": "1px"
       }}
     >
-      {/* <List.Item> */}
       <Image avatar src={props.iconUrl} />
       <List.Content>
         <List.Header as="a">{props.name}</List.Header>
@@ -19,7 +18,6 @@ const ExchangeFeed = props => {
           {props.websiteUrl}
         </List.Description>
       </List.Content>
-      {/* </List.Item> */}
 
       <List floated="right" celled horizontal style={{ color: "#6666ff" }}>
         <List.Item>Volume:</List.Item>

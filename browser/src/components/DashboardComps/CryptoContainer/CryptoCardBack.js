@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Card,
-  Image,
-  Button,
-  Statistic,
-  Message,
-  List
-} from "semantic-ui-react";
+import { Card, Image, List } from "semantic-ui-react";
 
 const CryptoCardBack = props => (
   <Card style={{ "border-style": "double", "border-color": "MediumSlateBlue" }}>

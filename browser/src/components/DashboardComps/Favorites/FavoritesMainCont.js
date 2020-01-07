@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Segment } from "semantic-ui-react";
+
 import FavoritesSubCont from "./FavoritesSubCont";
-import LoadingFavorites from "./LoadingFavorites";
+// import LoadingFavorites from "./LoadingFavorites";
 export default class FavoritesMainCont extends Component {
   state = { loadedFavorites: [] };
 

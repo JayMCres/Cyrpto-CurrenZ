@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Segment } from "semantic-ui-react";
+
 import FavoritesList from "./FavoritesList";
 
 export default class FavoritesSubCont extends Component {
   render() {
-    console.log("Favorites Sub Cont", this.props);
+    // console.log("Favorites Sub Cont", this.props);
 
     return (
       <FavoritesList

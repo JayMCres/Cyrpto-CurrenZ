@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Menu, Header, Icon, Image, Grid } from "semantic-ui-react";
+import { Segment, Grid } from "semantic-ui-react";
 import DashboardCont from "./Charts/DashboardCont";
 import DashboardFeedMenu from "./DashboardFeedMenu";
 import ExchangeFeedCont from "./ExchangeFeed/ExchangeFeedCont";
@@ -30,23 +30,27 @@ export default class DashBoardFeedCont extends Component {
       <Segment
         style={{
           "background-color": "black"
+          // "border-style": "double",
+          // "border-color": "#6666ff"
         }}
       >
-        <DashboardFeedMenu
-          activeItem={activeItem}
-          handleItemClick={this.handleItemClick}
-          showChartsPage={this.showChartsPage}
-        />
-        <Segment
-          attached="bottom"
-          style={{
-            "background-color": "black",
-            "border-style": "double",
-            "border-color": "#6666ff"
-          }}
-        >
-          {this.state.chartsPage ? onMenuClick(activeItem) : null}
-        </Segment>
+        <Grid>
+          <Grid.Column width={1}>
+            <DashboardFeedMenu
+              activeItem={activeItem}
+              handleItemClick={this.handleItemClick}
+              showChartsPage={this.showChartsPage}
+            />
+          </Grid.Column>
+          <Grid.Column
+            width={15}
+            style={{
+              "background-color": "black"
+            }}
+          >
+            {this.state.chartsPage ? onMenuClick(activeItem) : null}
+          </Grid.Column>
+        </Grid>
       </Segment>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { List } from "semantic-ui-react";
+import { List, Header, Icon } from "semantic-ui-react";
 import ExchangeFeed from "./ExchangeFeed";
 
 export default class ExchangeFeeds extends Component {
@@ -48,11 +48,20 @@ export default class ExchangeFeeds extends Component {
     );
 
     return (
-      <List animated verticalAlign="middle" divided>
-        {exchangesList.map((item, index) => {
-          return <ExchangeFeed index={index} key={item.id} {...item} />;
-        })}
-      </List>
+      <div>
+        <Header as="h3" dividing inverted>
+          <Icon name="settings" />
+          <Header.Content>
+            Exchanges
+            <Header.Subheader>Data Feed</Header.Subheader>
+          </Header.Content>
+        </Header>
+        <List animated verticalAlign="middle" divided>
+          {exchangesList.map((item, index) => {
+            return <ExchangeFeed index={index} key={item.id} {...item} />;
+          })}
+        </List>
+      </div>
     );
   }
 }

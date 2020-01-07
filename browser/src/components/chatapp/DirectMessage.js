@@ -1,5 +1,5 @@
 import React from "react";
-import { Segment, Icon, Menu, Header, List, Input } from "semantic-ui-react";
+import { Icon, List } from "semantic-ui-react";
 
 const DirectMessage = props => {
   // console.log("MESSAGE", props);

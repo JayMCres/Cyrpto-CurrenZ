@@ -2,7 +2,7 @@ import Cryptos from "../api/CryptosFetch";
 import Exchange from "../api/ExchangeFetch";
 import News from "../api/NewsFetch";
 import Feed from "../api/FeedFetch";
-import Card from "../api/CardFetch";
+
 import Charts from "../api/ChartListFetch";
 import Global from "../api/GlobalDataFetch";
 import Market from "../api/MarketsFetch";
@@ -20,7 +20,7 @@ export const SET_CRYPTO_DETAILS = "SET_CRYPTO_DETAILS";
 export const SET_HISTORICALS = "SET_HISTORICALS,";
 export const FETCH_NEWS = "FETCH_NEWS";
 export const FETCH_FEED = "FETCH_FEED";
-export const FETCH_CARDS = "FETCH_CARDS";
+
 export const FETCH_CHARTS = "FETCH_CHARTS";
 export const FETCH_MARKETS = "FETCH_MARKETS";
 
@@ -45,12 +45,6 @@ export const fetchNews = () => async dispatch => {
   const response = await News.get();
   // console.log("response", response);
   dispatch({ type: FETCH_NEWS, payload: response.data });
-};
-
-export const fetchCards = () => async dispatch => {
-  const response = await Card.get();
-  // console.log("response", response);
-  dispatch({ type: FETCH_CARDS, payload: response.data });
 };
 
 export const fetchFeed = () => async dispatch => {

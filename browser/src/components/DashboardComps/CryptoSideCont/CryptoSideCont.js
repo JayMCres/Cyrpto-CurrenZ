@@ -65,8 +65,7 @@ const mapStateToProps = state => ({
   crypto: state.cryptos.crypto,
   details: state.cryptos.details,
   prices: state.cryptos.prices,
-  chartPrices: state.cryptos.monthlyPrices,
-  cards: state.cryptos.cards[0]
+  chartPrices: state.cryptos.monthlyPrices
 });
 
 export default connect(mapStateToProps)(CryptoSideCont);

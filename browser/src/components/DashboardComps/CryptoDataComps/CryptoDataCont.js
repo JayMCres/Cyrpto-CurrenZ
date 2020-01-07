@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Menu, Header, Icon, Image, Grid } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 import ExchangeCont from "./Exchanges/ExchangeCont";
 import RatesCont from "./Rates/RatesCont";
 import { fetchRates } from "../../../actions/rates";
@@ -8,7 +8,7 @@ import { fetchMarketData, fetchVolumeData } from "../../../actions/global";
 import { connect } from "react-redux";
 import CryptoDataMenu from "./CryptoDataMenu";
 import MarketCapCont from "./MarketCap/MarketCapCont";
-import VolumeCont from "./Volume/VolumeCont";
+// import VolumeCont from "./Volume/VolumeCont";
 import MarketsCont from "./markets/MarketsCont";
 class CryptoDataCont extends Component {
   state = { activeItem: "exchanges" };

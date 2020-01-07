@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Card,
-  Label,
-  Icon,
-  Segment,
-  Image,
-  Message,
-  Header
-} from "semantic-ui-react";
+import { Label, Icon, Image, Message } from "semantic-ui-react";
 import Chart from "react-google-charts";
 
 export default class WeeklyChart extends Component {

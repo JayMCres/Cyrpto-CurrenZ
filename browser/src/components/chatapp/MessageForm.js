@@ -14,7 +14,7 @@ export default class MessageForm extends Component {
   };
 
   sendMessage = () => {
-    const { getMessagesRef, currentUser } = this.props;
+    const { getMessagesRef } = this.props;
     const { message, channel } = this.state;
     if (message) {
       this.setState({ loading: true });

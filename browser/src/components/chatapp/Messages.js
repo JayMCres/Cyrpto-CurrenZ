@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Label, Icon } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 import MessageHeader from "./MessageHeader";
 import MessageForm from "./MessageForm";
 import Message from "./Message";

@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Segment,
-  Header,
-  Image,
-  Icon,
-  Message,
-  Button
-} from "semantic-ui-react";
+
 import ReactFC from "react-fusioncharts";
 import { connect } from "react-redux";
 

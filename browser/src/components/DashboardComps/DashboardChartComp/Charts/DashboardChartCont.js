@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import DashboardCharts from "./DashboardCharts";
 
-import { Segment, Header, List } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 
 class DashboardChartCont extends Component {
   state = {
@@ -50,7 +50,9 @@ class DashboardChartCont extends Component {
     return (
       <Segment
         style={{
-          "background-color": "black"
+          "background-color": "black",
+          "border-style": "double",
+          "border-color": "#6666ff"
         }}
       >
         {chartsList.map(item => {

@@ -10,7 +10,6 @@ import {
   Form,
   Input,
   Button,
-  Message,
   List
 } from "semantic-ui-react";
 // import Messages from "./Messages";
@@ -166,8 +165,8 @@ class Channels extends Component {
   render() {
     // console.log("Channels State", this.state);
     // console.log("Channels Props", this.props);
-    const { channels, modal, showConvo } = this.state;
-    const { currentChannel, currentUser } = this.props;
+    const { channels, modal } = this.state;
+
     return (
       // prettier-ignore
       <div style={{"background-color": "black" }}>

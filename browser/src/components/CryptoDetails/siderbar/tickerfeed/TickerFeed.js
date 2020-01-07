@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Segment, Header, List } from "semantic-ui-react";
+import { List } from "semantic-ui-react";
 import FeedItem from "./FeedItem";
 
 export default class TickerFeed extends Component {

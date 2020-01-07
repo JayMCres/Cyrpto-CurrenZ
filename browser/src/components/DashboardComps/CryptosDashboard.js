@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Segment, Grid, Message, Header, Icon } from "semantic-ui-react";
-// import io from "socket.io-client";
+import { Segment, Grid } from "semantic-ui-react";
+
 import {
   fetchNews,
   fetchCryptos,
   fetchFeed,
-  fetchCards,
   fetchChartsList,
   fetchGlobalData,
   fetchMarkets
@@ -36,7 +35,6 @@ class CryptosDashboard extends Component {
     this.props.dispatch(fetchCryptos());
     this.props.dispatch(fetchNews());
     this.props.dispatch(fetchFeed());
-    this.props.dispatch(fetchCards());
     this.props.dispatch(fetchChartsList());
     this.props.dispatch(fetchGlobalData());
     this.props.dispatch(fetchMarkets());
@@ -185,7 +183,6 @@ class CryptosDashboard extends Component {
           "background-color": "black"
         }}
       >
-        {/* <CryptoDataCont /> */}
         {this.state.favorites.length === 0 ||
         this.props.cryptos.length === 0 ? null : (
           <FavoritesMainCont

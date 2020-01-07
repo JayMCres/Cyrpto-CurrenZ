@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Segment, Card, Button, Icon, Header } from "semantic-ui-react";
-import Favorite from "./Favorite";
+// import Favorite from "./Favorite";
 import WeeklyChart from "./WeeklyChart";
 
 export default class FavoritesList extends Component {

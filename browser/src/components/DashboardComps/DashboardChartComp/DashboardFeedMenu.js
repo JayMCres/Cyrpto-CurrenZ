@@ -4,7 +4,9 @@ import { Menu, Icon } from "semantic-ui-react";
 const DashboardFeedMenu = props => {
   return (
     <Menu
-      position="right"
+      compact
+      icon="labeled"
+      vertical
       size="mini"
       inverted
       style={{
@@ -12,29 +14,41 @@ const DashboardFeedMenu = props => {
       }}
     >
       <Menu.Item
+        style={{
+          "border-color": "#6666ff",
+          "border-style": "solid",
+          "border-width": "1px"
+        }}
         name="charts"
         active={props.activeItem === "charts"}
         onClick={props.handleItemClick}
-        // position="right"
       >
         <Icon name="area chart" />
       </Menu.Item>
       <Menu.Item
+        style={{
+          "border-color": "#6666ff",
+          "border-style": "solid",
+          "border-width": "1px"
+        }}
         name="feed"
         active={props.activeItem === "feed"}
         onClick={props.handleItemClick}
-        // position="right"
       >
         <Icon name="th list" />
       </Menu.Item>
 
       <Menu.Item
-        // position="right"
+        style={{
+          "border-color": "#6666ff",
+          "border-style": "solid",
+          "border-width": "1px"
+        }}
         name="signup"
-        // active={activeItem === "signup"}
+        active={props.activeItem === "signup"}
         onClick={props.showChartsPage}
       >
-        <Icon name="dropdown" />
+        <Icon name="x" />
       </Menu.Item>
     </Menu>
   );

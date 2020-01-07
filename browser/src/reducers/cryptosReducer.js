@@ -8,7 +8,6 @@ import {
   SET_HISTORICALS,
   FETCH_NEWS,
   FETCH_FEED,
-  FETCH_CARDS,
   FETCH_CHARTS,
   FETCH_GLOBAL,
   FETCH_MARKETS
@@ -29,7 +28,6 @@ const initialState = {
   historicals: [],
   news: [],
   feed: [],
-  cards: [],
   charts: [],
   globalData: [],
   markets: []
@@ -71,9 +69,6 @@ export default function cryptosReducer(state = initialState, action) {
     }
     case FETCH_EXCHANGES: {
       return { ...state, exchanges: action.payload };
-    }
-    case FETCH_CARDS: {
-      return { ...state, cards: action.payload };
     }
     case SET_CURRENT_CRYPTO: {
       return { ...state, crypto: action.payload };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Header } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 import Exchanges from "./Exchanges";
