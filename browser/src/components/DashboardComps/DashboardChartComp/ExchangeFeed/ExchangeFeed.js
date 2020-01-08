@@ -19,7 +19,7 @@ const ExchangeFeed = props => {
         </List.Description>
       </List.Content>
 
-      <List floated="right" celled horizontal style={{ color: "#6666ff" }}>
+      <List celled horizontal floated="right" style={{ color: "#6666ff" }}>
         <List.Item>Volume:</List.Item>
         <List.Item>{props.volume.toLocaleString()}</List.Item>
         <List.Item floated="right">Market Share:</List.Item>

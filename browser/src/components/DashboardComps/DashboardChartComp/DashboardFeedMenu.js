@@ -44,11 +44,11 @@ const DashboardFeedMenu = props => {
           "border-style": "solid",
           "border-width": "1px"
         }}
-        name="signup"
-        active={props.activeItem === "signup"}
-        onClick={props.showChartsPage}
+        name="widget"
+        active={props.activeItem === "widget"}
+        onClick={props.handleItemClick}
       >
-        <Icon name="x" />
+        <Icon name="bitcoin" />
       </Menu.Item>
     </Menu>
   );

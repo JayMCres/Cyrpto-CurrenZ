@@ -11,7 +11,7 @@ class NotesCont extends Component {
     notes: [],
     noteTitle: "",
     noteDetails: "",
-    notesRef: firebase.database().ref("notes"),
+    notesRef: [],
     firstLoad: true,
     showNote: null
   };
@@ -22,17 +22,19 @@ class NotesCont extends Component {
   componentDidMount() {
     this.addListeners();
   }
-
+  componentWillMount() {
+    this.setState({
+      notesRef: firebase.database().ref("notes")
+    });
+  }
   componentWillUnmount() {
     this.removeListeners();
   }
 
   removeListeners = () => {
     this.state.notesRef.off();
-    // this.state.channels.forEach(channel => {
-    //   this.state.messagesRef.child(channel.id).off();
-    // });
   };
+
   addListeners = () => {
     let loadedNotes = [];
     this.state.notesRef.on("child_added", snap => {

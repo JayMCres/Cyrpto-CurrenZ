@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-
-import DashboardChartCont from "./DashboardChartCont";
 import { connect } from "react-redux";
+import DashboardChartCont from "./DashboardChartCont";
 
 class DashboardCont extends Component {
   render() {

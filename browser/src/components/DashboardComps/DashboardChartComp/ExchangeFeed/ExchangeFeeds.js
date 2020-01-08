@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { List, Header, Icon } from "semantic-ui-react";
+import { List, Header, Icon, Grid } from "semantic-ui-react";
 import ExchangeFeed from "./ExchangeFeed";
 
 export default class ExchangeFeeds extends Component {
@@ -15,10 +15,10 @@ export default class ExchangeFeeds extends Component {
   startCarousel = () => {
     this.carouselInterval = setInterval(() => {
       this.handleFeed();
-    }, 2000);
+    }, 1000);
   };
 
-  showMore = () => {
+  showMoreFeed = () => {
     this.setState(prevState => {
       return {
         startIdx: prevState.startIdx + 5,
@@ -34,8 +34,9 @@ export default class ExchangeFeeds extends Component {
         endIdx: 5
       });
     }
-    this.showMore();
+    this.showMoreFeed();
   };
+
   componentWillUnmount() {
     clearInterval(this.carouselInterval);
   }
@@ -48,20 +49,11 @@ export default class ExchangeFeeds extends Component {
     );
 
     return (
-      <div>
-        <Header as="h3" dividing inverted>
-          <Icon name="settings" />
-          <Header.Content>
-            Exchanges
-            <Header.Subheader>Data Feed</Header.Subheader>
-          </Header.Content>
-        </Header>
-        <List animated verticalAlign="middle" divided>
-          {exchangesList.map((item, index) => {
-            return <ExchangeFeed index={index} key={item.id} {...item} />;
-          })}
-        </List>
-      </div>
+      <List animated verticalAlign="middle" divided>
+        {exchangesList.map((item, index) => {
+          return <ExchangeFeed index={index} key={item.id} {...item} />;
+        })}
+      </List>
     );
   }
 }

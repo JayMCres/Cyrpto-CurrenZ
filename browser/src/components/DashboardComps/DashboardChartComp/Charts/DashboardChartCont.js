@@ -50,9 +50,7 @@ class DashboardChartCont extends Component {
     return (
       <Segment
         style={{
-          "background-color": "black",
-          "border-style": "double",
-          "border-color": "#6666ff"
+          "background-color": "black"
         }}
       >
         {chartsList.map(item => {

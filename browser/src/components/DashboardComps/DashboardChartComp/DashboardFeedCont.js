@@ -3,6 +3,7 @@ import { Segment, Grid } from "semantic-ui-react";
 import DashboardCont from "./Charts/DashboardCont";
 import DashboardFeedMenu from "./DashboardFeedMenu";
 import ExchangeFeedCont from "./ExchangeFeed/ExchangeFeedCont";
+import WidgetCont from "./Widgets/WidgetCont";
 
 export default class DashBoardFeedCont extends Component {
   state = { activeItem: "charts", chartsPage: "true" };
@@ -20,7 +21,8 @@ export default class DashBoardFeedCont extends Component {
     const onMenuClick = link => {
       const MENU_PAGES = {
         charts: <DashboardCont />,
-        feed: <ExchangeFeedCont />
+        feed: <ExchangeFeedCont />,
+        widget: <WidgetCont />
       };
       return <div>{MENU_PAGES[link]}</div>;
     };
@@ -29,9 +31,10 @@ export default class DashBoardFeedCont extends Component {
     return (
       <Segment
         style={{
-          "background-color": "black"
-          // "border-style": "double",
-          // "border-color": "#6666ff"
+          "background-color": "black",
+          "border-style": "double",
+          "border-color": "orange",
+          "border-width": "1px"
         }}
       >
         <Grid>
@@ -48,7 +51,8 @@ export default class DashBoardFeedCont extends Component {
               "background-color": "black"
             }}
           >
-            {this.state.chartsPage ? onMenuClick(activeItem) : null}
+            <div>{onMenuClick(activeItem)}</div>
+            {/* {this.state.chartsPage ? onMenuClick(activeItem) : null} */}
           </Grid.Column>
         </Grid>
       </Segment>

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Header, Grid, Image, List, Divider, Icon } from "semantic-ui-react";
+import { Header, Grid, Image, Segment, Divider, Icon } from "semantic-ui-react";
 import PriceChart from "./PriceChart";
 import CapChart from "./CapChart";
 import VolumeChart from "./VolumeChart";
-import DashboardData from "./DashboardData";
+import CryptoDataHeader from "./CryptoDataHeader";
+
 const moment = require("moment");
 
 export default class DashboardCharts extends Component {
@@ -34,13 +35,20 @@ export default class DashboardCharts extends Component {
   render() {
     return (
       <div>
+        <Divider horizontal>
+          <Header as="h4" style={{ color: "blue" }}>
+            <Icon name="chart line" />
+            Charts
+          </Header>
+        </Divider>
+
         <Grid
           style={{
             "background-color": "black"
           }}
         >
           <Grid.Row>
-            <Grid.Column width={4}>
+            <Grid.Column width={8}>
               <Header
                 as="h2"
                 style={{
@@ -50,17 +58,11 @@ export default class DashboardCharts extends Component {
                 <Image circular src={this.props.image} /> {this.props.name}
               </Header>
             </Grid.Column>
-            <Grid.Column width={12} verticalAlign="middle">
-              <DashboardData {...this.props} />
+            <Grid.Column width={8} verticalAlign="middle">
+              <CryptoDataHeader {...this.props} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Divider horizontal>
-          <Header as="h4" style={{ color: "blue" }}>
-            <Icon name="chart line" />
-            Charts
-          </Header>
-        </Divider>
 
         <Grid
           centered
@@ -68,12 +70,12 @@ export default class DashboardCharts extends Component {
           columns="equal"
           divided
           style={{
-            "background-color": "black"
+            "background-color": "black",
+            "border-style": "double",
+            "border-color": "#6666ff"
           }}
         >
           <Grid.Column
-            // floated="left"
-            // width={5}
             style={{
               "background-color": "black"
             }}
@@ -81,7 +83,6 @@ export default class DashboardCharts extends Component {
             <CapChart data={this.state.capData} />
           </Grid.Column>
           <Grid.Column
-            // width={5}
             style={{
               "background-color": "black"
             }}
@@ -90,7 +91,6 @@ export default class DashboardCharts extends Component {
           </Grid.Column>
           <Grid.Column
             floated="right"
-            // width={5}
             style={{
               "background-color": "black"
             }}

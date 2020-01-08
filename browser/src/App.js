@@ -7,9 +7,13 @@ import CryptosDashboard from "./components/DashboardComps/CryptosDashboard";
 import firebase from "./config/firebase";
 class App extends Component {
   state = {
-    favoritesRef: firebase.database().ref("favorites")
+    favoritesRef: []
   };
-
+  componentWillMount() {
+    this.setState({
+      favoritesRef: firebase.database().ref("favorites")
+    });
+  }
   render() {
     // console.log("APP", this.props.currentUser);
     const { currentUser } = this.props;
