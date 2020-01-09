@@ -21,7 +21,7 @@ export default class VolumeChart extends Component {
   render() {
     const chartConfigs = {
       type: "area2d", // The chart type
-      width: "550", // Width of the chart
+      width: "530", // Width of the chart
       height: "200", // Height of the chart
       dataFormat: "json", // Data type
       renderAt: "chartContainer",

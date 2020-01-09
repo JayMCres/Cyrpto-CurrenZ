@@ -43,6 +43,7 @@ export default class DashboardCharts extends Component {
         </Divider>
 
         <Grid
+          centered
           style={{
             "background-color": "black"
           }}

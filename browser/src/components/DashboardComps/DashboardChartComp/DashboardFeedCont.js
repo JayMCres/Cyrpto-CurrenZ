@@ -1,17 +1,12 @@
 import React, { Component } from "react";
-import { Segment, Grid } from "semantic-ui-react";
+import { Segment, Grid, Icon, Button } from "semantic-ui-react";
 import DashboardCont from "./Charts/DashboardCont";
 import DashboardFeedMenu from "./DashboardFeedMenu";
 import ExchangeFeedCont from "./ExchangeFeed/ExchangeFeedCont";
 import WidgetCont from "./Widgets/WidgetCont";
 
 export default class DashBoardFeedCont extends Component {
-  state = { activeItem: "charts", chartsPage: "true" };
-  showChartsPage = () => {
-    return this.setState({
-      chartsPage: !this.state.chartsPage
-    });
-  };
+  state = { activeItem: "charts" };
 
   handleItemClick = (e, { name }) =>
     this.setState({ activeItem: name, chartsPage: "true" });
@@ -52,7 +47,6 @@ export default class DashBoardFeedCont extends Component {
             }}
           >
             <div>{onMenuClick(activeItem)}</div>
-            {/* {this.state.chartsPage ? onMenuClick(activeItem) : null} */}
           </Grid.Column>
         </Grid>
       </Segment>

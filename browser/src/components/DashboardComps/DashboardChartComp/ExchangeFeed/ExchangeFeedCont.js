@@ -15,7 +15,7 @@ class ExchangeFeedCont extends Component {
       >
         <Grid.Column
           floated="left"
-          width={8}
+          width={6}
           style={{
             "background-color": "black"
           }}
@@ -40,7 +40,7 @@ class ExchangeFeedCont extends Component {
         </Grid.Column>
         <Grid.Column
           floated="right"
-          width={8}
+          width={10}
           style={{
             "background-color": "black"
           }}

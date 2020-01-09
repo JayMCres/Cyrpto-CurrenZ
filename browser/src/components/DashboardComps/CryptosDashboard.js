@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Segment, Grid } from "semantic-ui-react";
+import { Segment, Grid, Icon } from "semantic-ui-react";
 
 import {
   fetchNews,
@@ -41,6 +41,12 @@ class CryptosDashboard extends Component {
     this.props.dispatch(fetchExchangeFeed());
     this.addListeners();
   }
+
+  showChartsPage = () => {
+    return this.setState({
+      chartsPage: !this.state.chartsPage
+    });
+  };
 
   showIndepthPage = () => {
     return this.setState({
@@ -261,7 +267,14 @@ class CryptosDashboard extends Component {
                 </Grid.Column>
               </Grid>
             </Segment>
-            <DashboardFeedCont />
+            <Icon
+              onClick={this.showChartsPage}
+              corner="top right"
+              name="chess board"
+              inverted
+              color="blue"
+            />
+            {this.state.chartsPage ? <DashboardFeedCont /> : null}
           </Segment>
         ) : (
           <Segment style={{ "background-color": "black" }}>

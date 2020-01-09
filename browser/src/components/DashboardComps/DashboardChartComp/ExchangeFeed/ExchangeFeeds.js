@@ -15,7 +15,7 @@ export default class ExchangeFeeds extends Component {
   startCarousel = () => {
     this.carouselInterval = setInterval(() => {
       this.handleFeed();
-    }, 1000);
+    }, 1500);
   };
 
   showMoreFeed = () => {

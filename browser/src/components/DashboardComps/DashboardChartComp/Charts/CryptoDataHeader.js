@@ -40,8 +40,8 @@ const CryptoDataHeader = props => {
       </Breadcrumb.Section>
       <Breadcrumb.Divider icon="circle" />
       <Breadcrumb.Divider icon="circle" />
-      <Breadcrumb.Divider icon="circle" />
-      <Breadcrumb.Divider icon="circle" />
+      {/* <Breadcrumb.Divider icon="circle" />
+      <Breadcrumb.Divider icon="circle" /> */}
       <Breadcrumb.Section link style={{ color: "white", "font-size": "20px" }}>
        Price
       </Breadcrumb.Section>

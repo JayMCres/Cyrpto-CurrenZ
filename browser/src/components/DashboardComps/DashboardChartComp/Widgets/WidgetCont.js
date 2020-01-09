@@ -51,7 +51,12 @@ class WidgetCont extends Component {
     );
 
     return (
-      <Segment>
+      <Segment
+        style={{
+          "border-color": "blue",
+          "border-style": "double"
+        }}
+      >
         <Segment textAlign="center" attached="top">
           <WidgetTicker />
         </Segment>
@@ -59,12 +64,12 @@ class WidgetCont extends Component {
           <WidgetChartTicker />
         </Segment>
         <Grid columns={2} divided>
-          <Grid.Column floated="left" width={5}>
+          <Grid.Column floated="left" width={4}>
             {chartsList.map(item => {
               return <WidgetChart key={item.id} {...item} />;
             })}
           </Grid.Column>
-          <Grid.Column floated="left" width={11}>
+          <Grid.Column floated="left" width={12}>
             <WidgetPrices />
           </Grid.Column>
         </Grid>
