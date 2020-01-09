@@ -3,7 +3,7 @@ const key = process.env.CC_TWO_KEY;
 const moment = require("moment");
 
 exports.getNewsFeed = async (req, res) => {
-  const url = `https://min-api.cryptocompare.com/data/news/feeds`;
+  const url = `https://min-api.cryptocompare.com/data/v2/news/?lang=EN`;
 
   let response = await fetch(url);
   // console.log("response", response);
@@ -11,10 +11,12 @@ exports.getNewsFeed = async (req, res) => {
   let json = await response.json();
   // console.log("JSON", json);
 
-  let data = await json.map(item => {
-    return item;
-  });
-  // console.log("DATA", data);
+  let data = await json.Data;
+
+  // .map(item => {
+  //   return item;
+  // });
+  console.log("DATA", data);
 
   // let newsArray = await data.map(object => {
   //   let date = moment(object.published_on * 1000).format("MMM DD YYYY");

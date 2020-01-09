@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 // const key = process.env.CC_TWO_KEY;
-const key = process.env.CC_API_KEY;
+const key = process.env.API_KEY;
 const bodyParser = require("body-parser");
 const app = express();
 const fetch = require("node-fetch");
