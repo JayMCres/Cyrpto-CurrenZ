@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment } from "semantic-ui-react";
+
 import { connect } from "react-redux";
 // import Channels from "../../chatapp/Channels";
 
@@ -13,7 +13,7 @@ import SideMessenger from "../../chatapp/SideMessenger";
 class CryptoSideSub extends Component {
   render() {
     // console.log("Side Sub", this.props);
-    const { currentChannel, currentUser, isPrivateChannel } = this.props;
+    // const { currentChannel, currentUser, isPrivateChannel } = this.props;
 
     return (
       <SideMessenger

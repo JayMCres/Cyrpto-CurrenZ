@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import firebase from "../../config/firebase";
 import app from "./App.css";
-
 import {
   Grid,
   Form,

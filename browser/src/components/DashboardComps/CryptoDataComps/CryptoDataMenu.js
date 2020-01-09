@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Icon, Segment, Header } from "semantic-ui-react";
+import { Menu, Icon, Header } from "semantic-ui-react";
 
 export default class CryptoDataMenu extends Component {
   render() {
@@ -32,6 +32,24 @@ export default class CryptoDataMenu extends Component {
             Crypto Indexes
           </strong>
         </Menu.Item>
+
+        <Menu.Item
+          style={{
+            color: "#8080ff",
+            // "border-style": "ridge",
+            // "border-color": "blue",
+            "text-align": "center"
+          }}
+          name="markets"
+          active={activeItem === "markets"}
+          onClick={this.props.handleItemClick}
+        >
+          <strong>
+            <Icon name="credit card" />
+            Crypto Markets
+          </strong>
+        </Menu.Item>
+
         <Menu.Item
           style={{
             color: "#8080ff",
@@ -64,7 +82,7 @@ export default class CryptoDataMenu extends Component {
             Market Cap
           </strong>
         </Menu.Item>
-        <Menu.Item
+        {/* <Menu.Item
           style={{
             color: "#8080ff",
             // "border-style": "ridge",
@@ -79,7 +97,8 @@ export default class CryptoDataMenu extends Component {
             <Icon name="credit card" />
             Volume
           </strong>
-        </Menu.Item>
+        </Menu.Item> */}
+
         <Menu.Item>
           <Header as="h2" style={{ color: "white" }} floated="right">
             <Icon name="bity" />

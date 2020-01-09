@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Card, List } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import ExchangeItem from "./ExchangeItem";
 
 export default class Exchanges extends Component {

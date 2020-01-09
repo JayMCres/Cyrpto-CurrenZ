@@ -1,7 +1,8 @@
-import { FETCH_EXCHANGES } from "../actions/exchanges";
+import { FETCH_EXCHANGES, FETCH_EXCHANGE_FEED } from "../actions/exchanges";
 
 const initialState = {
-  exchanges: []
+  exchanges: [],
+  exchangeFeed: []
 };
 
 export default function exchangesReducer(state = initialState, action) {
@@ -9,6 +10,10 @@ export default function exchangesReducer(state = initialState, action) {
     case FETCH_EXCHANGES: {
       return { ...state, exchanges: action.payload };
     }
+    case FETCH_EXCHANGE_FEED: {
+      return { ...state, exchangeFeed: action.payload };
+    }
+
     default:
       return state;
   }

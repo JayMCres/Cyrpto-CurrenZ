@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 // import uuid from "uuid";
 
-import { Input, Segment, Table } from "semantic-ui-react";
-import PriceTable from "./PriceTable";
+import { Table } from "semantic-ui-react";
 
 class TableHeader extends Component {
   render() {

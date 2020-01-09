@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment } from "semantic-ui-react";
+
 import FavoritesList from "./FavoritesList";
 
 export default class FavoritesSubCont extends Component {
@@ -7,7 +7,6 @@ export default class FavoritesSubCont extends Component {
     // console.log("Favorites Sub Cont", this.props);
 
     return (
-      // <Segment inverted>
       <FavoritesList
         handlePriceClear={this.props.handlePriceClear}
         handleCryptoPriceFetch={this.props.handleCryptoPriceFetch}
@@ -15,13 +14,11 @@ export default class FavoritesSubCont extends Component {
         removeCryptoFromFavorites={this.props.removeCryptoFromFavorites}
         prices={this.props.favoritesPrices.map(price => {
           return {
-            dayOne: price[0],
-            dayTwo: price[1],
+            dayOne: price[4],
+            dayTwo: price[3],
             dayThree: price[2],
-            dayFour: price[3],
-            dayFive: price[4],
-            daySix: price[5],
-            daySeven: price[6]
+            dayFour: price[1],
+            dayFive: price[0]
           };
         })}
       />

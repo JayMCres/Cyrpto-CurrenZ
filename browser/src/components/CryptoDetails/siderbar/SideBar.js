@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Segment } from "semantic-ui-react";
-import NewsList from "../newsfeed/NewsList";
+import NewsList from "../news/NewsList";
 import SideMessenger from "../../chatapp/SideMessenger";
 import SideBarMenu from "./SideBarMenu";
+import NotesCont from "../Notes/NotesCont";
 // import CryptoSideSub from "../../DashboardComps/CryptoSideCont/CryptoSideSub";
 
 export default class SideBar extends Component {
@@ -18,6 +19,7 @@ export default class SideBar extends Component {
     const { activeItem } = this.state;
     const onSideMenuClick = link => {
       const SIDE_PAGES = {
+        notes: <NotesCont />,
         news: <NewsList filteredNews={this.props.filteredNews} />,
         messages: (
           <SideMessenger
@@ -41,7 +43,11 @@ export default class SideBar extends Component {
     };
 
     return (
-      <div>
+      <div
+        style={{
+          "background-color": "black"
+        }}
+      >
         <Segment
           style={{
             "background-color": "black",

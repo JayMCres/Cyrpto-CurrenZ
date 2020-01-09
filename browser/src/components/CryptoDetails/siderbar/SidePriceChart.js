@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Segment,
-  Header,
-  Image,
-  Icon,
-  Message,
-  Button
-} from "semantic-ui-react";
+
 import ReactFC from "react-fusioncharts";
 import { connect } from "react-redux";
 
@@ -77,15 +70,15 @@ class SidePriceChart extends Component {
           {
             label: this.props.dayFive.d,
             value: this.props.dayFive.y
-          },
-          {
-            label: this.props.daySix.d,
-            value: this.props.daySix.y
-          },
-          {
-            label: this.props.daySeven.d,
-            value: this.props.daySeven.y
           }
+          // {
+          //   label: this.props.daySix.d,
+          //   value: this.props.daySix.y
+          // },
+          // {
+          //   label: this.props.daySeven.d,
+          //   value: this.props.daySeven.y
+          // }
         ]
       }
     };

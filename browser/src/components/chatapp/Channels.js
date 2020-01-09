@@ -10,7 +10,6 @@ import {
   Form,
   Input,
   Button,
-  Message,
   List
 } from "semantic-ui-react";
 // import Messages from "./Messages";
@@ -21,13 +20,16 @@ class Channels extends Component {
     modal: false,
     channelName: "",
     channelDetails: "",
-    channelsRef: firebase.database().ref("channels"),
-    // messagesRef: firebase.database().ref("messages"),
+    channelsRef: [],
     activeChannel: "",
-    // showConvo: false,
     firstLoad: true
   };
 
+  componentWillMount() {
+    this.setState({
+      channelsRef: firebase.database().ref("channels")
+    });
+  }
   componentDidMount() {
     this.addListeners();
   }
@@ -38,18 +40,12 @@ class Channels extends Component {
 
   removeListeners = () => {
     this.state.channelsRef.off();
-    // this.state.channels.forEach(channel => {
-    //   this.state.messagesRef.child(channel.id).off();
-    // });
   };
   addListeners = () => {
     let loadedChannels = [];
     this.state.channelsRef.on("child_added", snap => {
       loadedChannels.push(snap.val());
-      // console.log(loadedChannels);
-      // this.setState({ channels: loadedChannels });
       this.setState({ channels: loadedChannels }, () => this.setFirstChannel());
-      // this.addNotificationListener(snap.key);
     });
   };
 
@@ -120,7 +116,6 @@ class Channels extends Component {
   changeChannel = channel => {
     // console.log(channel);
     this.setActiveChannel(channel);
-
     this.props.setCurrentChannel(channel);
     this.props.renderChannelConvo();
     this.props.setPrivateChannel(false);
@@ -170,8 +165,8 @@ class Channels extends Component {
   render() {
     // console.log("Channels State", this.state);
     // console.log("Channels Props", this.props);
-    const { channels, modal, showConvo } = this.state;
-    const { currentChannel, currentUser } = this.props;
+    const { channels, modal } = this.state;
+
     return (
       // prettier-ignore
       <div style={{"background-color": "black" }}>

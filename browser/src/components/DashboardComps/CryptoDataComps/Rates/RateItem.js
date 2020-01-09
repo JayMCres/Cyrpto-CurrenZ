@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Statistic, Icon, Message, Item } from "semantic-ui-react";
+import { Card, Item } from "semantic-ui-react";
 
 const RateItem = props => {
   // console.log("Index Item Props", props);

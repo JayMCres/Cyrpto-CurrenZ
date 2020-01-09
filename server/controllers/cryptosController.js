@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
-const key = process.env.CC_TWO_KEY;
+// const key = process.env.CC_TWO_KEY;
+const key = process.env.API_KEY;
 
 exports.getAllCryptos = async (req, res) => {
   const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=50&tsym=USD&api_key=${key}`;

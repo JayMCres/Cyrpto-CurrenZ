@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Segment, List, Image, Label, Icon } from "semantic-ui-react";
+import { Card, List, Image, Label, Icon } from "semantic-ui-react";
 
 class Favorite extends Component {
   render() {

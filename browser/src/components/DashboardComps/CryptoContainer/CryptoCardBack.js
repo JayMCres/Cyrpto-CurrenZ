@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Card,
-  Image,
-  Button,
-  Statistic,
-  Message,
-  List
-} from "semantic-ui-react";
+import { Card, Image, List } from "semantic-ui-react";
 
 const CryptoCardBack = props => (
   <Card style={{ "border-style": "double", "border-color": "MediumSlateBlue" }}>
@@ -24,7 +17,7 @@ const CryptoCardBack = props => (
             <List.Icon name="expand" size="small" verticalAlign="middle" />
             <List.Content>
               <List.Header as="a">{props.details.MKTCAP}</List.Header>
-              <List.Description as="a">Market Cap</List.Description>
+              <List.Description as="a">Market Cap</List.Description>{" "}
             </List.Content>
           </List.Item>
           <List.Item>

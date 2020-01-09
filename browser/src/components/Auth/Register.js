@@ -11,7 +11,7 @@ import {
 } from "semantic-ui-react";
 import md5 from "md5";
 import { Link } from "react-router-dom";
-// import app from "./App.css";
+import app from "./App.css";
 
 export default class Register extends Component {
   state = {

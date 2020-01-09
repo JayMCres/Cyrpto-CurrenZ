@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Button, Image, Message, List } from "semantic-ui-react";
+import { Button, Image, List } from "semantic-ui-react";
 import firebase from "../../../config/firebase";
 
 export default class UserProfile extends Component {

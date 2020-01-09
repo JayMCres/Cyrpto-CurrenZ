@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Card, List } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import Volume from "./Volume";
 
 export default class Volumes extends Component {

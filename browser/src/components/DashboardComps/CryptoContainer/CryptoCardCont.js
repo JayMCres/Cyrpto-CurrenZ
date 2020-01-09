@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Message, Card } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import CryptoCardFront from "./CryptoCardFront";
 import CryptoCardBack from "./CryptoCardBack";
 

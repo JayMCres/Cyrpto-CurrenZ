@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Image, Button, Statistic, Message } from "semantic-ui-react";
+import { Card, Image, Button, Statistic } from "semantic-ui-react";
 
 class CryptoListItem extends Component {
   state = {
