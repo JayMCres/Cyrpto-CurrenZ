@@ -5,7 +5,7 @@ import TickerFeed from "./TickerFeed";
 
 class TickerFeedCont extends Component {
   render() {
-    console.log("GlobalCont Props", this.props);
+    // console.log("GlobalCont Props", this.props);
 
     return (
       <Segment
@@ -16,16 +16,7 @@ class TickerFeedCont extends Component {
         }}
       >
         <Message color="violet">
-          <Header
-            as="h2"
-            style={
-              {
-                // "border-style": "double",
-                // "border-color": "#6666ff",
-                // "background-color": "#6666ff"
-              }
-            }
-          >
+          <Header as="h2">
             <Icon name="chart line" />
             <Header.Content>
               Crypto Feed

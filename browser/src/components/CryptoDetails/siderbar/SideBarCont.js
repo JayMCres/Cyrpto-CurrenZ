@@ -9,16 +9,6 @@ import SideBar from "./SideBar";
 import TickerFeedCont from "./tickerfeed/TickerFeedCont";
 class SideBarCont extends Component {
   render() {
-    // console.log("Side", this.props);
-    // const sidePrices = this.props.prices.map((price, index) => {
-    //   return {
-    //     dayOne: price[4],
-    //     dayTwo: price[3],
-    //     dayThree: price[2],
-    //     dayFour: price[1],
-    //     dayFive: price[0]
-    //   };
-    // });
     return (
       <Segment
         inverted
@@ -35,9 +25,6 @@ class SideBarCont extends Component {
           style={{ "border-style": "none", "background-color": "black" }}
         >
           <TickerFeedCont />
-          {/* {sidePrices.map((price, index) => {
-            return <SidePriceChart key={index} {...price} />;
-          })} */}
         </Segment>
         <Segment
           style={{ "border-style": "none", "background-color": "black" }}

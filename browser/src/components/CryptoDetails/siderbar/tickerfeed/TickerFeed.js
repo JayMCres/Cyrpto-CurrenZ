@@ -42,7 +42,7 @@ export default class TickerFeed extends Component {
   }
 
   render() {
-    console.log("tickerfeed Props", this.props);
+    // console.log("tickerfeed Props", this.props);
     const tickerFeedList = this.props.feedData.slice(
       this.state.startIdx,
       this.state.endIdx

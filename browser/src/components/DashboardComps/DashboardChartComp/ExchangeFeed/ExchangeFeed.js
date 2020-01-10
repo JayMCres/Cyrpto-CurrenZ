@@ -2,7 +2,7 @@ import React from "react";
 import { Image, List } from "semantic-ui-react";
 
 const ExchangeFeed = props => {
-  console.log("Exchange Feed Props", props);
+  // console.log("Exchange Feed Props", props);
   return (
     <List.Item
       style={{
