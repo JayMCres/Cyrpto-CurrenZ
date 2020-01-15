@@ -40,6 +40,12 @@ export default class ExchangeFeeds extends Component {
   componentWillUnmount() {
     clearInterval(this.carouselInterval);
   }
+  handleIntervalStop = () => {
+    clearInterval(this.carouselInterval);
+  };
+  handleIntervalStart = () => {
+    this.startCarousel();
+  };
 
   render() {
     // console.log("Exchanges Props", this.state);
@@ -49,9 +55,21 @@ export default class ExchangeFeeds extends Component {
     );
 
     return (
-      <List animated verticalAlign="middle" divided>
+      <List
+        animated
+        verticalAlign="middle"
+        divided
+        onMouseLeave={this.handleIntervalStart}
+      >
         {exchangesList.map((item, index) => {
-          return <ExchangeFeed index={index} key={item.id} {...item} />;
+          return (
+            <ExchangeFeed
+              index={index}
+              key={item.id}
+              {...item}
+              handleIntervalStop={this.handleIntervalStop}
+            />
+          );
         })}
       </List>
     );

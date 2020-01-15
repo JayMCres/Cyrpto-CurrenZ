@@ -10,6 +10,7 @@ const ExchangeFeed = props => {
         "border-bottom-style": "solid",
         "border-width": "1px"
       }}
+      onClick={() => props.handleIntervalStop()}
     >
       <Image avatar src={props.iconUrl} />
       <List.Content>
