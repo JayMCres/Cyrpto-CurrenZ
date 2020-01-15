@@ -16,7 +16,7 @@ export default class TickerFeed extends Component {
   startCarousel = () => {
     this.carouselInterval = setInterval(() => {
       this.handleFeed();
-    }, 2000);
+    }, 3000);
   };
 
   showMore = () => {
@@ -41,6 +41,13 @@ export default class TickerFeed extends Component {
     clearInterval(this.carouselInterval);
   }
 
+  handleIntervalStop = () => {
+    clearInterval(this.carouselInterval);
+  };
+  handleIntervalStart = () => {
+    this.startCarousel();
+  };
+
   render() {
     // console.log("tickerfeed Props", this.props);
     const tickerFeedList = this.props.feedData.slice(
@@ -50,9 +57,20 @@ export default class TickerFeed extends Component {
     // console.log("Cards Cont Props", this.props);
 
     return (
-      <List animated verticalAlign="middle" divided>
+      <List
+        animated
+        verticalAlign="middle"
+        divided
+        onMouseLeave={this.handleIntervalStart}
+      >
         {tickerFeedList.map(item => {
-          return <FeedItem key={item.id} {...item} />;
+          return (
+            <FeedItem
+              key={item.id}
+              {...item}
+              handleIntervalStop={this.handleIntervalStop}
+            />
+          );
         })}
       </List>
     );
