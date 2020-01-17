@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Segment, Card, Button, Icon, Header } from "semantic-ui-react";
 // import Favorite from "./Favorite";
 import WeeklyChart from "./WeeklyChart";
+import uuid from "react-uuid";
 
 export default class FavoritesList extends Component {
   state = {
@@ -117,7 +118,7 @@ export default class FavoritesList extends Component {
                 return (
                   <Card inverted>
                     <WeeklyChart
-                      key={index}
+                      key={uuid()}
                       {...crypto}
                       removeCryptoFromFavorites={
                         this.props.removeCryptoFromFavorites

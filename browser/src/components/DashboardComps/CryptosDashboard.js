@@ -103,7 +103,6 @@ class CryptosDashboard extends Component {
   };
 
   addNewItemToFavorites = async newFav => {
-    // console.log("new fav", newFav);
     await this.setState({
       favorites: [...this.state.favorites, newFav]
     });
