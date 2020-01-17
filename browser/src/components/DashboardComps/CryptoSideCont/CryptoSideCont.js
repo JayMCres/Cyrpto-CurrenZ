@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CryptoSideDetails from "./CryptoSideDetails";
 import WeeklyPriceChart from "./WeeklyPriceChart";
 import { connect } from "react-redux";
-import { Message, Segment } from "semantic-ui-react";
+import { Message, Segment, Progress } from "semantic-ui-react";
 import UserProfile from "./UserProfile";
 import CryptoLoading from "./CryptoLoading";
 class CryptoSideCont extends Component {
@@ -15,6 +15,7 @@ class CryptoSideCont extends Component {
   };
   render() {
     const { currentUser } = this.props;
+    console.log("Chart Prices", this.props.chartPrices);
 
     return (
       <div style={{ "background-color": "black" }}>
@@ -47,8 +48,11 @@ class CryptoSideCont extends Component {
                 centered
                 attached="bottom"
               >
-                {this.props.chartPrices.length === 0 ? (
-                  <div>Loading...</div>
+                {this.props.chartPrices.length < 30 ? (
+                  <Progress inverted color="violet" active>
+                    {" "}
+                    LOADING{" "}
+                  </Progress>
                 ) : (
                   <WeeklyPriceChart prices={this.props.chartPrices} />
                 )}

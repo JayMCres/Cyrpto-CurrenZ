@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Header, Segment, Icon, Message } from "semantic-ui-react";
+import { Header, Segment, Icon, Message, Input } from "semantic-ui-react";
 import TickerFeed from "./TickerFeed";
 
 class TickerFeedCont extends Component {
   render() {
-    console.log("GlobalCont Props", this.props);
+    // console.log("GlobalCont Props", this.props);
 
     return (
       <Segment
@@ -16,16 +16,7 @@ class TickerFeedCont extends Component {
         }}
       >
         <Message color="violet">
-          <Header
-            as="h2"
-            style={
-              {
-                // "border-style": "double",
-                // "border-color": "#6666ff",
-                // "background-color": "#6666ff"
-              }
-            }
-          >
+          <Header loated="left" as="h4">
             <Icon name="chart line" />
             <Header.Content>
               Crypto Feed
@@ -33,6 +24,7 @@ class TickerFeedCont extends Component {
             </Header.Content>
           </Header>
         </Message>
+
         <TickerFeed feedData={this.props.feedData} />
       </Segment>
     );

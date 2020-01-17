@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Segment, Grid, Icon } from "semantic-ui-react";
+import { Segment, Grid, Icon, Message } from "semantic-ui-react";
 
 import {
   fetchNews,
@@ -103,7 +103,6 @@ class CryptosDashboard extends Component {
   };
 
   addNewItemToFavorites = async newFav => {
-    // console.log("new fav", newFav);
     await this.setState({
       favorites: [...this.state.favorites, newFav]
     });
@@ -267,14 +266,27 @@ class CryptosDashboard extends Component {
                 </Grid.Column>
               </Grid>
             </Segment>
-            <Icon
-              onClick={this.showChartsPage}
-              corner="top right"
-              name="chess board"
-              inverted
-              color="blue"
-            />
-            {this.state.chartsPage ? <DashboardFeedCont /> : null}
+
+            {this.state.chartsPage ? (
+              <DashboardFeedCont showChartsPage={this.showChartsPage} />
+            ) : (
+              <Segment
+                style={{
+                  "background-color": "black",
+                  color: "blue",
+                  "border-style": "double",
+                  "border-color": "#6666ff"
+                }}
+              >
+                <Icon
+                  size="big"
+                  name="arrow alternate circle down"
+                  style={{ color: "#6666ff" }}
+                  onClick={this.showChartsPage}
+                />{" "}
+                Display Segment
+              </Segment>
+            )}
           </Segment>
         ) : (
           <Segment style={{ "background-color": "black" }}>

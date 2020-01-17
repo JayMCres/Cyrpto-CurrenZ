@@ -3,21 +3,12 @@ import { List, Segment, Message } from "semantic-ui-react";
 import Note from "./Note";
 
 export default class Notes extends Component {
-  state = { activeNote: [] };
-
-  setActiveNote = noteId => {
-    const foundNote = this.props.notes.filter(note => {
-      return noteId === note.id;
-    });
-    console.log("foundNote", foundNote);
-    this.setState({ activeNote: foundNote[0] });
-  };
   render() {
     // console.log("NoteList Props", this.props);
     return (
       <Segment
         style={{
-          "background-color": "	#F5F5F5"
+          "background-color": "black"
         }}
       >
         {this.props.notes.length === 0 ? (
@@ -30,8 +21,9 @@ export default class Notes extends Component {
                   key={note.id}
                   {...note}
                   removeNote={this.props.removeNote}
-                  setActiveNote={this.setActiveNote}
-                  activeNote={this.state.activeNote}
+                  setActiveNote={this.props.setActiveNote}
+                  activeNote={this.props.activeNote}
+                  handleUpdateRender={this.props.handleUpdateRender}
                 />
               );
             })}

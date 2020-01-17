@@ -2,7 +2,7 @@ import React from "react";
 import { Image, List } from "semantic-ui-react";
 
 const ExchangeFeed = props => {
-  console.log("Exchange Feed Props", props);
+  // console.log("Exchange Feed Props", props);
   return (
     <List.Item
       style={{
@@ -10,6 +10,7 @@ const ExchangeFeed = props => {
         "border-bottom-style": "solid",
         "border-width": "1px"
       }}
+      onClick={() => props.handleIntervalStop()}
     >
       <Image avatar src={props.iconUrl} />
       <List.Content>

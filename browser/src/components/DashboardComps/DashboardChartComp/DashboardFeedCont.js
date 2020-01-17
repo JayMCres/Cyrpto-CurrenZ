@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Grid, Icon, Button } from "semantic-ui-react";
+import { Segment, Grid, Icon, Label } from "semantic-ui-react";
 import DashboardCont from "./Charts/DashboardCont";
 import DashboardFeedMenu from "./DashboardFeedMenu";
 import ExchangeFeedCont from "./ExchangeFeed/ExchangeFeedCont";
@@ -32,6 +32,10 @@ export default class DashBoardFeedCont extends Component {
           "border-width": "1px"
         }}
       >
+        <Label as="a" corner="right" color="red">
+          <Icon name="remove" onClick={this.props.showChartsPage} />
+        </Label>
+
         <Grid>
           <Grid.Column width={1}>
             <DashboardFeedMenu

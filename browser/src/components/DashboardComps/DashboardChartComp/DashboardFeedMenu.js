@@ -23,7 +23,7 @@ const DashboardFeedMenu = props => {
         active={props.activeItem === "charts"}
         onClick={props.handleItemClick}
       >
-        <Icon name="area chart" />
+        <Icon name="area chart" size="tiny" />
       </Menu.Item>
       <Menu.Item
         style={{
@@ -35,7 +35,7 @@ const DashboardFeedMenu = props => {
         active={props.activeItem === "feed"}
         onClick={props.handleItemClick}
       >
-        <Icon name="th list" />
+        <Icon name="th list" size="tiny" />
       </Menu.Item>
 
       <Menu.Item
@@ -48,7 +48,7 @@ const DashboardFeedMenu = props => {
         active={props.activeItem === "widget"}
         onClick={props.handleItemClick}
       >
-        <Icon name="bitcoin" />
+        <Icon name="bitcoin" size="tiny" />
       </Menu.Item>
     </Menu>
   );

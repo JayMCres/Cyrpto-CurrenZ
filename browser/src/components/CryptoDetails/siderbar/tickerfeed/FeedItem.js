@@ -4,6 +4,7 @@ import { Image, List } from "semantic-ui-react";
 const FeedItem = props => {
   return (
     <List.Item
+      onClick={() => props.handleIntervalStop()}
       style={{
         "border-color": "#6666ff",
         "border-bottom-style": "solid",
@@ -12,7 +13,7 @@ const FeedItem = props => {
     >
       <Image avatar src={props.image} />
       <List.Content as="a">{props.name}</List.Content>
-      <List.Content as="a" floated="right">
+      <List.Content as="a" floated="right" verticalAlign="middle">
         {props.current_price.toLocaleString("us-EN", {
           style: "currency",
           currency: "USD"

@@ -4,7 +4,7 @@ import NotesForm from "./NotesForm";
 import firebase from "../../../config/firebase";
 import { connect } from "react-redux";
 import NotesList from "./NotesList";
-import NotePopUp from "./NotePopUp";
+import NoteUpdate from "./NoteUpdate";
 
 class NotesCont extends Component {
   state = {
@@ -13,7 +13,17 @@ class NotesCont extends Component {
     noteDetails: "",
     notesRef: [],
     firstLoad: true,
-    showNote: null
+    showNote: null,
+    showEditForm: false,
+    activeNote: []
+  };
+
+  setActiveNote = noteId => {
+    const foundNote = this.state.notes.filter(note => {
+      return noteId === note.id;
+    });
+    console.log("foundNote", foundNote);
+    this.setState({ activeNote: foundNote[0] });
   };
 
   handleChange = event => {
@@ -82,6 +92,13 @@ class NotesCont extends Component {
         console.error(err);
       });
   };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    if (this.isFormValid(this.state)) {
+      this.addNote();
+    }
+  };
   removeNote = async noteId => {
     const deleteNote = this.state.notes.find(item => item.id === noteId);
     this.state.notesRef.child(deleteNote.id).remove();
@@ -105,57 +122,79 @@ class NotesCont extends Component {
 
   isFormValid = ({ noteTitle, noteDetails }) => noteTitle && noteDetails;
 
+  handleUpdateRender = () => {
+    console.log("firing");
+    this.setState({
+      showEditForm: !this.state.showEditForm
+    });
+    this.addListeners();
+  };
+
   render() {
     // console.log("Notes Cont Props", this.props);
     // console.log("Notes Cont State", this.state);
     const { noteTitle, noteDetails } = this.state;
     return (
-      <div style={{ "background-color": "black" }}>
-        {!this.state.showNote ? (
-          <Segment
-            style={{
-              "background-color": "black",
-              "border-style": "double",
-              "border-color": "#6666ff"
-            }}
-          >
-            <Header
-              style={{
-                color: "#6666ff"
-              }}
-              as="h2"
-            >
-              <span>
-                <Icon name="mail" />
-                <Header.Content>CRYPTO NOTES</Header.Content>
-              </span>
-            </Header>
+      // <div style={{ "background-color": "black" }}>
 
+      <Segment
+        style={{
+          "background-color": "black",
+          "border-style": "double",
+          "border-color": "#6666ff"
+        }}
+      >
+        <Header
+          style={{
+            color: "#6666ff"
+          }}
+          as="h2"
+        >
+          <span>
+            <Icon name="mail" />
+            <Header.Content>CRYPTO NOTES</Header.Content>
+          </span>
+        </Header>
+
+        <Segment
+          style={{
+            "background-color": "black"
+          }}
+        >
+          {this.state.showEditForm === false ? (
             <NotesForm
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
               noteTitle={noteTitle}
               noteDetails={noteDetails}
             />
-            <Segment
-              style={{
-                overflow: "auto",
-                maxHeight: 150,
-                "background-color": "black"
-              }}
-            >
-              <NotesList
-                // activeNote={this.state.activeNote}
-                notes={this.state.notes}
-                removeNote={this.removeNote}
-                setActiveNote={this.setActiveNote}
-              />
-            </Segment>
-          </Segment>
-        ) : (
-          <NotePopUp />
-        )}
-      </div>
+          ) : (
+            <NoteUpdate
+              activeNote={this.state.activeNote}
+              handleChange={this.handleChange}
+              activeNote={this.state.activeNote}
+              handleUpdateRender={this.handleUpdateRender}
+            />
+          )}
+        </Segment>
+        <Segment
+          style={{
+            overflow: "auto",
+            maxHeight: 150,
+            "background-color": "black"
+          }}
+        >
+          <NotesList
+            // activeNote={this.state.activeNote}
+            notes={this.state.notes}
+            removeNote={this.removeNote}
+            setActiveNote={this.setActiveNote}
+            handleUpdateRender={this.handleUpdateRender}
+            setActiveNote={this.setActiveNote}
+            activeNote={this.state.activeNote}
+          />
+        </Segment>
+      </Segment>
     );
   }
 }
